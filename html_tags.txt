@@ -1,0 +1,64 @@
+<h1> - header first level. Grad 1-6 1 - most important
+------------------------------------------------------------------------------------------------------------------------------------------------
+<p> - paragraph
+------------------------------------------------------------------------------------------------------------------------------------------------
+<img/> - add image. Self-closing.
+	attributes:
+		alt - All img elements must have an alt attribute. 
+			The text inside an alt attribute is used for screen readers to improve accessibility 
+			and is displayed if the image fails to load.If the image is purely decorative, using an empty alt attribute is a best practice.	
+	src - image source
+		ex:
+			<img src="https://www.your-image-source.com/your-image.jpg" alt="Author standing on a beach with two thumbs up.">
+------------------------------------------------------------------------------------------------------------------------------------------------
+<a/> -anchor element. Value - text or img, which your browser will display. Internal or external
+	attributes:
+		href - destination web address. href="#" - dead link
+		title - hint
+	ex:
+		external
+		<a href="https://freecodecamp.org">this links to freecodecamp.org</a>
+		internal
+		<a href="#contacts-header">Contacts</a>
+		...
+		<h2 id="contacts-header">Contacts</h2>
+------------------------------------------------------------------------------------------------------------------------------------------------
+<ul> - unordered list
+	<li> - element
+------------------------------------------------------------------------------------------------------------------------------------------------
+<ol> - ordered lists 
+	<li> - element
+------------------------------------------------------------------------------------------------------------------------------------------------
+<form>
+	attributes:
+		method - get\post
+		enctype - multipart/form-dat for transmit file
+	<input> - input from your user. Self closing
+		attributes:
+			type 
+				"text", 
+				"password",
+				"radio" use name attribute for group,
+				"checkbox" By wrapping an input element inside of a label element it will automatically associate the checkbox input with the label element surrounding it.
+						ex: <label for="loving"><input id="loving" type="checkbox" name="personality"> Loving</label>
+				checked - "radio"\"checkbox" checked by default		
+			placeholder - text is what is displayed in your input element before your user has inputted anything.
+			required-user will not be able to submit your form until he or she has filled them out
+	button
+		attributes:
+			type 
+				"submit" - value-text on button
+		ex:
+		<button type="submit">this button submits the form</button>
+------------------------------------------------------------------------------------------------------------------------------------------------
+<div> -  division element, is a general purpose container for other elements.
+------------------------------------------------------------------------------------------------------------------------------------------------
+Page structure:
+<!DOCTYPE html>
+<html>
+  <!-- Your HTML code goes here -->
+</html>
+
+<head> - Any markup with information about your page 		metadata
+<body> - any markup with the content of the page (what displays for a user)			content
+<main> - helps search engines and other developers find the main content of your page.
