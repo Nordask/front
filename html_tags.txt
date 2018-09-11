@@ -1,6 +1,7 @@
 <h1> - header first level. Grad 1-6 1 - most important
 ------------------------------------------------------------------------------------------------------------------------------------------------
 <p> - paragraph
+<br/> - line breaker
 ------------------------------------------------------------------------------------------------------------------------------------------------
 <img/> - add image. Self-closing.
 	attributes:
@@ -15,6 +16,7 @@
 	attributes:
 		href - destination web address. href="#" - dead link
 		title - hint
+		target="_blank" - link to open in a new tab
 	ex:
 		external
 		<a href="https://freecodecamp.org">this links to freecodecamp.org</a>
