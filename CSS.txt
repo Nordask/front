@@ -1,0 +1,324 @@
+Cascading Style Sheets (CSS)
+allows you to control:
+	color
+    fonts
+    positioning
+    spacing
+    sizing
+    decorations
+    transitions
+There are three main ways to apply CSS styling. You can apply inline styles directly to HTML elements with the style attribute. Alternatively, you can place CSS rules within style tags in an HTML document. Finally, you can write CSS rules in an external style sheet, then reference that file in the HTML document. 	
+
+selectors
+
+
+
+
+few classes ex: <img class="class1 class2">
+
+using id attribute as selector
+	#cat-photo-element {
+  background-color: green;
+}
+
+class - . 
+id - #
+attribute - [type='radio']
+
+
+inheritance
+
+top->bottom
+id precedence class
+inline style precedence id
+important -  the greatest ex: color: red !important;
+
+
+
+
+
+@media (max-width: 100px) { /* CSS Rules */ } - media query that returns the content when the device's width is less than or equal to 100px
+@media (min-height: 350px) { /* CSS Rules */ } -media query returns the content when the device's height is more than or equal to 350px
+  p {
+    font-size: 20px;
+  }
+  
+  @media (max-height:800px){
+    p{font-size: 10px;}
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+properties
+
+font-family: sans-serif/monospace/serif ;
+			<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">   - add to html, after in CSS : font-family:Lobster;
+			When one font isn't available, you can tell the browser to "degrade" to another font. ex: font-family: Helvetica, sans-serif;
+
+width - width: 500px;
+
+border-color: red;
+border-width: 5px;
+border-style: solid;
+border-radius:10px/50%; - round out corners
+background-color: green;
+
+
+padding - controls the amount of space between the element's content and its border
+	padding-top, padding-right, padding-bottom, and padding-left
+	padding: 10px 20px 10px 20px; - clockwise notation:top-right-bottom-left
+margin - controls the amount of space between an element's border and surrounding elements.
+	margin-top, margin-right, margin-bottom, and margin-left
+	margin: 10px 20px 10px 20px;
+	margin: auto;
+border
+
+hexidecimal for color - hex codes use 6 hexadecimal digits to represent colors, two each for red (R), green (G), and blue (B) components.
+						shortened form gives one digit for red, one digit for green, and one digit for blue.
+
+rgb(0, 0, 0) - for color
+		0-255
+---------------------------------------------------------------------------------------------------------------------------------------------------		
+		
+CSS Variables are a powerful way to change many CSS style properties at once by changing only one value.	
+ex create variable:
+	--penguin-skin: gray;
+	
+ex assign var:
+	background: var(--penguin-skin);
+	background: var(--penguin-skin, black); - with fallback value
+	
+ Variable becomes available for you to use inside the element in which you create it. It also becomes available within any elements nested within it.	
+ By creating your variables in :root, they will be available throughout the whole web page.
+ You can over-write variables by setting them again within a specific element.
+ 
+ 
+ query:
+ 	 @media (max-width: 350px) {
+    :root {
+      
+      /* add code below */
+      can 
+      /* add code above */
+      
+    }
+  }
+
+		
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+flex
+display: flex; - allow use flex properties to build a responsive page
+				Adding display: flex to an element turns it into a flex container. This makes it possible to align any children of that element into rows or columns. 
+flex-direction - adding property to the parent item and setting it to row or column. 
+				Creating a row will align the children horizontally, and creating a column will align the children vertically.
+				Other values for flex-direction are row-reverse and column-reverse.
+				default: row 
+justify-content - main axis - For rows, the main axis is a horizontal line and for columns it is a vertical line.
+				values:
+						center - aligns all the flex items to the center inside the flex container.
+						flex-start - aligns items to the start of the flex container. 
+						flex-end - aligns items to the end of the flex container.
+						space-between - aligns items to the center of the main axis, with extra space placed between the items.
+						space-around - similar to space-between but the first and last items are not locked to the edges of the container, the space is distributed around all the items
+align-items - similar justify- content
+			cross axis which is the opposite of the main axis. For rows, the cross axis is vertical and for columns, the cross axis is horizontal.
+			flex-start - aligns items to the start of the flex container. For rows, this aligns items to the top of the container. For columns, this aligns items to the left of the container.
+    		flex-end - aligns items to the end of the flex container. For rows, this aligns items to the bottom of the container. For columns, this aligns items to the right of the container.
+    		center - align items to the center. For rows, this vertically aligns items (equal space above and below the items). For columns, this horizontally aligns them (equal space to the left and right of the items).
+    		stretch - stretch the items to fill the flex container. For example, rows items are stretched to fill the flex container top-to-bottom.
+    		baseline - align items to their baselines. Baseline is a text concept, think of it as the line that the letters sit on.
+flew-wrap - extra items move into a new row or column.
+			CSS flexbox has a feature to split a flex item into multiple rows (or columns). 
+			By default, a flex container will fit all flex items together. For example, a row will all be on one line.
+			values:
+				nowrap - this is the default setting, and does not wrap items.	
+				wrap - wraps items from left-to-right if they are in a row, or top-to-bottom if they are in a column.
+				wrap-reverse - wraps items from bottom-to-top if they are in a row, or left-to-right if they are in a column.
+flex-shrink - allows an item to shrink if the flex container is too small.	
+				The flex-shrink property takes numbers as values. The higher the number, the more it will shrink compared to the other items in the container. 
+				For example, if one item has a flex-shrink value of 1 and the other has a flex-shrink value of 3, the one with the value of 3 will shrink three 
+				times as much as the other.
+flex-grow - property controls the size of items when the parent container expands.
+			 if one item has a flex-grow value of 1 and the other has a flex-grow value of 3, the one with the value of 3 will grow three times as much as the other.	
+flex-basis - property specifies the initial size of the item before CSS makes adjustments with flex-shrink or flex-grow.	
+			values:
+					The units used by the flex-basis property are the same as other size properties (px, em, %, etc.). The value auto sizes items based on the content.
+//	grow	shrink	basis				
+flex: 1 	0 		10px;
+default - flex: 0 1 auto;
+
+order - used to tell CSS the order of how flex items appear in the flex container. By default, items will appear in the same order they come in the source HTML. 
+		The property takes numbers as values, and negative numbers can be used.
+align-self - allows you to adjust each item's alignment individually, instead of setting them all at once. 
+			This is useful since other common adjustment techniques using the CSS properties float, clear, and vertical-align do not work on flex items.
+			accepts the same values as align-items and will override any value set by the align-items property.
+			
+--------------------------------------------------------------------------------------------------------------------------------------------
+					CSS Grid
+Turning an HTML element into a grid container with rows and columns for you to place children elements where you want within the grid.	
+In CSS Grid, the parent element is referred to as the container and its children are called items.
+
+display: grid; - turn any HTML element into grid container
+
+grid-template-columns - dd some columns to the grid. he number of parameters given to the grid-template-columns 
+						property indicates the number of columns in the grid, and the value of each parameter indicates the width of each column.
+	ex:
+		grid-template-columns: 50px 50px; - two columns that are 50px wide each.
+	values:
+			px\em
+			fr - sets the column or row to a fraction of the available space
+			auto - sets the column or row to the width or height of its content automatically
+			% - adjusts the column or row to the percent width of its container
+			repeat(100, 50px); - first - number of columns, second - colimn width
+				ex:
+					grid-template-columns: repeat(2, 1fr 50px) 20px; transform into grid-template-columns: 1fr 50px 1fr 50px 20px;
+					repeat(auto-fill, minmax(60px, 1fr)); - auto-fill -allows you to automatically insert as many rows or columns of 
+															your desired size as possible depending on the size of the container
+															If your container can't fit all your items on one row, it will move them down to a new one.
+					auto-fit - works almost identically to auto-fill. when the container's size exceeds the size of all the items combined, 
+								auto-fill keeps inserting empty rows or columns and pushes your items to the side, 
+								while auto-fit collapses those empty rows or columns and stretches your items to fit the size of the container.
+								If your container can't fit all your items on one row, it will move them down to a new one.
+			minmax(50px, 200px); - sed to limit the size of items when the grid container changes size. first - min, second - max
+	ex:
+		grid-template-columns: auto 50px 10% 2fr 1fr; - This snippet creates five columns. The first column is as wide as its content, 
+		the second column is 50px, the third column is 10% of its container, and for the last two columns; 
+		the remaining space is divided into three sections, two are allocated for the fourth column, and one for the fifth.
+			
+grid-template-rows - similar to grid-template-columns, but works with rows
+
+grid-column-gap: 10px; - add a gap between the columns, creates empty space between all of our columns.
+grid-row-gap - similar to grid-column-gap, but works with rows
+grid-gap -for both
+	values:
+		only one - gaps for rows and columns
+		two - first - between rows, second - between columns grid-gap: 10px 20px;
+		
+grid-column - adjust column
+	ex:
+		grid-column: 1 / 3; - start at the first vertical line of the grid on the left and span to the 3rd line of the grid, consuming two columns.
+grid-row - adjust row
+
+justify-self - align the content's position within its cell horizontally using the justify-self property on a grid item.ignate
+	values:
+		stretch -default.make the content fill the whole width of the cell. 
+		start - aligns the content at the left of the cell
+		center - aligns the content in the center of the cell
+		end - aligns the content at the right of the cell.
+align-self - same, but vertical
+justify-items - horizontal for all items. Use for grid container
+align-items - vertical for all items.Use for grid container
+
+grid-template-areas - group cells of your grid together into an area and give the area a custom name. 
+	ex:	
+		grid-template-areas:
+  			"header header header"
+  			"advert content content"
+  			"footer footer footer";		merges the top three cells together into an area named header, the bottom three 
+											cells into a footer area, and it makes two areas in the middle row; advert and content
+Every word in the code represents a cell and every pair of quotation marks represent a row.
+In addition to custom labels, you can use a period (.) to designate an empty cell in the grid.
+
+grid-area - place item into template area
+	ex:
+		.item1 { grid-area: header; }
+		item1 { grid-area: 1/1/2/4; } - create area on the fly. The item in the example will consume the rows between lines 1 and 2, and the columns between lines 1 and 4.
+		grid-area: horizontal line to start at / vertical line to start at / horizontal line to end at / vertical line to end at;
+		
+Turning an element into a grid only affects the behavior of its direct descendants. So by turning a direct descendant into a grid, you have a grid within a grid.
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
