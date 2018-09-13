@@ -14,6 +14,7 @@ body {
   flex-flow: column nowrap;
   align-items: center;
   background-color: #D3D3D3;
+  border-radius: 5px;
 }
 
 #survey-form {
@@ -33,6 +34,18 @@ body {
   border-radius: 5px;
 }
 
+.boxes {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+}
+
+.number-box, .name-box, .email-box {
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 
 
 .hate_list {
@@ -40,4 +53,11 @@ body {
   grid-template-areas:
   			"header header"
         "qq";
+}
+
+.text-box{
+  padding: 0px 50px 0px 50px;
+}
+.text-box>label {
+  vertical-align:top;
 }
