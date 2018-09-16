@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+body {
+  background-color: #006699;
+  width: 100vm;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center; 
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+.main-body {
+  width: 60vm;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  background-color: #D3D3D3;
+  border-radius: 5px;
+}
+
+#survey-form {
+  width: 60vm;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+
+#number, #email, #name{
+  height:20px;
+  width:280px;
+  padding:5px;
+  margin:10px;
+  border:2px solid;
+  border-radius: 5px;
+}
+
+.boxes {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+}
+
+.number-box, .name-box, .email-box {
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+
+.hate_list {
+  display: grid;
+  grid-template-areas:
+  			"header header"
+        "qq";
+}
+
+.text-box{
+  padding: 0px 50px 0px 50px;
+}
+.text-box>label {
+  vertical-align:top;
+}

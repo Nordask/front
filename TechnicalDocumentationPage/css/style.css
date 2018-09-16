@@ -1,0 +1,45 @@
+body, html {
+  margin: 0px;
+  padding: 0px;
+  min-width:290px;
+}
+
+.example {
+  background-color: #A9A9A9;
+  border-radius: 5px;
+}
+
+#navbar {
+  position: fixed;
+  border-color: rgba(128,128,128,0.2);
+  border-width: 2px;
+  border-style: solid;
+  top:0px;
+  left: 0px;
+  width: 300px;
+  height: 100%;
+}
+
+#navbar a {
+  text-decoration: none;
+  display: block;
+  padding: 1em;
+  color: white;
+  background-color: rgb(0,128,128);
+  border-style: inset;
+  border-color: rgba(0,128,128, 1.7);
+}
+
+#navbar a:hover {
+  background-color: rgba(0,128,128, 0.5);
+}
+
+
+#main-doc{
+  margin-left: 320px;
+}
+
+header {
+  font-weight: bold;
+  font-size: 20px;
+}

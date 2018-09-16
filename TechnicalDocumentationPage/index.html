@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Technical Documentation Page</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+<nav id="navbar">
+  <header>HTML documentation</header>
+  <li><a href="#Introduction" class="nav-link">Introduction</a></li>
+  <li><a href="#Page_structure" class="nav-link">Page structure</a></li>
+  <li><a href="#Common_HTML_tags" class="nav-link">Common HTML tags</a></li>
+  <li><a href="#Form" class="nav-link">Form</a></li>
+  <li><a href="#HTML5_tags" class="nav-link">HTML5 tags</a></li>
+</nav>
+
+<main id="main-doc">
+  <section class="main-section" id="Introduction">
+    <header>Introduction</header>
+    <article>
+      <p>Hypertext Markup Language (HTML) is the standard markup language for creating web pages and web applications. With Cascading Style Sheets (CSS) and JavaScript, it forms a triad of cornerstone technologies for the World Wide Web.</p>
+      <p>Web browsers receive HTML documents from a web server or from local storage and render the documents into multimedia web pages. HTML describes the structure of a web page semantically and originally included cues for the appearance of the document. </p>
+      <p>HTML elements are the building blocks of HTML pages. With HTML constructs, images and other objects such as interactive forms may be embedded into the rendered page. HTML provides a means to create structured documents by denoting structural semantics for text such as headings, paragraphs, lists, links, quotes and other items. HTML elements are delineated by tags, written using angle brackets. Tags such as &lt;img /&gt; and &lt;input /&gt; directly introduce content into the page. Other tags such as &lt;p&gt surround and provide information about document text and may include other tags as sub-elements. Browsers do not display the HTML tags, but use them to interpret the content of the page. </p>
+      <p>HTML can embed programs written in a scripting language such as JavaScript, which affects the behavior and content of web pages. Inclusion of CSS defines the look and layout of content. The World Wide Web Consortium (W3C), maintainer of both the HTML and the CSS standards, has encouraged the use of CSS over explicit presentational HTML since 1997.</p>
+    </article>  
+  </section>
+  <section class="main-section" id="Page_structure">
+    <header>Page structure</header>
+    <article>
+   <div class="example"><h5>Example</h5><pre>&lt;!DOCTYPE html&gt
+&lt;html&gt
+	&lt;head&gt
+	&lt;/head&gt
+	&lt;body&gt
+	&lt;/body&gt
+&lt;/html&gt</pre></div>
+    <li>&lt;head&gt - Any markup with information about your page metadata</li>
+    <li>&lt;body&gt - any markup with the content of the page (what displays for a user) content</li>
+    </article>
+  </section> 
+  <section class="main-section" id="Common_HTML_tags">
+    <header>Common HTML tags</header>
+    <article>
+    <li>&lt;h1&gt - header first level. Graduation 1-6. 1 is most important.</li>
+    <li>&lt;p&gt - paragraph.</li>
+    <li>&lt;br/&gt - line breaker. Self-closing.</li>
+    <div>&lt;img/&gt - add image. Self-closing. <br/>
+      
+        Attributes:
+        <li>alt - All img elements must have an alt attribute. 
+			The text inside an alt attribute is used for screen readers to improve accessibility 
+			and is displayed if the image fails to load.If the image is purely decorative, using an empty alt attribute is a best practice.</li>
+        <li>src - image source
+    <div class="example"><h5>ex:</h5>&lt;img src="https://www.your-image-source.com/your-image.jpg" alt="Author standing on a beach with two thumbs up."&gt</div></li>
+    <li>&lt;a/&gt -anchor element. Value - text or img, which your browser will display. Internal or external.<br/>Attributes: 
+    <li>href - destination web address. href="#" - dead link</li>
+    <li>title - hint</li>
+    <li>target="_blank" - link to open in a new tab</li>
+</li>
+    <div class="exmple"><h5>ex:</h5>
+      <li>external<br/>
+		&lt;a href="https://freecodecamp.org"&gtthis links to freecodecamp.org&lt;/a&gt</li>
+      <li>internal<br/>
+		&lt;a href="#contacts-header"&gtContacts&lt;/a&gt<br/>
+		...<br/>
+		&lt;h2 id="contacts-header"&gtContacts&lt;/h2&gt</li>
+</div>
+  <li>
+   &lt;div&gt -  division element, is a general purpose container for other elements. 
+  </li>
+</article>
+  </section> 
+  <section class="main-section" id="Form">
+    <header>Form</header>
+    <article>
+      <li>&lt;form&gt - element defines a form that is used to collect user input<br/>Attributes:
+      <li>method - get\post</li>
+      <li>enctype - multipart/form-dat for transmit file</li>
+      </li>
+      <li>&lt;input&gt - input from your user. Self closing.<br/>Attributes:
+      <li>type
+    <li>"text"</li>
+    <li>"password"</li>
+    <li>"radio" use name attribute for group</li>
+    <li>"checkbox" - By wrapping an input element inside of a label element it will automatically associate the checkbox input with the label element surrounding it.
+    <div class="example"><h5>ex:</h5>
+      &lt;label for="loving"&gt&lt;input id="loving" type="checkbox" name="personality"&gt Loving&lt;/label&gt</div>
+    </li>
+    <li>"submit" - value-text on button<div class="example"><h5>ex:</h5>
+      &lt;button type="submit"&gtthis button submits the form&lt;/button&gt</div></li>
+    </li>
+  <li>checked - "radio"\"checkbox" checked by default</li>
+  <li>date - date picker</li>
+  <li>placeholder - text is what is displayed in your input element before your user has inputted anything.</li>
+  <li>required-user will not be able to submit your form until he or she has filled them out</li>
+  <li>name - The name attribute specifies the name of an &lt;input&gt element.</li>
+  <li>accesskey - specify a shortcut key to activate or bring focus to an elemen. HTML5 allows this attribute to be used on any element, 
+			but it's particularly useful when it's used with interactive ones. This includes links, buttons, and form controls.</li>
+  </li>
+    </article>  
+  </section> 
+  <section class="main-section" id="HTML5_tags">
+    <header>HTML5 tags</header>
+    <article>
+    <p>&lt;main&gt - helps search engines and other developers find the main content of your page.</p>
+    <p>&lt;article&gt - a sectioning element, and is used to wrap independent, self-contained content. The tag works well with blog entries, forum posts, or news articles.
+			for standalone content.groups independent, self-contained content</p>
+    <p>&lt;section&gt - groups related content	</p>
+    <p>&lt;nav&gt - wrap around the main navigation links in your page.</p>
+    <p>&lt;footer&gt - has a built-in landmark feature that allows assistive devices to quickly navigate to it. It's primarily used to contain copyright information or links to related documents that usually sit at the bottom of a page.
+</p>
+    <p>&lt;audio&gt - wraps sound or audio stream content in your markup</p>
+    <p>&lt;figure&gt 
+related &lt;figcaption&gt - used together, these items wrap a visual representation (like an image, diagram, or chart) along with its caption.
+						 This gives a two-fold accessibility boost by both semantically grouping related content, and providing a text alternative that explains the figure.
+</p>
+    <p>&lt;fieldset&gt - surrounds the entire grouping of radio. Gropping radio buttons</p>  
+    <p>&lt;legend&gt - to provide a description for the grouping</p>
+    <p>&lt;time&gt	- wrap a date or time on a page. A valid format of that date is held by the datetime attribute. This is the value accessed by assistive devices. 
+			It helps avoid confusion by stating a standardized version of a time, even if it's written in an informal or colloquial manner in the text.
+</p> 
+    </article>  
+  </section> 
+</main>
+  
+  
+
+</body>
+
+</html>

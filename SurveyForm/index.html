@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Survey Form</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <!--script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script-->
+<div class="main-body">
+<h1 id="title">Survey Form</h1>
+<p id="description">Welcome on boat!</p>
+<form id="survey-form" method="GET" action="https://freecodecamp.com">
+  <div class="boxes">    
+    <div class="name-box">     
+      <label for="name" id="name-label">
+        Name:</label>
+      <input id="name"     
+              type="text" 
+              placeholder="Enter your name" required/>      
+    </div>
+    <div class="email-box">     
+      <label for="email" id="email-label">
+      email:</label>
+      <input id="email"       
+             type="email" 
+             placeholder="Enter your email" required/>      
+    </div>
+    <div class="number-box">   
+      <label for="number" id="number-label">
+      Age:</label>
+      <input id="number"       
+             type="number" 
+             placeholder="Enter your age" min="1" max="77"/>      
+    </div>
+ </div>
+  
+  <label for="dropdown">
+    Size of your ship:
+    <select id="dropdown" id="dropdown">
+       <option disabled selected value>Select an option</option>
+      <option>small</option>
+      <option>average</option>
+      <option>big</option>
+    </select>
+  </label>  
+  
+  <p>
+    Your gender
+    <br/>
+    <label for="radio11">
+      Male:
+      <input id="radio11" type="radio"   
+             name="gender" value="Male"/>
+    </label>
+    <label for="radio12">
+      Female:
+      <input id="radio12" type="radio" 
+             name="gender" value="Female"/>
+    </label>
+    <label for="radio13">
+      Another:
+      <input id="radio13" type="radio" 
+             name="gender" value="Another"/>
+    </label>
+  </p>
+  
+  <p>
+    Who are you?
+    <br/>
+    <label for="radio21">
+      Pirate:
+      <input id="radio21" type="radio" 
+             name="status" value="Pirate"/>
+    </label>
+    <label for="radio22">
+      Navy sailor:
+      <input id="radio22" type="radio" 
+             name="status" value="Navy sailor"/>
+    </label>
+  </p>
+  
+  <div>Things that you hate:</div>
+  <p class="hate_list">
+    
+    <label for="cb1">
+      <input type="checkbox" id="cb1" value="Storms">
+      Storms
+    </label>
+    <label for="cb2">
+      <input type="checkbox" id="cb2" value="Scurvy">
+      Scurvy
+    </label>
+    <label for="cb3">
+      <input type="checkbox" id="cb3" value="Holes">
+      Holes
+    </label>
+    <label for="cb4">
+      <input type="checkbox" id="cb4" value="Oranges">
+      Oranges
+    </label>
+    <label for="cb5">
+      <input type="checkbox" id="cb5" value="Fish">
+      Fish
+    </label>
+    <label for="cb6">
+      <input type="checkbox" id="cb6" value="Ninjas">
+      Ninjas
+    </label>
+    <label for="cb7">
+      <input type="checkbox" id="cb7" value="Eye patch">
+      Eye patch
+    </label>
+    <label for="cb8">
+      <input type="checkbox" id="cb8" value="Hooks">
+      Hooks
+    </label>
+  </p>
+  
+  <p class="text-box">
+    <label for="textarea">
+      Any Comments or Suggestions?</label>
+    <textarea id="textarea" rows="5" cols="50" placeholder="Enter your commentary"></textarea>
+  </p> 
+  
+  <p>
+    <input id="submit" type="submit" value="Submit"/>
+  </p>  
+</form> 
+</div>
+  
+  
+
+</body>
+
+</html>
