@@ -1,0 +1,251 @@
+Regular expressions are special strings that represent a search pattern. Also known as "regex" or "regexp", they help programmers match, search, and replace text. 
+Regular expressions can appear cryptic because a few characters have special meaning. The goal is to combine the symbols and text into a pattern that matches what you want, 
+but only what you want.
+
+
+
+
+----------------------------------------------------------------------
+Test Method
+JavaScript has multiple ways to use regexes. One way to test a regex is using the .test() method. The .test() method takes the regex, applies it to a string 
+(which is placed inside the parentheses), and returns true or false if your pattern finds something or not.
+
+let testStr = "freeCodeCamp";
+let testRegex = /Code/;
+testRegex.test(testStr);
+// Returns true
+-----------------------------------------------------------------------
+Extract Matches
+To use the .match() method, apply the method on a string and pass in the regex inside the parentheses. 
+"Hello, World!".match(/Hello/);
+// Returns ["Hello"]
+let ourStr = "Regular expressions";
+let ourRegex = /expressions/;
+ourStr.match(ourRegex);
+// Returns ["expressions"]
+-----------------------------------------------------------------------------------------
+Use Capture Groups to Search and Replace
+.replace()
+let wrongText = "The sky is silver.";
+let silverRegex = /silver/;
+wrongText.replace(silverRegex, "blue");
+// Returns "The sky is blue."
+-------------------------------------------------------------------------------------------
+Remove Whitespace from Start and End
+.trim()
+----------------------------------------------------------------------
+alternation or OR operator: |
+/yes|no|maybe/
+-----------------------------------------------------------------------
+Ignore Case While Matching
+flag i
+
+patter : /word/i
+----------------------------------------------------------------------
+Find More Than the First Match
+flag g
+
+let repeatRegex = /Repeat/g;
+testStr.match(repeatRegex);
+// Returns ["Repeat", "Repeat", "Repeat"]
+
+few flags:
+You can have multiple flags on your regex like /search/gi
+---------------------------------------------------------------------
+Wildcard period
+
+. - will match any one character.  The wildcard is also called dot and period.
+
+let humStr = "I'll hum a song";
+let hugStr = "Bear hug";
+let huRegex = /hu./;
+humStr.match(huRegex); // Returns ["hum"]
+hugStr.match(huRegex); // Returns ["hug"]
+-----------------------------------------------------------------------------
+Multiple Possibilities
+You can search for a literal pattern with some flexibility with character classes. Character classes allow you to define a group of characters 
+you wish to match by placing them inside square ([ and ]) brackets.
+
+let bigStr = "big";
+let bagStr = "bag";
+let bugStr = "bug";
+let bogStr = "bog";
+let bgRegex = /b[aiu]g/;
+bigStr.match(bgRegex); // Returns ["big"]
+bagStr.match(bgRegex); // Returns ["bag"]
+bugStr.match(bgRegex); // Returns ["bug"]
+bogStr.match(bgRegex); // Returns null
+---
+character sets 
+let catStr = "cat";
+let batStr = "bat";
+let matStr = "mat";
+let bgRegex = /[a-e]at/;
+catStr.match(bgRegex); // Returns ["cat"]
+batStr.match(bgRegex); // Returns ["bat"]
+matStr.match(bgRegex); // Returns null
+
+let jennyStr = "Jenny8675309";
+let myRegex = /[a-z0-9]/ig;
+// matches all letters and numbers in jennyStr
+jennyStr.match(myRegex);
+---
+negated character sets
+To create a negated character set, you place a caret character (^) after the opening bracket and before the characters you do not want to match.
+/[^aeiou]/gi - matches all characters that are not a vowel. 
+characters like ., !, [, @, / and white space are matched - the negated vowel character set only excludes the vowel characters.
+-------------------------------------------------------------------------------
+Match Characters that Occur One or More Times
+For example, /a+/g would find one match in "abc" and return ["a"]. Because of the +, it would also find a single match in "aabc" and return ["aa"].
+If it were instead checking the string "abab", it would find two matches and return ["a", "a"] because the a characters are not in a row - there is a b between them. 
+Finally, since there is no "a" in the string "bcd", it wouldn't find a match.
+---
+Match Characters that Occur Zero or More Times
+asterisk or star: *
+
+let soccerWord = "gooooooooal!";
+let gPhrase = "gut feeling";
+let oPhrase = "over the moon";
+let goRegex = /go*/;
+soccerWord.match(goRegex); // Returns ["goooooooo"]
+gPhrase.match(goRegex); // Returns ["g"]
+oPhrase.match(goRegex); // Returns null
+------------------------------------------------------------------------------------------------
+Find Characters with Lazy Matching
+
+greedy match finds the longest possible part of a string that fits the regex pattern and returns it as a match. 
+
+lazy match, which finds the smallest possible part of the string that satisfies the regex pattern.
+
+/t[a-z]*i/ to the string "titanic"
+
+Regular expressions are by default greedy, so the match would return ["titani"]. It finds the largest sub-string possible to fit the pattern.
+
+However, you can use the ? character to change it to lazy matching. "titanic" matched against the adjusted regex of /t[a-z]*?i/ returns ["ti"].
+
+let text = "<h1>Winter is coming</h1>";
+let myRegex = /<.*?>/; // Change this line
+let result = text.match(myRegex); // <h1>
+------------------------------------------------------------------------------------------------------
+Match Beginning String Patterns
+Outside of a character set, the caret is used to search for patterns at the beginning of strings.
+
+let firstString = "Ricky is first and can be found.";
+let firstRegex = /^Ricky/;
+firstRegex.test(firstString);
+// Returns true
+let notFirst = "You can't find Ricky now.";
+firstRegex.test(notFirst);
+// Returns false
+---
+
+Match Ending String Patterns
+dollar sign character $ at the end of the regex.
+
+let theEnding = "This is a never ending story";
+let storyRegex = /story$/;
+storyRegex.test(theEnding);
+// Returns true
+let noEnding = "Sometimes a story will have to end";
+storyRegex.test(noEnding);
+// Returns false
+------------------------------------------------------------------------------------------------------
+Shortcut character classes are also known as shorthand character classes.
+
+Match All Letters and Numbers
+Shortcut:
+\w is equal to [A-Za-z0-9_]
+/\w/g
+
+Match Everything But Letters and Numbers
+\W - opposite patter, is equal [^A-Za-z0-9_]
+
+
+Match All Numbers
+\d is equal to the character class [0-9], which looks for a single character of any number between zero and nine.
+
+Match All Non-Numbers
+\D is equal to the character class [^0-9], which looks for a single character that is not a number between zero and nine.
+
+Match Whitespace
+\s This pattern not only matches whitespace, but also carriage return, tab, form feed, and new line characters. 
+You can think of it as similar to the character class [ \r\t\f\n\v].
+
+Match Non-Whitespace Characters
+\S This pattern will not match whitespace, carriage return, tab, form feed, and new line characters. 
+You can think of it being similar to the character class [^ \r\t\f\n\v].
+--------------------------------------------------------------------------------------------------------
+Specify Upper and Lower Number of Matches
+You can specify the lower and upper number of patterns with quantity specifiers. Quantity specifiers are used with curly brackets ({ and }). 
+You put two numbers between the curly brackets - for the lower and upper number of patterns.
+
+let A4 = "aaaah";
+let A2 = "aah";
+let multipleA = /a{3,5}h/;
+multipleA.test(A4); // Returns true
+multipleA.test(A2); // Returns false
+
+Specify Only the Lower Number of Matches
+/ha{3,}h/
+
+Specify Exact Number of Matches
+/ha{3}h/
+-------------------------------------------------------------------------------------------------------------
+Check for All or None
+You can specify the possible existence of an element with a question mark, ?. This checks for zero or one of the preceding element. 
+You can think of this symbol as saying the previous element is optional.
+
+let american = "color";
+let british = "colour";
+let rainbowRegex= /colou?r/;
+rainbowRegex.test(american); // Returns true
+rainbowRegex.test(british); // Returns true
+-------------------------------------------------------------------------------------------------------------
+Positive and Negative Lookahead
+
+positive lookahead - will look to make sure the element in the search pattern is there, but won't actually match it.
+A positive lookahead is used as (?=...) where the ... is the required part that is not matched.
+
+negative lookahead - will look to make sure the element in the search pattern is not there. A negative lookahead is used as (?!...) where the ... is the 
+pattern that you do not want to be there. The rest of the pattern is returned if the negative lookahead part is not present.
+
+let quit = "qu";
+let noquit = "qt";
+let quRegex= /q(?=u)/;
+let qRegex = /q(?!u)/;
+quit.match(quRegex); // Returns ["q"]
+noquit.match(qRegex); // Returns ["q"]
+
+let password = "abc123";
+let checkPass = /(?=\w{3,6})(?=\D*\d)/;
+checkPass.test(password); // Returns true
+-----------------------------------------------------------------------------------------------------------
+Reuse Patterns Using Capture Groups
+capture groups. Parentheses, ( and ), are used to find repeat substrings. You put the regex of the pattern that will repeat in between the parentheses.
+To specify where that repeat string will appear, you use a backslash (\) and then a number. 
+his number starts at 1 and increases with each additional capture group you use. An example would be \1 to match the first group.
+
+let repeatStr = "regex regex";
+let repeatRegex = /(\w+)\s\1/;
+repeatRegex.test(repeatStr); // Returns true
+repeatStr.match(repeatRegex); // Returns ["regex regex", "regex"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
