@@ -1,0 +1,112 @@
+Bootstrap is a front-end framework used to design responsive web pages and web applications. 
+Bootstrap includes pre-built CSS styles and classes, plus some JavaScript functionality.
+
+Bootstrap uses a responsive 12 column grid layout and has design templates for:
+	buttons
+    images
+    tables
+    forms
+    navigation
+	
+Responsive Design - Bootstrap will figure out how wide your screen is and respond by resizing your HTML elements
+
+For add Bootstrap you must add to top of html document this:
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+
+class="container-fluid"
+
+
+-------------------------------------
+Make Images Mobile Responsive
+class="img-responsive"
+<img src="https://bit.ly/fcc-running-cats" class="img-responsive"/>
+------------------------------------
+Center Text with Bootstrap
+class="text-center"
+-----------------------------------
+Create a Bootstrap Button
+class="btn btn-default"
+-----------------------------------
+colors
+btn-primary
+btn-info
+btn-danger
+----------------------------------
+Grid
+<div class="row">
+	<div class="col-xs-4">
+md means medium
+xs means extra small
+	col-md-* need number of columns 1 to 12
+	col-xs-*
+You can use Bootstrap's col-xs-* classes on form elements
+
+	<div class="row">
+    <div class="col-xs-4">
+      <button class="btn btn-block btn-primary"><i class="fa fa-thumbs-up"></i> Like</button>
+    </div>
+    <div class="col-xs-4">
+      <button class="btn btn-block btn-info"><i class="fa fa-info-circle"></i> Info</button>
+    </div>
+    <div class="col-xs-4">
+      <button class="btn btn-block btn-danger"><i class="fa fa-trash"></i> Delete</button>
+    </div>
+  	</div>
+	
+well - reate a visual sense of depth for your columns.
+	<div class="col-xs-6">
+      <div class="well"></div>
+    </div>
+----------------------------------------
+text
+text-primary
+text-danger
+------------------------------------------------------------------------------------
+Font Awesome is a convenient library of icons. These icons are vector graphics, stored in the .svg file format.
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+
+The i element was originally used to make other elements italic, but is now commonly used for icons. You can add the Font Awesome classes to the i element to turn it into an icon, for example:
+
+<i class="fa fa-info-circle"></i>
+
+span element is also acceptable for use with icons.
+
+<button class="btn btn-block btn-primary">
+        <i class="fa fa-info-circle"></i>
+		Like
+</button>
+
+fa-info-circle
+fa-thumbs-up
+fa-trash
+fa-paper-plane
+----------------------------------------
+form-control
+All textual <input>, <textarea>, and <select> elements with the class .form-control have a width of 100%.
+----------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

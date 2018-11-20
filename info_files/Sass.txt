@@ -1,0 +1,262 @@
+Sass, or "Syntactically Awesome StyleSheets", is a language extension of CSS. 
+
+
+Sass can extend the CSS language because it is a preprocessor. It takes code written using Sass syntax, and converts it into basic CSS. 
+This allows you to create variables, nest CSS rules into others, and import other Sass files, among other things. The result is more compact, easier to read code.
+
+There are two syntaxes available for Sass. 
+
+1)SCSS (Sassy CSS)
+This means that every valid CSS stylesheet is a valid SCSS file with the same meaning. Files using this syntax have the .scss extension.
+
+2) indented syntax (or sometimes just "Sass")
+uses indentation rather than brackets to indicate nesting of selectors, and newlines rather than semicolons to separate properties. Files using this syntax have the .sass extension.
+
+
+
+-----------------------------------------
+Store Data
+One feature of Sass that's different than CSS is it uses variables. They are declared and set to store data, similar to JavaScript.
+In Sass, variables start with a $ followed by the variable name.
+
+$main-fonts: Arial, sans-serif;
+$headings-color: green;
+
+//To use variables:
+h1 {
+  font-family: $main-fonts;
+  color: $headings-color;
+}
+
+
+<style type='text/sass'>
+  $text-color: red;
+  
+  .header{
+    text-align: center;
+  }
+  .blog-post, h2 {
+    color: $text-color;
+  }
+</style>
+-----------------------------------------
+Sass allows nesting of CSS rules
+
+nav {
+  background-color: red;
+
+  ul {
+    list-style: none;
+
+    li {
+      display: inline-block;
+    }
+  }
+}
+----------------------------------------
+Mixins
+
+In Sass, a mixin is a group of CSS declarations that can be reused throughout the style sheet.
+Mixins are like functions for CSS.
+
+@mixin box-shadow($x, $y, $blur, $c){
+  -webkit-box-shadow: $x, $y, $blur, $c;
+  -moz-box-shadow: $x, $y, $blur, $c;
+  -ms-box-shadow: $x, $y, $blur, $c;
+  box-shadow: $x, $y, $blur, $c;
+}
+
+The definition starts with @mixin followed by a custom name. The parameters (the $x, $y, $blur, and $c in the example above) are optional.
+Now any time a box-shadow rule is needed, only a single line calling the mixin replaces having to type all the vendor prefixes. A mixin is called with the @include directive
+
+div {
+  @include box-shadow(0px, 0px, 4px, #fff);
+}
+
+<style type='text/sass'>
+  @mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+  }
+  
+  
+  #awesome {
+    width: 150px;
+    height: 150px;
+    background-color: green;
+    @include border-radius(15px);
+  }
+</style>
+-------------------------------------
+@if and @else
+
+@mixin text-effect($val) {
+  @if $val == danger {
+    color: red;
+  }
+  @else if $val == alert {
+    color: yellow;
+  }
+  @else if $val == success {
+    color: green;
+  }
+  @else {
+    color: black;
+  }
+}
+
+  @mixin border-stroke($val) {
+    @if $val == light {
+     border: 1px solid black;
+    } @else if $val == medium {
+      border: 3px solid black;
+    } @else if $val == heavy {
+      border: 6px solid black;
+    } @else{
+      border: none;
+    }
+  }
+----------------------------------
+@for
+
+@for is used in two ways: "start through end" or "start to end". The main difference is that "start to end" excludes the end number, 
+and "start through end" includes the end number.
+
+@for $i from 1 through 12 {
+  .col-#{$i} { width: 100%/12 * $i; }
+}
+
+converted to CSS
+
+.col-1 {
+  width: 8.33333%;
+}
+
+.col-2 {
+  width: 16.66667%;
+}
+
+...
+
+.col-12 {
+  width: 100%;
+}
+--------------------------------
+@each
+
+1-st way
+@each $color in blue, red, green {
+  .#{$color}-text {color: $color;}
+}
+
+
+2-nd way
+$colors: (color1: blue, color2: red, color3: green);
+
+@each $key, $color in $colors {
+  .#{$color}-text {color: $color;}
+}
+
+$key variable is needed to reference the keys in the map. Otherwise, the compiled CSS would have color1, color2... in it.
+
+Both of the above code examples are converted into the following CSS:
+.blue-text {
+  color: blue;
+}
+
+.red-text {
+  color: red;
+}
+
+.green-text {
+  color: green;
+}
+
+
+ @each $color in blue, black, red {
+    .#{$color}-bg {background-color: $color;}
+  }
+-------------------------------------------
+@while
+
+$x: 1;
+@while $x < 13 {
+  .col-#{$x} { width: 100%/12 * $x;}
+  $x: $x + 1;
+}
+------------------------------------------
+Partials
+
+Partials in Sass are separate files that hold segments of CSS code. These are imported and used in other Sass files. 
+This is a great way to group similar code into a module to keep it organized.
+
+Names for partials start with the underscore (_) character, which tells Sass it is a small segment of CSS and not to convert it into a CSS file. 
+Also, Sass files end with the .scss file extension. To bring the code in the partial into another Sass file, use the @import directive.
+
+_mixins.scss
+@import 'mixins'
+
+Once a partial is imported into a file, all variables, mixins, and other code are available to use.
+----------------------------------------
+Extend
+extend that makes it easy to borrow the CSS rules from one element and build upon them in another.
+
+.panel{
+  background-color: red;
+  height: 70px;
+  border: 2px solid green;
+}
+
+.big-panel{
+  @extend .panel;
+  width: 150px;
+  font-size: 2em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

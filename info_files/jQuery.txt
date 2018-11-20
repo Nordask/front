@@ -1,0 +1,186 @@
+jQuery is one of the many libraries for JavaScript. It is designed to simplify scripting done on the client side. 
+jQuery's most recognizable characteristic is its dollar sign ($) syntax. With it, you can easily manipulate elements, 
+create animations and handle input events.
+
+<script>
+browser will run any JavaScript inside a script element, including jQuery.
+</script>
+
+jQuery library,  Animate.css
+------------------------------------------------
+<script>
+  $(document).ready(function() {});
+</script>
+
+code you put inside this function will run as soon as your browser has loaded your page. This is important because without your document ready function, 
+your code may run before your HTML is rendered, which would cause bugs
+------------------------------------------------
+target element by type
+1. selected with $("button")
+2. added some CSS classes with .addClass("animated bounce");
+
+$("button").addClass("animated bounce");
+------------------------------------------------
+target element by class
+just like with CSS declarations, you type a . before the class's name.
+
+$(".text-primary").addClass("animated shake");
+$(".well").addClass("animated shake");
+-----------------------------------------------
+target element by id attribute
+$("#target3")
+$("#target6").addClass("animated fadeOut")
+----------------------------------------------
+multiply jQuery Selectors
+	
+	$("button").addClass("animated");
+    $(".btn").addClass("shake");
+    $("#target1").addClass("btn-primary");
+----------------------------------------------
+Remove Classes from an Element
+$("#target2").removeClass("btn-default
+---------------------------------------------
+change the CSS of an HTML element directly
+
+.css() - function allows you to change the CSS of an element.
+$("#target1").css("color", "blue");
+--------------------------------------------
+Disable an Element
+
+.prop() - function allows you to adjust the properties of elements.
+
+$("button").prop("disabled", true);
+--------------------------------------------
+Change Text Inside an Element
+
+change the text between the start and end tags of an element
+
+.html() - function lets you add HTML tags and text within an element. Any content previously within the element will be completely replaced with 
+the content you provide using this function.
+
+$("h3").html("<em>jQuery Playground</em>");
+
+.text() - function alters text without adding tags In other words, this function will not evaluate any HTML tags passed to it, 
+but will instead treat it as the text you want to replace the existing content with.
+-----------------------------------------
+Remove an HTML Element
+
+.remove() - function will remove an HTML element entirely
+
+$("#target4").remove();
+----------------------------------------
+Use appendTo to Move Elements
+
+appendTo() - function allows you to select HTML elements and append them to another element.
+
+$("#target4").appendTo("#left-well");
+---------------------------------------
+Clone an Element
+
+clone() - function makes a copy of an element.
+
+For example, if we wanted to copy target2 from our left-well to our right-well, we would use:
+
+$("#target2").clone().appendTo("#right-well");
+
+This is called function chaining and it's a convenient way to get things done with jQuery.
+--------------------------------------
+Target the Parent of an Element
+
+Every HTML element has a parent element from which it inherits properties.
+
+parent() - function allows you to access the parent of whichever element you've selected.
+
+$("#left-well").parent().css("background-color", "blue")
+-------------------------------------
+Target the Children of an Element
+
+When HTML elements are placed one level below another they are called children of that element.
+
+children() - allows you to access the children of whichever element you've selected.
+
+Here's an example of how you would use the children() function to give the children of your left-well element the color blue:
+
+$("#left-well").children().css("color", "blue")
+-------------------------------------
+Target a Specific Child of an Element
+
+jQuery uses CSS Selectors to target elements.
+
+target:nth-child(n) CSS selector allows you to select all the nth elements with the target class or element type.
+
+Here's how you would give the third element in each well the bounce class:
+$(".target:nth-child(3)").addClass("animated bounce");
+-------------------------------------
+Target Even Elements
+
+You can also target elements based on their positions using :odd or :even selectors.
+
+jQuery is zero-indexed which means the first element in a selection has a position of 0. 
+:odd selects the second element (position 1), fourth element (position 3), and so on.
+
+$(".target:odd").addClass("animated shake");
+-------------------------------------
+Modify the Entire Page
+
+jQuery can target the body element as well.
+
+$("body").addClass("animated fadeOut");
+
+$("body").addClass("animated hinge");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
