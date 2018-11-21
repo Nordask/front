@@ -1,0 +1,50 @@
+#main {
+  background-color: #21D4D7;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+#quote-box {
+  background-color: white;
+  position: relative;
+  border-radius: 5px;
+  padding: 20px 20px 20px 20px;
+  width: 40vw;
+  height: auto;
+  margin: auto;
+  display: table;
+}
+#quote-box #text {
+  text-align: center;
+  height: auto;
+  width: 100%;
+  font-size: 1.75em;
+  position: relative;
+}
+#quote-box #author {
+  text-align: right;
+  height: auto;
+  width: 100%;
+  position: relative;
+}
+#quote-box .row {
+  width: 100%;
+  margin: auto;
+  display: block;
+  position: relative;
+}
+#quote-box .row .button {
+  color: white;
+  background-color: #21D4D7;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 8px 8px 8px;
+  cursor: pointer;
+  opacity: 1;
+}
+#quote-box .row .button:hover {
+  opacity: 0.7;
+}
