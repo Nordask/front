@@ -1,0 +1,47 @@
+$mainBackgroundColor: #C0C0C0;
+$toolBarBackgroundColor:  #0099FF;
+$codePageBackgroundColor: #F0FFFF;
+$formWidth: 40vw;
+$commonBorder: solid 3px black;
+
+body{
+  background-color: $mainBackgroundColor;
+  width: 100vw;
+  height: 100vh;
+}
+
+.code-page {
+  position: relative;
+  width: $formWidth;
+  height: 100vm;
+  bacground-color: $codePageBackgroundColor;
+  margin: auto;
+  
+  .toolbar{
+    background-color: $toolBarBackgroundColor;
+    width: $formWidth;
+    border-radius: 3px;
+    border: $commonBorder; 
+  }
+  
+  #editor{
+    width: $formWidth;
+    height: 200px;
+    border: $commonBorder; 
+  }
+  
+  #preview{
+    width: $formWidth;
+    border: $commonBorder; 
+    
+    code{
+      background-color: $codePageBackgroundColor;
+      font-weight: bold;
+    }
+    
+    pre {
+      background-color: $codePageBackgroundColor;
+      width: 0.8 *$formWidth
+    }
+  }
+}

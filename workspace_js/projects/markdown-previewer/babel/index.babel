@@ -1,0 +1,88 @@
+const placeholder = `\`\`\`
+class TypesOfFood extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>Types of Food:</h1>
+        {/* change code below this line */}
+        <Fruits/>
+        <Vegetables/>
+        {/* change code above this line */}
+      </div>
+    );
+  }
+};
+\`\`\`
+`
+marked.setOptions({breaks: true,})
+const renderer = new marked.Renderer();
+renderer.link = (href, title, text) => {
+  return `<a target="_blank" href="${href}">${text}></a>`
+}
+
+class Previewer extends React.Component {
+  constructor(props) {
+    super(props)
+    
+    this.state = {
+      editorCode: placeholder
+    }
+    
+    this.handleChange = this.handleChange.bind(this);
+  }
+  
+  handleChange(e) {
+    this.setState({
+      editorCode: e.target.value 
+    });
+  }
+  
+  render() {
+    return(
+      <div className="code-page">
+        <div>
+          <Toolbar text="Editor" />
+          <Editor markdown={this.state.editorCode}
+            onChange={this.handleChange}/>
+        </div>
+        <div>
+          <Toolbar text="Preview"/>
+          <Preview markdown={this.state.editorCode}/>
+        </div>  
+      </div>  
+    )
+  }
+}
+
+const Editor = (props) => {
+  return(
+  <textarea id="editor"
+    value={props.markdown}
+    onChange={props.onChange}
+    type="text"></textarea>
+  )
+}
+
+const Preview = (props) => {
+  return(
+  <div id="preview"
+    dangerouslySetInnerHTML={createMarkup(props.markdown)}></div>
+  )  
+}
+
+function createMarkup(code) {
+  return {__html: marked(code, {renderer: renderer})};
+}
+
+const Toolbar = (props) => {
+  return(
+   <div className="toolbar">
+      <i>{props.text}</i>   
+   </div>   
+  )
+}
+
+ReactDOM.render(<Previewer/>, document.getElementById('app'))
