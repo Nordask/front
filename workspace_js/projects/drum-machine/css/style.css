@@ -1,0 +1,37 @@
+body {
+  background-color: #D3D3D3;
+  width: 100vw;
+  height: 100vh;
+}
+body #display {
+  position: relative;
+  width: 630px;
+  height: 255px;
+  bacground-color: #A9A9A9;
+  margin: 200px auto;
+  border: solid 5px #CD853F;
+  border-radius: 25px;
+  box-shadow: 10px 10px 20px rgba(205, 133, 63, 0.65);
+  padding: 20px 20px 20px 20px;
+}
+body #display .pad-bank {
+  width: 270px;
+  height: 255px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 60px;
+  background-color: red;
+}
+body #display .pad-bank .drum-pad {
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  color: white;
+  background-color: #CD853F;
+  border: solid 2px #A9A9A9;
+  border-radius: 3px;
+  padding: 8px 8px 8px 8px;
+  cursor: pointer;
+}

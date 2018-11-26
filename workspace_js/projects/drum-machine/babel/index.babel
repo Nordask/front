@@ -1,0 +1,193 @@
+const buttonsBackgroundColor = '#CD853F';
+const pressedButtonsBackgroundColor = '#A0522D';
+
+const buttonStyle = {
+  backgroundColor: buttonsBackgroundColor,
+  boxShadow: "10px 10px 20px orange"
+}
+
+const buttonPressedStyle = {
+  backgroundColor: pressedButtonsBackgroundColor
+}
+
+const soundsContainer = [
+  {
+    keyCharacter: 'Q',
+    buttonCode: 81,   
+    soundName: 'Bass drum: GHOST',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/SC-40%20Bassdrums/38[kb]SC40BD001.aif.mp3'
+  },{
+    keyCharacter: 'W',
+    buttonCode: 87,   
+    soundName: 'Talking drum',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/69[kb]talking-drum-1.aif.mp3'
+  },{
+    keyCharacter: 'E',
+    buttonCode: 69,   
+    soundName: 'Burundi',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/African%20Burundi%20Drums/178[kb]big-burundi-07.wav.mp3'
+  },{
+    keyCharacter: 'A',
+    buttonCode: 65,   
+    soundName: 'Heavy crash',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/102[kb]CRASH.aif.mp3'
+  },{
+    keyCharacter: 'S',
+    buttonCode: 83,   
+    soundName: 'Tonal D2',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Verby%20Tonal%20Kit/405[kb]D2.aif.mp3'
+  },{
+    keyCharacter: 'D',
+    buttonCode: 68,   
+    soundName: 'Prophet clap',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Prophet/48[kb]prophet-Clap.wav.mp3'
+  },{
+    keyCharacter: 'Z',
+    buttonCode: 90,   
+    soundName: 'Claporama',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/claporama/65[kb]claporama-1.aif.mp3'
+  },{
+    keyCharacter: 'X',
+    buttonCode: 88,   
+    soundName: 'Clave big hit',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Clave%20Big%20Hit/65[kb]clave-big-hit-7.wav.mp3'
+  },{
+    keyCharacter: 'C',
+    buttonCode: 67,   
+    soundName: 'Share slam',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/UK%20Hard%20Kit/78[kb]UK_SNARE-slam.WAV.mp3'
+  }
+]
+
+
+
+class DrumMachine extends React.Component {
+  constructor(props) {
+    super(props)
+    
+    this.state = {
+      soundsContainer: soundsContainer,
+      soundName: ''
+    }
+    
+    this.getSoundName = this.getSoundName.bind(this)
+  }
+  
+  getSoundName(name) {
+    this.setState({
+      soundName:name
+    })
+  }
+  
+  render() {
+    return(
+      <div id="drum-machine">
+        <div id="display">
+          <DrumButtonsContainer 
+            soundsContainer={this.state.soundsContainer} 
+            getSoundName={this.getSoundName}/>
+          <div class="soundName">
+            <p>{this.state.soundName}</p>
+          </div>  
+        </div>
+      </div>
+    )
+  }
+}
+
+class DrumButton extends React.Component{
+  constructor(props){
+    super(props)
+    
+    this.state = {
+      buttonStyle: buttonStyle
+    }
+    
+    this.playSound = this.playSound.bind(this);
+    this.keyPressedHandler = this.keyPressedHandler.bind(this)
+    this.reverseButton = this.reverseButton.bind(this)
+  }
+  
+  playSound(e){
+    const sound = document.getElementById(this.props.keyCharacter)
+    sound.currentTime = 0
+    sound.play()
+    this.reverseButton()
+    setTimeout(() => this.reverseButton(), 100)
+    this.props.getSoundName(this.props.soundId)
+  }
+  
+  reverseButton() {
+    //console.log(this.state.isPressed)
+      if(this.state.buttonStyle.backgroundColor ===         buttonsBackgroundColor){
+        this.setState({
+        buttonStyle: buttonPressedStyle
+        })
+        //$(".drum-pad").css("background-color", "blue" )
+      }else if(this.state.buttonStyle.backgroundColor ===     pressedButtonsBackgroundColor){
+        this.setState({
+        buttonStyle: buttonStyle
+        })
+  }
+} 
+  keyPressedHandler(e){
+    console.log(e.keyCode)
+    if(e.keyCode === this.props.buttonCode) {
+      this.playSound()
+    }
+  }
+  
+  componentDidMount() {
+    document.addEventListener('keydown', this.keyPressedHandler)
+  }
+  
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.keyPressedHandler)
+  }
+  
+  render(){
+    //console.log(this.props.soundUrl)
+    return(
+      <div className="drum-pad col-lg-1 col-lg-offset-1"
+            id={this.props.soundId}
+            onClick={this.playSound}
+            style={this.state.buttonStyle}>
+        <audio className="clip"
+               src={this.props.soundUrl}
+               id={this.props.keyCharacter}></audio>
+        {this.props.keyCharacter}
+      </div>
+    )
+  }
+}
+
+class DrumButtonsContainer extends React.Component{
+  constructor(props){
+    super(props)
+  }
+  
+  render(){
+    let buttonContainer = []
+    //console.log(this.props.soundsContainer)
+    buttonContainer = this.props.soundsContainer.map(
+        currentSoundItem => {       
+          //console.log(currentSoundItem.keyCharacter)
+          return(
+          <DrumButton soundUrl={currentSoundItem.soundUrl}
+           keyCharacter={currentSoundItem.keyCharacter} 
+           buttonCode={currentSoundItem.buttonCode}
+           soundId={currentSoundItem.soundName}
+           getSoundName={this.props.getSoundName}/>
+            )
+         } 
+       )
+    //console.log(buttonContainer)   
+    return(
+      <div className="pad-bank row">{buttonContainer}</div>
+    )
+  }
+}
+
+
+ReactDOM.render(<DrumMachine />,
+                document.getElementById('machine'));

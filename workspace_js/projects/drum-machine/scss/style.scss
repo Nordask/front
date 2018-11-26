@@ -1,0 +1,50 @@
+$mainBackgroundColor: #D3D3D3;
+$displayBackgroundColor:  #A9A9A9;
+$buttonsBackgroundColor: #CD853F;
+$pressedButtonsBackgroundColor:  	#A0522D;
+$formWidth: 40vw;
+$buttonWidth: 60px;
+$buttonHeigth: 30px;
+$commonBorder: solid 5px #CD853F; //rgba(205,133,63) 
+
+body {
+  background-color: $mainBackgroundColor;
+  width: 100vw;
+  height: 100vh;  
+  
+  #display {
+     position: relative;
+     width: 10.5 * $buttonWidth;
+     height: 8.5 * $buttonHeigth; 
+     bacground-color: $displayBackgroundColor;
+     margin: 200px auto; 
+     border: $commonBorder;
+     border-radius: 25px;
+     box-shadow: 10px 10px 20px rgba(205,133,63,0.65);
+     padding: 20px 20px 20px 20px;
+    
+     
+    .pad-bank{
+      width: 4.5 * $buttonWidth;
+      height: 8.5 * $buttonHeigth;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      flex: $buttonWidth;
+      background-color: red;
+     
+      .drum-pad{
+        width: $buttonWidth;
+        height: $buttonHeigth; 
+        text-align: center;
+        color: white;
+        background-color:$buttonsBackgroundColor;
+        border:solid 2px $displayBackgroundColor;
+        border-radius: 3px;
+        padding: 8px 8px 8px 8px;
+        cursor:pointer;
+    }
+   }
+  }
+}
