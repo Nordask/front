@@ -1,0 +1,178 @@
+const isOperator = /[*+\-\/]/
+const endsWithOperator = /[*+\-\/]$/
+
+//container for buttons
+class Buttons extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  
+  render(){
+    return(
+     <div> 
+        <Formula formula={this.props.formula}/>
+        <Output currentValue={this.props.currentValue}/>
+        
+        <button id="clear" className="red-button" value="clear" onClick={this.props.clear}>Clear</button>
+        <button id="equals" className="blue-button" value="=" onClick={this.props.evaluate}>=</button>
+        
+        <button id="seven" value="7" onClick={this.props.number}>7</button>
+        <button id="eight" value="8" onClick={this.props.number}>8</button>
+        <button id="nine" value="9" onClick={this.props.number}>9</button>
+        <button id="add" className="green-button" value="+" onClick={this.props.operator}>+</button>
+        
+        <button id="four" value="4" onClick={this.props.number}>4</button>
+        <button id="five" value="5" onClick={this.props.number}>5</button>
+        <button id="six" value="6" onClick={this.props.number}>6</button>
+        <button id="subtract" className="green-button" value="-" onClick={this.props.operator}>-</button>
+        
+        <button id="one" value="1" onClick={this.props.number}>1</button>
+        <button id="two" value="2" onClick={this.props.number}>2</button>
+        <button id="three" value="3" onClick={this.props.number}>3</button>
+        <button id="multiply" className="green-button" value="*" onClick={this.props.operator}>*</button>
+        
+        <button id="zero" value="0" onClick={this.props.number}>0</button>
+        <button id="decimal" value="." onClick={this.props.dot}>.</button>
+        <button id="divide" className="green-button" value="/" onClick={this.props.operator}>/</button>
+      </div>
+    )
+  }
+}
+
+class Formula extends React.Component{
+  constructor(props){
+    super(props)
+  }
+  
+  render(){
+    return(
+      <div>
+        <div id="formula">{this.props.formula}</div>
+      </div>  
+    )
+  }
+}
+
+class Output extends React.Component{
+  constructor(props){
+    super(props)
+  }
+  
+  render(){
+    return(
+      <div>
+        <div id="display">{this.props.currentValue}</div>
+      </div>  
+    )
+  }
+}
+
+class Calculator extends React.Component{
+  constructor(props){
+    super(props)
+    
+    this.state = {
+      currentValue: '0',
+      formula: ''
+    }
+  }
+  
+  // 0-9
+  number = (e) => {
+    //console.log(endsWithDot.test(this.state.currentValue))
+    
+    if(this.state.formula.includes('=')) {
+      this.setState({
+        currentValue: e.target.value,
+        formula: e.target.value != '0' ? e.target.value : '',
+      })
+    } else {
+    //console.log(isOperator.test(this.state.currentValue))
+    //console.log(this.state.currentValue)
+      this.setState({
+        currentValue: this.state.currentValue == '0' || isOperator.test(this.state.currentValue) ? e.target.value : this.state.currentValue + e.target.value,
+        formula: e.target.value == '0' && this.state.currentValue == '0'?  this.state.formula: this.state.formula + e.target.value
+      });
+      console.log(this.state.formula)
+    }
+  }
+  // =
+  evaluate = () => {
+    let expression = this.state.formula
+    
+    if(endsWithOperator.test(expression))
+      expression = expression.slice(0, expression.lenght - 1)
+    
+    let result = eval(expression)
+    
+    this.setState({
+      currentValue: result.toString(),
+      formula: expression + '=' + result,
+    })
+  }
+  
+  // +-*/
+  operator = (e) => {
+    if(this.state.formula.includes('=')) {
+      this.setState({
+        formula: this.state.currentValue + e.target.value,
+        currentValue: e.target.value
+      })
+    } else {
+      this.setState({
+        currentValue: e.target.value,
+        formula: endsWithOperator.test(this.state.formula) ? this.state.formula.slice(0, this.state.formula.length - 1) + e.target.value: this.state.formula + e.target.value
+      })
+    }   
+  }
+  
+  clear = () => {
+    this.setState({
+      currentValue: '0',
+      formula: '',
+      wasCalulated: false
+    })
+  }
+  
+  // .
+  dot = (e) => {
+    console.log(this.state.currentValue)
+    
+    if(this.state.formula.includes('=')) {
+      this.setState({
+        currentValue: '0.',
+        formula: '0.',
+      })
+    } else if(!this.state.currentValue.includes('.')) {
+      //console.log(!this.state.currentValue.includes('.'))
+      if(endsWithOperator.test(this.state.formula) || this.state.curentValue == '0' && this.state.formula == ''){
+        this.setState({
+        currentValue: '0.',
+        formula: this.state.formula + '0.',
+        })
+    } else {
+        this.setState({
+        currentValue: this.state.currentValue + e.target.value,
+        formula: this.state.formula + e.target.value
+      })
+    }
+   }
+  } 
+  render(){
+    return(
+      <div id="calc">
+        <Buttons evaluate={this.evaluate}
+                 number={this.number} 
+                 operator={this.operator}
+                 clear={this.clear}
+                 dot={this.dot}
+          
+                 formula={this.state.formula}
+                 currentValue={this.state.currentValue}/>
+        
+      </div>  
+    )
+  }
+}
+
+ReactDOM.render(<Calculator />, document.getElementById('calc'));

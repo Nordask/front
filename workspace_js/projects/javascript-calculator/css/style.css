@@ -1,0 +1,36 @@
+body {
+  background-color: gray;
+}
+body #calc {
+  padding: 8px 8xp 8px 8px;
+  background-color: black;
+  height: 60vh;
+  display: flex;
+  align-tems: center;
+  justify-content: center;
+  width: 20vw;
+  margin: auto;
+}
+body #calc button {
+  background-color: #DAA520;
+  height: 10vh;
+  width: 5vw;
+}
+body #calc #clear, body #calc #equals, body #calc #zero {
+  width: 10vw;
+}
+body #calc .blue-button {
+  background-color: #1E90FF;
+}
+body #calc .red-button {
+  background-color: #A52A2A;
+}
+body #calc .green-button {
+  background-color: #556B2F;
+}
+body #calc #formula, body #calc #display {
+  background-color: white;
+  width: 20vw;
+  height: 5vh;
+  text-align: right;
+}

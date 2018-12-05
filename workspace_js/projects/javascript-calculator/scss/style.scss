@@ -1,0 +1,61 @@
+$body-background-color: gray;
+$button-color: #DAA520;
+$button-width: 5vw;
+$button-height: 10vh;
+
+
+$green: #556B2F;
+$red: #A52A2A;
+$blue: #1E90FF;
+
+$colors: (color1: blue, color2: red, color3: green);
+
+ @mixin button-color($val) {
+      @if $val == green {
+        background-color: $green;
+      } @else if $val == blue {
+        background-color: $blue;
+      } @else if $val == red {
+        background-color: $red;
+      }
+    }  
+
+body {
+  background-color: $body-background-color;
+  
+  
+  #calc {
+    padding: 8px 8xp 8px 8px;
+    background-color: black;
+    height: $button-height * 6;
+    display: flex;
+    align-tems: center;
+    justify-content: center;
+    width: $button-width * 4;
+    margin: auto;
+    
+    button {
+      background-color: $button-color;
+      height: $button-height;
+      width: $button-width;
+    }
+    #clear, #equals, #zero{
+      width: $button-width * 2;
+    }
+    
+    @each $key, $color in $colors {
+      .#{$color}-button {@include button-color($color)}
+    }
+    
+  #formula, #display {
+    background-color: white;
+    width: $button-width * 4;
+    height: $button-height * 0.5;
+    text-align: right;
+  }
+   
+
+  }
+}
+
+
