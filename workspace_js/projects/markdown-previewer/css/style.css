@@ -34,3 +34,10 @@ body {
   background-color: #F0FFFF;
   width: 32vw;
 }
+.code-page #preview blockquote {
+  border-left: 3px solid black;
+}
+.code-page #preview img {
+  max-width: 20vw;
+  max-height: 20vh;
+}

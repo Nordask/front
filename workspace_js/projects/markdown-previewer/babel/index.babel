@@ -1,4 +1,14 @@
-const placeholder = `\`\`\`
+const placeholder = `
+Headers:
+# MainHeader
+## SubHeader
+-----------------------------------------------------
+Inline code:
+Start code \`return 0;\` end code
+
+-----------------------------------------------------
+Section with code:
+\`\`\`
 class TypesOfFood extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +26,40 @@ class TypesOfFood extends React.Component {
   }
 };
 \`\`\`
+-----------------------------------------------------
+Link:
+[linkToGoogle](https://www.google.com)
+-----------------------------------------------------
+Block Quotes:
+> Blablableblibla
+-----------------------------------------------------
+Numbered list of items:
+1. FirstItem
+2. SecondItem
+3. ThirdItem
+
+List of items:
+- FirstItem
+  - SecondItem
+    -ThirdItem
+-----------------------------------------------------
+Tables
+
+FirstHeader|SecondHeader|ThirdHeader
+------------ | ------------- | ------------- 
+Data1|Data2|Data3
+Info1|Info2|Info3
+
+-----------------------------------------------------
+Image:
+![FREE](https://www.textuar.com/blog/wp-content/uploads/2017/11/free-images-for-copywriting.jpg)
+-----------------------------------------------------
+Text:
+**Bold**
+_Italic_
+**_Bold&Italic_**
+_**Italic&Bold**_
+~Crossing~
 `
 marked.setOptions({breaks: true,})
 const renderer = new marked.Renderer();
@@ -30,11 +74,9 @@ class Previewer extends React.Component {
     this.state = {
       editorCode: placeholder
     }
-    
-    this.handleChange = this.handleChange.bind(this);
   }
   
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({
       editorCode: e.target.value 
     });

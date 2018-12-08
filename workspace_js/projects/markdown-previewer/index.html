@@ -7,15 +7,61 @@
   
   
   
-      <link rel="stylesheet" href="css/style.css">
+      <style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      body {
+  background-color: #C0C0C0;
+  width: 100vw;
+  height: 100vh;
+}
 
-  
+.code-page {
+  position: relative;
+  width: 40vw;
+  height: 100vm;
+  bacground-color: #F0FFFF;
+  margin: auto;
+}
+.code-page .toolbar {
+  background-color: #0099FF;
+  width: 40vw;
+  border-radius: 3px;
+  border: solid 3px black;
+}
+.code-page #editor {
+  width: 40vw;
+  height: 200px;
+  border: solid 3px black;
+}
+.code-page #preview {
+  width: 40vw;
+  border: solid 3px black;
+}
+.code-page #preview code {
+  background-color: #F0FFFF;
+  font-weight: bold;
+}
+.code-page #preview pre {
+  background-color: #F0FFFF;
+  width: 32vw;
+}
+.code-page #preview blockquote {
+  border-left: 3px solid black;
+}
+.code-page #preview img {
+  max-width: 20vw;
+  max-height: 20vh;
+}
+
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
 </head>
 
 <body>
 
-  <!--script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script-->
-<div id='app'></div>
+  <div id='app'></div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.5.1/marked.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js'></script>

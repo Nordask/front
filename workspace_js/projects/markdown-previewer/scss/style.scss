@@ -43,5 +43,14 @@ body{
       background-color: $codePageBackgroundColor;
       width: 0.8 *$formWidth
     }
+    
+    blockquote {
+      border-left: 3px solid black;
+    }
+    
+    img {
+      max-width: 20vw;
+      max-height: 20vh;
+    }
   }
 }
