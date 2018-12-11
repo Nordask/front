@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Alegreya+SC");
 body {
   background-color: #D3D3D3;
   width: 100vw;
   height: 100vh;
+  font-family: 'Alegreya SC', serif;
 }
 body #display {
   position: relative;
@@ -13,9 +15,13 @@ body #display {
   border-radius: 25px;
   box-shadow: 10px 10px 20px rgba(205, 133, 63, 0.65);
   padding: 20px 20px 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 body #display .pad-bank {
-  width: 270px;
+  width: 330px;
   height: 255px;
   display: flex;
   justify-content: center;
@@ -23,6 +29,8 @@ body #display .pad-bank {
   flex-wrap: wrap;
   flex: 60px;
   background-color: red;
+  border-radius: 15px;
+  border: solid 2px #A9A9A9;
 }
 body #display .pad-bank .drum-pad {
   width: 60px;
@@ -34,4 +42,12 @@ body #display .pad-bank .drum-pad {
   border-radius: 3px;
   padding: 8px 8px 8px 8px;
   cursor: pointer;
+}
+body #display .controlPanel {
+  width: 330px;
+  height: 255px;
+  background-color: #CD853F;
+  border-radius: 15px;
+  text-align: center;
+  border: solid 3px #A9A9A9;
 }

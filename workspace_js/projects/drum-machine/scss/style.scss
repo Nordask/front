@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Alegreya+SC");
+
 $mainBackgroundColor: #D3D3D3;
 $displayBackgroundColor:  #A9A9A9;
 $buttonsBackgroundColor: #CD853F;
@@ -11,6 +13,7 @@ body {
   background-color: $mainBackgroundColor;
   width: 100vw;
   height: 100vh;  
+  font-family: 'Alegreya SC', serif;
   
   #display {
      position: relative;
@@ -22,10 +25,13 @@ body {
      border-radius: 25px;
      box-shadow: 10px 10px 20px rgba(205,133,63,0.65);
      padding: 20px 20px 20px 20px;
-    
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-wrap: wrap;
      
     .pad-bank{
-      width: 4.5 * $buttonWidth;
+      width: 5.5 * $buttonWidth;
       height: 8.5 * $buttonHeigth;
       display: flex;
       justify-content: center;
@@ -33,7 +39,9 @@ body {
       flex-wrap: wrap;
       flex: $buttonWidth;
       background-color: red;
-     
+      border-radius: 15px;
+      border:solid 2px $displayBackgroundColor;
+      
       .drum-pad{
         width: $buttonWidth;
         height: $buttonHeigth; 
@@ -46,5 +54,14 @@ body {
         cursor:pointer;
     }
    }
+    
+    .controlPanel {
+      width: 5.5 * $buttonWidth;
+      height: 8.5 * $buttonHeigth;
+      background-color: $buttonsBackgroundColor;
+      border-radius: 15px;
+      text-align: center;
+      border:solid 3px $displayBackgroundColor;
+    }
   }
 }

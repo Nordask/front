@@ -59,41 +59,16 @@ const soundsContainer = [
   }
 ]
 
-
-
-class DrumMachine extends React.Component {
+class MyComponent extends React.Component {
   constructor(props) {
-    super(props)
-    
-    this.state = {
-      soundsContainer: soundsContainer,
-      soundName: ''
-    }
-    
-    this.getSoundName = this.getSoundName.bind(this)
+    super(props);
+    this.myRef = React.createRef();
   }
-  
-  getSoundName(name) {
-    this.setState({
-      soundName:name
-    })
-  }
-  
   render() {
-    return(
-      <div id="drum-machine">
-        <div id="display">
-          <DrumButtonsContainer 
-            soundsContainer={this.state.soundsContainer} 
-            getSoundName={this.getSoundName}/>
-          <div class="soundName">
-            <p>{this.state.soundName}</p>
-          </div>  
-        </div>
-      </div>
-    )
+    return <div ref={this.myRef} />;
   }
 }
+
 
 class DrumButton extends React.Component{
   constructor(props){
@@ -103,13 +78,11 @@ class DrumButton extends React.Component{
       buttonStyle: buttonStyle
     }
     
-    this.playSound = this.playSound.bind(this);
-    this.keyPressedHandler = this.keyPressedHandler.bind(this)
-    this.reverseButton = this.reverseButton.bind(this)
+    this.myRef = React.createRef();
   }
   
-  playSound(e){
-    const sound = document.getElementById(this.props.keyCharacter)
+  playSound = (e) => {
+    const sound = this.myRef.current
     sound.currentTime = 0
     sound.play()
     this.reverseButton()
@@ -117,8 +90,7 @@ class DrumButton extends React.Component{
     this.props.getSoundName(this.props.soundId)
   }
   
-  reverseButton() {
-    //console.log(this.state.isPressed)
+  reverseButton = () => {
       if(this.state.buttonStyle.backgroundColor ===         buttonsBackgroundColor){
         this.setState({
         buttonStyle: buttonPressedStyle
@@ -130,8 +102,7 @@ class DrumButton extends React.Component{
         })
   }
 } 
-  keyPressedHandler(e){
-    console.log(e.keyCode)
+  keyPressedHandler = (e) => {
     if(e.keyCode === this.props.buttonCode) {
       this.playSound()
     }
@@ -146,7 +117,6 @@ class DrumButton extends React.Component{
   }
   
   render(){
-    //console.log(this.props.soundUrl)
     return(
       <div className="drum-pad col-lg-1 col-lg-offset-1"
             id={this.props.soundId}
@@ -154,7 +124,8 @@ class DrumButton extends React.Component{
             style={this.state.buttonStyle}>
         <audio className="clip"
                src={this.props.soundUrl}
-               id={this.props.keyCharacter}></audio>
+               id={this.props.keyCharacter}
+               ref={this.myRef}></audio>
         {this.props.keyCharacter}
       </div>
     )
@@ -162,16 +133,11 @@ class DrumButton extends React.Component{
 }
 
 class DrumButtonsContainer extends React.Component{
-  constructor(props){
-    super(props)
-  }
-  
+
   render(){
     let buttonContainer = []
-    //console.log(this.props.soundsContainer)
     buttonContainer = this.props.soundsContainer.map(
         currentSoundItem => {       
-          //console.log(currentSoundItem.keyCharacter)
           return(
           <DrumButton soundUrl={currentSoundItem.soundUrl}
            keyCharacter={currentSoundItem.keyCharacter} 
@@ -181,13 +147,52 @@ class DrumButtonsContainer extends React.Component{
             )
          } 
        )
-    //console.log(buttonContainer)   
     return(
       <div className="pad-bank row">{buttonContainer}</div>
     )
   }
 }
 
+class ControlPanel extends React.Component {
+  
+  render(){
+    return(
+      <div className="controlPanel">  
+        <div className="soundName">
+          <p>{this.props.soundName}</p>
+        </div>
+      </div>  
+    )
+  }
+}
+
+class DrumMachine extends React.Component {
+  
+  state = {
+      soundsContainer: soundsContainer,
+      soundName: ''
+  }
+
+  
+  getSoundName = (name) => {
+    this.setState({
+      soundName:name
+    })
+  }
+  
+  render() {
+    return(
+      <div id="drum-machine">
+        <div id="display">
+          <DrumButtonsContainer 
+            soundsContainer={this.state.soundsContainer} 
+            getSoundName={this.getSoundName}/>
+          <ControlPanel soundName={this.state.soundName}/>  
+        </div>
+      </div>
+    )
+  }
+}
 
 ReactDOM.render(<DrumMachine />,
-                document.getElementById('machine'));
+document.getElementById('machine'));

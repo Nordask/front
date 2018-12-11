@@ -59,83 +59,54 @@ var soundsContainer = [
 
 
 
-
-
-DrumMachine = function (_React$Component) {_inherits(DrumMachine, _React$Component);
-  function DrumMachine(props) {_classCallCheck(this, DrumMachine);var _this = _possibleConstructorReturn(this, (DrumMachine.__proto__ || Object.getPrototypeOf(DrumMachine)).call(this,
+MyComponent = function (_React$Component) {_inherits(MyComponent, _React$Component);
+  function MyComponent(props) {_classCallCheck(this, MyComponent);var _this = _possibleConstructorReturn(this, (MyComponent.__proto__ || Object.getPrototypeOf(MyComponent)).call(this,
     props));
-
-    _this.state = {
-      soundsContainer: soundsContainer,
-      soundName: '' };
-
-
-    _this.getSoundName = _this.getSoundName.bind(_this);return _this;
-  }_createClass(DrumMachine, [{ key: 'getSoundName', value: function getSoundName(
-
-    name) {
-      this.setState({
-        soundName: name });
-
-    } }, { key: 'render', value: function render()
-
+    _this.myRef = React.createRef();return _this;
+  }_createClass(MyComponent, [{ key: 'render', value: function render()
     {
-      return (
-        React.createElement('div', { id: 'drum-machine' },
-          React.createElement('div', { id: 'display' },
-            React.createElement(DrumButtonsContainer, {
-              soundsContainer: this.state.soundsContainer,
-              getSoundName: this.getSoundName }),
-            React.createElement('div', { 'class': 'soundName' },
-              React.createElement('p', null, this.state.soundName)))));
+      return React.createElement('div', { ref: this.myRef });
+    } }]);return MyComponent;}(React.Component);var
 
-
-
-
-    } }]);return DrumMachine;}(React.Component);var
 
 
 DrumButton = function (_React$Component2) {_inherits(DrumButton, _React$Component2);
   function DrumButton(props) {_classCallCheck(this, DrumButton);var _this2 = _possibleConstructorReturn(this, (DrumButton.__proto__ || Object.getPrototypeOf(DrumButton)).call(this,
-    props));
-
-    _this2.state = {
-      buttonStyle: buttonStyle };
+    props));_this2.
 
 
-    _this2.playSound = _this2.playSound.bind(_this2);
-    _this2.keyPressedHandler = _this2.keyPressedHandler.bind(_this2);
-    _this2.reverseButton = _this2.reverseButton.bind(_this2);return _this2;
-  }_createClass(DrumButton, [{ key: 'playSound', value: function playSound(
 
-    e) {var _this3 = this;
-      var sound = document.getElementById(this.props.keyCharacter);
+
+
+
+
+
+    playSound = function (e) {
+      var sound = _this2.myRef.current;
       sound.currentTime = 0;
       sound.play();
-      this.reverseButton();
-      setTimeout(function () {return _this3.reverseButton();}, 100);
-      this.props.getSoundName(this.props.soundId);
-    } }, { key: 'reverseButton', value: function reverseButton()
+      _this2.reverseButton();
+      setTimeout(function () {return _this2.reverseButton();}, 100);
+      _this2.props.getSoundName(_this2.props.soundId);
+    };_this2.
 
-    {
-      //console.log(this.state.isPressed)
-      if (this.state.buttonStyle.backgroundColor === buttonsBackgroundColor) {
-        this.setState({
+    reverseButton = function () {
+      if (_this2.state.buttonStyle.backgroundColor === buttonsBackgroundColor) {
+        _this2.setState({
           buttonStyle: buttonPressedStyle });
 
         //$(".drum-pad").css("background-color", "blue" )
-      } else if (this.state.buttonStyle.backgroundColor === pressedButtonsBackgroundColor) {
-        this.setState({
+      } else if (_this2.state.buttonStyle.backgroundColor === pressedButtonsBackgroundColor) {
+        _this2.setState({
           buttonStyle: buttonStyle });
 
       }
-    } }, { key: 'keyPressedHandler', value: function keyPressedHandler(
-    e) {
-      console.log(e.keyCode);
-      if (e.keyCode === this.props.buttonCode) {
-        this.playSound();
+    };_this2.
+    keyPressedHandler = function (e) {
+      if (e.keyCode === _this2.props.buttonCode) {
+        _this2.playSound();
       }
-    } }, { key: 'componentDidMount', value: function componentDidMount()
+    };_this2.state = { buttonStyle: buttonStyle };_this2.myRef = React.createRef();return _this2;}_createClass(DrumButton, [{ key: 'componentDidMount', value: function componentDidMount()
 
     {
       document.addEventListener('keydown', this.keyPressedHandler);
@@ -146,7 +117,6 @@ DrumButton = function (_React$Component2) {_inherits(DrumButton, _React$Componen
     } }, { key: 'render', value: function render()
 
     {
-      //console.log(this.props.soundUrl)
       return (
         React.createElement('div', { className: 'drum-pad col-lg-1 col-lg-offset-1',
             id: this.props.soundId,
@@ -154,39 +124,74 @@ DrumButton = function (_React$Component2) {_inherits(DrumButton, _React$Componen
             style: this.state.buttonStyle },
           React.createElement('audio', { className: 'clip',
             src: this.props.soundUrl,
-            id: this.props.keyCharacter }),
+            id: this.props.keyCharacter,
+            ref: this.myRef }),
           this.props.keyCharacter));
 
 
     } }]);return DrumButton;}(React.Component);var
 
 
-DrumButtonsContainer = function (_React$Component3) {_inherits(DrumButtonsContainer, _React$Component3);
-  function DrumButtonsContainer(props) {_classCallCheck(this, DrumButtonsContainer);return _possibleConstructorReturn(this, (DrumButtonsContainer.__proto__ || Object.getPrototypeOf(DrumButtonsContainer)).call(this,
-    props));
-  }_createClass(DrumButtonsContainer, [{ key: 'render', value: function render()
+DrumButtonsContainer = function (_React$Component3) {_inherits(DrumButtonsContainer, _React$Component3);function DrumButtonsContainer() {_classCallCheck(this, DrumButtonsContainer);return _possibleConstructorReturn(this, (DrumButtonsContainer.__proto__ || Object.getPrototypeOf(DrumButtonsContainer)).apply(this, arguments));}_createClass(DrumButtonsContainer, [{ key: 'render', value: function render()
 
-    {var _this5 = this;
+    {var _this4 = this;
       var buttonContainer = [];
-      //console.log(this.props.soundsContainer)
       buttonContainer = this.props.soundsContainer.map(
       function (currentSoundItem) {
-        //console.log(currentSoundItem.keyCharacter)
         return (
           React.createElement(DrumButton, { soundUrl: currentSoundItem.soundUrl,
             keyCharacter: currentSoundItem.keyCharacter,
             buttonCode: currentSoundItem.buttonCode,
             soundId: currentSoundItem.soundName,
-            getSoundName: _this5.props.getSoundName }));
+            getSoundName: _this4.props.getSoundName }));
 
       });
 
-      //console.log(buttonContainer)   
       return (
         React.createElement('div', { className: 'pad-bank row' }, buttonContainer));
 
-    } }]);return DrumButtonsContainer;}(React.Component);
+    } }]);return DrumButtonsContainer;}(React.Component);var
 
+
+ControlPanel = function (_React$Component4) {_inherits(ControlPanel, _React$Component4);function ControlPanel() {_classCallCheck(this, ControlPanel);return _possibleConstructorReturn(this, (ControlPanel.__proto__ || Object.getPrototypeOf(ControlPanel)).apply(this, arguments));}_createClass(ControlPanel, [{ key: 'render', value: function render()
+
+    {
+      return (
+        React.createElement('div', { className: 'controlPanel' },
+          React.createElement('div', { className: 'soundName' },
+            React.createElement('p', null, this.props.soundName))));
+
+
+
+    } }]);return ControlPanel;}(React.Component);var
+
+
+DrumMachine = function (_React$Component5) {_inherits(DrumMachine, _React$Component5);function DrumMachine() {var _ref;var _temp, _this6, _ret;_classCallCheck(this, DrumMachine);for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {args[_key] = arguments[_key];}return _ret = (_temp = (_this6 = _possibleConstructorReturn(this, (_ref = DrumMachine.__proto__ || Object.getPrototypeOf(DrumMachine)).call.apply(_ref, [this].concat(args))), _this6), _this6.
+
+    state = {
+      soundsContainer: soundsContainer,
+      soundName: '' }, _this6.
+
+
+
+    getSoundName = function (name) {
+      _this6.setState({
+        soundName: name });
+
+    }, _temp), _possibleConstructorReturn(_this6, _ret);}_createClass(DrumMachine, [{ key: 'render', value: function render()
+
+    {
+      return (
+        React.createElement('div', { id: 'drum-machine' },
+          React.createElement('div', { id: 'display' },
+            React.createElement(DrumButtonsContainer, {
+              soundsContainer: this.state.soundsContainer,
+              getSoundName: this.getSoundName }),
+            React.createElement(ControlPanel, { soundName: this.state.soundName }))));
+
+
+
+    } }]);return DrumMachine;}(React.Component);
 
 
 ReactDOM.render(React.createElement(DrumMachine, null),
