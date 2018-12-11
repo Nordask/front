@@ -2,10 +2,7 @@ var _createClass = function () {function defineProperties(target, props) {for (v
 var endsWithOperator = /[*+\-\/]$/;
 
 //container for buttons
-var Buttons = function (_React$Component) {_inherits(Buttons, _React$Component);
-  function Buttons(props) {_classCallCheck(this, Buttons);return _possibleConstructorReturn(this, (Buttons.__proto__ || Object.getPrototypeOf(Buttons)).call(this,
-    props));
-  }_createClass(Buttons, [{ key: "render", value: function render()
+var Buttons = function (_React$Component) {_inherits(Buttons, _React$Component);function Buttons() {_classCallCheck(this, Buttons);return _possibleConstructorReturn(this, (Buttons.__proto__ || Object.getPrototypeOf(Buttons)).apply(this, arguments));}_createClass(Buttons, [{ key: "render", value: function render()
 
     {
       return (
@@ -39,63 +36,45 @@ var Buttons = function (_React$Component) {_inherits(Buttons, _React$Component);
     } }]);return Buttons;}(React.Component);var
 
 
-Formula = function (_React$Component2) {_inherits(Formula, _React$Component2);
-  function Formula(props) {_classCallCheck(this, Formula);return _possibleConstructorReturn(this, (Formula.__proto__ || Object.getPrototypeOf(Formula)).call(this,
-    props));
-  }_createClass(Formula, [{ key: "render", value: function render()
+Formula = function (_React$Component2) {_inherits(Formula, _React$Component2);function Formula() {_classCallCheck(this, Formula);return _possibleConstructorReturn(this, (Formula.__proto__ || Object.getPrototypeOf(Formula)).apply(this, arguments));}_createClass(Formula, [{ key: "render", value: function render()
 
     {
       return (
-        React.createElement("div", null,
-          React.createElement("div", { id: "formula" }, this.props.formula)));
-
+        React.createElement("div", { id: "formula" }, this.props.formula));
 
     } }]);return Formula;}(React.Component);var
 
 
-Output = function (_React$Component3) {_inherits(Output, _React$Component3);
-  function Output(props) {_classCallCheck(this, Output);return _possibleConstructorReturn(this, (Output.__proto__ || Object.getPrototypeOf(Output)).call(this,
-    props));
-  }_createClass(Output, [{ key: "render", value: function render()
+Output = function (_React$Component3) {_inherits(Output, _React$Component3);function Output() {_classCallCheck(this, Output);return _possibleConstructorReturn(this, (Output.__proto__ || Object.getPrototypeOf(Output)).apply(this, arguments));}_createClass(Output, [{ key: "render", value: function render()
 
     {
       return (
-        React.createElement("div", null,
-          React.createElement("div", { id: "display" }, this.props.currentValue)));
-
+        React.createElement("div", { id: "display" }, this.props.currentValue));
 
     } }]);return Output;}(React.Component);var
 
 
-Calculator = function (_React$Component4) {_inherits(Calculator, _React$Component4);
-  function Calculator(props) {_classCallCheck(this, Calculator);var _this4 = _possibleConstructorReturn(this, (Calculator.__proto__ || Object.getPrototypeOf(Calculator)).call(this,
-    props));_this4.
+Calculator = function (_React$Component4) {_inherits(Calculator, _React$Component4);function Calculator() {var _ref;var _temp, _this4, _ret;_classCallCheck(this, Calculator);for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {args[_key] = arguments[_key];}return _ret = (_temp = (_this4 = _possibleConstructorReturn(this, (_ref = Calculator.__proto__ || Object.getPrototypeOf(Calculator)).call.apply(_ref, [this].concat(args))), _this4), _this4.
+
+    state = {
+      currentValue: '0',
+      formula: ''
 
 
-
-
-
-
-
-
-    number = function (e) {
-      //console.log(endsWithDot.test(this.state.currentValue))
-
+      // 0-9
+    }, _this4.number = function (e) {
       if (_this4.state.formula.includes('=')) {
         _this4.setState({
           currentValue: e.target.value,
           formula: e.target.value != '0' ? e.target.value : '' });
 
       } else {
-        //console.log(isOperator.test(this.state.currentValue))
-        //console.log(this.state.currentValue)
         _this4.setState({
           currentValue: _this4.state.currentValue == '0' || isOperator.test(_this4.state.currentValue) ? e.target.value : _this4.state.currentValue + e.target.value,
           formula: e.target.value == '0' && _this4.state.currentValue == '0' ? _this4.state.formula : _this4.state.formula + e.target.value });
 
-        console.log(_this4.state.formula);
       }
-    };_this4.
+    }, _this4.
 
     evaluate = function () {
       var expression = _this4.state.formula;
@@ -109,7 +88,7 @@ Calculator = function (_React$Component4) {_inherits(Calculator, _React$Componen
         currentValue: result.toString(),
         formula: expression + '=' + result });
 
-    };_this4.
+    }, _this4.
 
 
     operator = function (e) {
@@ -124,7 +103,7 @@ Calculator = function (_React$Component4) {_inherits(Calculator, _React$Componen
           formula: endsWithOperator.test(_this4.state.formula) ? _this4.state.formula.slice(0, _this4.state.formula.length - 1) + e.target.value : _this4.state.formula + e.target.value });
 
       }
-    };_this4.
+    }, _this4.
 
     clear = function () {
       _this4.setState({
@@ -132,19 +111,16 @@ Calculator = function (_React$Component4) {_inherits(Calculator, _React$Componen
         formula: '',
         wasCalulated: false });
 
-    };_this4.
+    }, _this4.
 
 
     dot = function (e) {
-      console.log(_this4.state.currentValue);
-
       if (_this4.state.formula.includes('=')) {
         _this4.setState({
           currentValue: '0.',
           formula: '0.' });
 
       } else if (!_this4.state.currentValue.includes('.')) {
-        //console.log(!this.state.currentValue.includes('.'))
         if (endsWithOperator.test(_this4.state.formula) || _this4.state.curentValue == '0' && _this4.state.formula == '') {
           _this4.setState({
             currentValue: '0.',
@@ -157,11 +133,11 @@ Calculator = function (_React$Component4) {_inherits(Calculator, _React$Componen
 
         }
       }
-    };_this4.state = { currentValue: '0', formula: '' };return _this4;} // 0-9
-  // =
+    }, _temp), _possibleConstructorReturn(_this4, _ret);} // =
   // +-*/
   // .
-  _createClass(Calculator, [{ key: "render", value: function render() {return React.createElement("div", { id: "calc" }, React.createElement(Buttons, { evaluate: this.evaluate,
+  _createClass(Calculator, [{ key: "render", value: function render() {return React.createElement("div", { id: "calc" },
+        React.createElement(Buttons, { evaluate: this.evaluate,
           number: this.number,
           operator: this.operator,
           clear: this.clear,

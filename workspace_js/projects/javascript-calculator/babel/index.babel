@@ -3,10 +3,7 @@ const endsWithOperator = /[*+\-\/]$/
 
 //container for buttons
 class Buttons extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  
+
   render(){
     return(
      <div> 
@@ -40,60 +37,42 @@ class Buttons extends React.Component {
 }
 
 class Formula extends React.Component{
-  constructor(props){
-    super(props)
-  }
   
   render(){
     return(
-      <div>
-        <div id="formula">{this.props.formula}</div>
-      </div>  
+      <div id="formula">{this.props.formula}</div>
     )
   }
 }
 
 class Output extends React.Component{
-  constructor(props){
-    super(props)
-  }
   
   render(){
     return(
-      <div>
-        <div id="display">{this.props.currentValue}</div>
-      </div>  
-    )
+      <div id="display">{this.props.currentValue}</div>
+   )
   }
 }
 
 class Calculator extends React.Component{
-  constructor(props){
-    super(props)
-    
-    this.state = {
+  
+  state = {
       currentValue: '0',
       formula: ''
-    }
   }
   
   // 0-9
   number = (e) => {
-    //console.log(endsWithDot.test(this.state.currentValue))
-    
     if(this.state.formula.includes('=')) {
       this.setState({
         currentValue: e.target.value,
         formula: e.target.value != '0' ? e.target.value : '',
       })
     } else {
-    //console.log(isOperator.test(this.state.currentValue))
-    //console.log(this.state.currentValue)
       this.setState({
         currentValue: this.state.currentValue == '0' || isOperator.test(this.state.currentValue) ? e.target.value : this.state.currentValue + e.target.value,
         formula: e.target.value == '0' && this.state.currentValue == '0'?  this.state.formula: this.state.formula + e.target.value
       });
-      console.log(this.state.formula)
     }
   }
   // =
@@ -136,15 +115,12 @@ class Calculator extends React.Component{
   
   // .
   dot = (e) => {
-    console.log(this.state.currentValue)
-    
     if(this.state.formula.includes('=')) {
       this.setState({
         currentValue: '0.',
         formula: '0.',
       })
     } else if(!this.state.currentValue.includes('.')) {
-      //console.log(!this.state.currentValue.includes('.'))
       if(endsWithOperator.test(this.state.formula) || this.state.curentValue == '0' && this.state.formula == ''){
         this.setState({
         currentValue: '0.',

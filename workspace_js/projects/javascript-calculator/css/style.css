@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Orbitron");
+@import url("https://fonts.googleapis.com/css?family=Acme");
 body {
   background-color: gray;
 }
@@ -15,6 +17,7 @@ body #calc button {
   background-color: #DAA520;
   height: 10vh;
   width: 5vw;
+  font-family: 'Acme', sans-serif;
 }
 body #calc #clear, body #calc #equals, body #calc #zero {
   width: 10vw;
@@ -33,4 +36,5 @@ body #calc #formula, body #calc #display {
   width: 20vw;
   height: 5vh;
   text-align: right;
+  font-family: 'Orbitron', sans-serif;
 }

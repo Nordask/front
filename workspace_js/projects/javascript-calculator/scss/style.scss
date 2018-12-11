@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+@import url('https://fonts.googleapis.com/css?family=Acme');
+
 $body-background-color: gray;
 $button-color: #DAA520;
 $button-width: 5vw;
@@ -38,6 +41,7 @@ body {
       background-color: $button-color;
       height: $button-height;
       width: $button-width;
+      font-family: 'Acme', sans-serif;
     }
     #clear, #equals, #zero{
       width: $button-width * 2;
@@ -52,10 +56,8 @@ body {
     width: $button-width * 4;
     height: $button-height * 0.5;
     text-align: right;
+    font-family: 'Orbitron', sans-serif;
   }
-   
-
-  }
+ }
 }
-
 
