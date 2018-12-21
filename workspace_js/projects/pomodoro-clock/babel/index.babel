@@ -1,0 +1,231 @@
+class LengthControl extends React.Component{
+  constructor(props) {
+    super(props)
+  }
+  
+  render(){
+    return(
+      <div id="lengthControl">
+        <div id={this.props.titleID}>
+          {this.props.title}
+        </div>  
+        {/*decrement*/}
+        <button id={this.props.decID}
+          value="-"
+          onClick={this.props.onClick}>
+          <i className="fa fa-arrow-down fa-2x"></i>
+        </button>
+        {/*current length*/}
+        <div id={this.props.lengthID}>
+          <span>{this.props.length}</span>
+        </div>
+        {/*increment*/}
+        <button id={this.props.incID}
+          value="+"
+          onClick={this.props.onClick}>
+          <i className="fa fa-arrow-up fa-2x"></i>
+        </button> 
+      </div>  
+    )
+  }
+}
+
+class Timer extends React.Component {
+  render() {
+    return(
+      <div id="clock">
+        <div id="timer-label" style={this.props.alarmColor}>
+          {this.props.timerType}
+        </div>
+        <div id="time-left" style={this.props.alarmColor}>
+          <span>{this.props.time}</span>
+        </div>
+        <button id="start_stop" onClick={this.props.timerControl}>
+          <i className={this.props.runButtonClass}></i>
+        </button>
+        <button id="reset" onClick={this.props.reset}>
+          <i className="fa fa-refresh fa-2x"></i>
+        </button>
+      </div>  
+    )
+  }
+}
+
+class TimerPanel extends React.Component {
+  constructor(props) {
+    super(props)
+      this.timer = 0
+      this.state = {
+      breakLength: 5,
+      sessionLength: 25,
+      timerState: 'Stopped',
+      timeValue: 1500,
+      alarmColor: {color: 'white'},
+      timerType: 'Session'
+      }
+  }
+  
+  decrementTimer = () => {
+    //console.log("Hello I'm decrementTimer!")
+    //if(this.state.timeValue === 0) {
+      //this.clearTimer()
+    //} else {
+      let timeValue = this.state.timeValue - 1
+      this.setState({
+        timeValue: timeValue  
+      })
+    //}  
+  }
+  
+  clearTimer = () => {
+    clearInterval(this.timer)
+    this.timer = 0
+  }
+  
+  timerWork = () => {    
+    //console.log("Hello I'm a timeerWork!")
+    this.decrementTimer()
+    this.phaseControl()
+  }
+ 
+  phaseControl = () => {
+    let timeValue = this.state.timeValue
+    this.warning(timeValue)
+    this.alarm(timeValue)
+    
+    if(timeValue < 0) {
+      if(this.state.timerType == 'Session') {
+        this.switchTimer(this.state.breakLength * 60, 'Break')
+        this.clearTimer()
+        this.timer = setInterval(this.timerWork, 1000)
+      } else if(this.state.timerType == 'Break') {
+        this.switchTimer(this.state.sessionLength * 60, 'Session')
+        this.clearTimer()
+        this.timer = setInterval(this.timerWork, 1000)
+      }  
+    }
+  }
+  
+  alarm = (timerValue) => {
+    //let timerValue = this.state.timerValue
+    if(timerValue === 0) {
+      this.audioBeep.play()
+    }
+  }
+  
+  reset = () => {
+    this.clearTimer()
+    this.setState({
+      breakLength: 5,
+      sessionLength: 25,
+      timerState: 'Stopped',
+      timeValue: 1500,
+      alarmColor: {color: 'white'},
+      timerType: 'Session'
+    })
+    this.audioBeep.pause()
+    this.audioBeep.currentTime = 0
+  }
+  
+  warning = (timerValue) => {
+    this.setState({
+      alarmColor: timerValue < 61 ? {color: 'red'} : {color: 'white'}  
+    })
+  }
+  
+  timerControl = () => {
+    if(this.state.timerState == 'Stopped') {
+      //console.log("Hello I'm timerControl!")
+      if(this.timer == 0 && this.state.timeValue > 0) {
+      this.timer = setInterval(this.timerWork, 1000)
+      }
+      this.setState({
+        timerState: 'Running'  
+      })
+    } else if(this.state.timerState == 'Running') {
+      this.clearTimer()
+      this.setState({
+        timerState: 'Stopped'  
+      })  
+    }
+  }
+  
+  getRunButtonClass = () => {
+   if(this.state.timerState == 'Stopped')
+     return "fa fa-play fa-2x"
+   else if(this.state.timerState == 'Running')
+     return "fa fa-pause fa-2x"
+}
+  
+  setBreakLength = (e) => {
+    if(this.checkLengthValue(this.state.breakLength, e.target.value)) {
+      this.setState({
+        breakLength: e.target.value == "+" ?  this.state.breakLength + 1 : this.state.breakLength - 1 
+      })
+    }   
+  }
+  
+  setSessionLength = (e) => {
+    if(this.checkLengthValue(this.state.sessionLength, e.target.value) && this.state.timerState == 'Stopped') {
+      this.setState({
+        sessionLength: e.target.value == "+" ? this.state.sessionLength + 1 : this.state.sessionLength - 1,
+        timeValue: e.target.value == "+" ? (this.state.sessionLength + 1) * 60 : (this.state.sessionLength - 1) * 60
+      })
+    }  
+  }
+  
+  getCurrentTime = () => {
+    //console.log(this.state.timeValue)
+    let min = Math.floor(this.state.timeValue / 60)
+    let sec = this.state.timeValue % 60
+    min = min < 10 ? '0' + min : min
+    sec = sec < 10 ? '0' + sec : sec
+    return min + ':' + sec
+  }
+  
+  checkLengthValue = (length, direction) => {
+    return !((length <= 1 && direction == '-') || (length >= 60 && direction == '+'))
+  }
+  
+  switchTimer = (timeValue, timerType) => {
+    this.setState({
+      timeValue: timeValue,
+      timerType: timerType,
+      alarmColor: {color: 'white'}
+    })  
+  }
+  
+  render() {
+    return(
+      <div  id="timer-panel" >
+        <div id="control">
+          <LengthControl onClick={this.setBreakLength}
+                         length={this.state.breakLength}
+                         title="Break Length"
+                         titleID="break-label"
+                         decID="break-decrement"
+                         incID="break-increment"
+                         lengthID="break-length"/>
+          <LengthControl onClick={this.setSessionLength}
+                         length={this.state.sessionLength}
+                         title="Session Length"
+                         titleID="session-label"
+                         decID="session-decrement"
+                         incID="session-increment"
+                         lengthID="session-length"/>
+        </div>  
+        <Timer time={this.getCurrentTime()}
+               runButtonClass={this.getRunButtonClass()}
+               reset={this.reset}
+               timerControl={this.timerControl}
+               timerType={this.state.timerType}
+               alarmColor={this.state.alarmColor}/>
+        <audio id="beep" preload="auto"
+          src="https://goo.gl/65cBl1"
+          ref={(audio) => {this.audioBeep = audio}}/>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<TimerPanel />, document.getElementById('alarm'));

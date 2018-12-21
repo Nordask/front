@@ -1,0 +1,47 @@
+body {
+  background-color: #8A2BE2;
+}
+body #timer-panel {
+  padding: 8px 8xp 8px 8px;
+  background-color: #0000FF;
+  height: 50vh;
+  width: 40vw;
+  margin: auto;
+  border-radius: 5px;
+  border: solid #00008B 3px;
+}
+body #control {
+  border: solid #00008B 3px;
+  width: 40vw;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body #control #lengthControl {
+  border: solid #00008B 3px;
+  height: 20vh;
+  width: 20vw;
+  display: flex;
+  align-tems: center;
+  justify-content: center;
+}
+body #control #lengthControl #lengthDisplay {
+  width: 5vw;
+  text-align: center;
+}
+body #clock {
+  border: solid #00008B 3px;
+  width: 40vw;
+  height: 30vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: auto;
+}
