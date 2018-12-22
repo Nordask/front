@@ -55,7 +55,105 @@ var soundsContainer = [
   keyCharacter: 'C',
   buttonCode: 67,
   soundName: 'Share slam',
-  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/UK%20Hard%20Kit/78[kb]UK_SNARE-slam.WAV.mp3' }];var
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/UK%20Hard%20Kit/78[kb]UK_SNARE-slam.WAV.mp3' }];
+
+
+
+var talkingDrumContainer = [
+{
+  keyCharacter: 'Q',
+  buttonCode: 81,
+  soundName: 'talking-drum-1',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/69[kb]talking-drum-1.aif.mp3' },
+{
+  keyCharacter: 'W',
+  buttonCode: 87,
+  soundName: 'talking-drum-2',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/21[kb]talking-drum-2.aif.mp3' },
+{
+  keyCharacter: 'E',
+  buttonCode: 69,
+  soundName: 'talking-drum-3',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/36[kb]talking-drum-3.aif.mp3' },
+{
+  keyCharacter: 'A',
+  buttonCode: 65,
+  soundName: 'talking-drum-4',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/49[kb]talking-drum-4.aif.mp3' },
+{
+  keyCharacter: 'S',
+  buttonCode: 83,
+  soundName: 'talking-drum-5',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/44[kb]talking-drum-5.aif.mp3' },
+{
+  keyCharacter: 'D',
+  buttonCode: 68,
+  soundName: 'Clap',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Prophet/48[kb]prophet-Clap.wav.mp3' },
+{
+  keyCharacter: 'Z',
+  buttonCode: 90,
+  soundName: 'talking-drum-7',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/28[kb]talking-drum-7.aif.mp3' },
+{
+  keyCharacter: 'X',
+  buttonCode: 88,
+  soundName: 'talking-drum-8',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/54[kb]talking-drum-8.aif.mp3' },
+{
+  keyCharacter: 'C',
+  buttonCode: 67,
+  soundName: 'talking-drum-9',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/55[kb]talking-drum-9.aif.mp3' }];
+
+
+
+var heavyDrumKitContainer = [
+{
+  keyCharacter: 'Q',
+  buttonCode: 81,
+  soundName: 'CRASH',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/102[kb]CRASH.aif.mp3' },
+{
+  keyCharacter: 'W',
+  buttonCode: 87,
+  soundName: 'COWBELL1',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/8[kb]COWBELL1.aif.mp3' },
+{
+  keyCharacter: 'E',
+  buttonCode: 69,
+  soundName: 'OCABASA',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/9[kb]OCABASA.aif.mp3' },
+{
+  keyCharacter: 'A',
+  buttonCode: 65,
+  soundName: 'RIDE',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/125[kb]RIDE.aif.mp3' },
+{
+  keyCharacter: 'S',
+  buttonCode: 83,
+  soundName: 'SPLASH1',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/121[kb]SPLASH1.aif.mp3' },
+{
+  keyCharacter: 'D',
+  buttonCode: 68,
+  soundName: 'TOMHI5',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/25[kb]TOMHI5.aif.mp3' },
+{
+  keyCharacter: 'Z',
+  buttonCode: 90,
+  soundName: 'RASSEL',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/20[kb]RASSEL.aif.mp3' },
+{
+  keyCharacter: 'X',
+  buttonCode: 88,
+  soundName: 'CLAPPO0',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/54[kb]CLAPPO0.aif.mp3' },
+{
+  keyCharacter: 'C',
+  buttonCode: 67,
+  soundName: 'BDRUM13',
+  soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/26[kb]BDRUM13.aif.mp3' }];var
 
 
 
@@ -159,7 +257,20 @@ ControlPanel = function (_React$Component4) {_inherits(ControlPanel, _React$Comp
       return (
         React.createElement('div', { className: 'controlPanel' },
           React.createElement('div', { className: 'soundName' },
-            React.createElement('p', null, this.props.soundName))));
+            React.createElement('p', null, this.props.currentSoundContainer)),
+
+          React.createElement('div', { className: 'soundName' },
+            React.createElement('p', null, this.props.soundName)),
+
+          React.createElement('div', null,
+            React.createElement('button', { onClick: this.props.switchSoundContainer,
+                value: '1' },
+              React.createElement('i', null, '1')),
+
+            React.createElement('button', { onClick: this.props.switchSoundContainer,
+                value: '2' },
+              React.createElement('i', null, '2')))));
+
 
 
 
@@ -170,10 +281,31 @@ DrumMachine = function (_React$Component5) {_inherits(DrumMachine, _React$Compon
 
     state = {
       soundsContainer: soundsContainer,
-      soundName: '' }, _this6.
+      soundName: '',
+      soundsContainerType: 'Common' }, _this6.
 
 
+    switchSoundContainer = function (e) {
+      var soundContainer = [];
+      var containerType = '';
+      switch (e.target.value) {
+        case '1':
+          soundContainer = talkingDrumContainer;
+          containerType = 'Talking';
+          break;
+        case '2':
+          soundContainer = heavyDrumKitContainer;
+          containerType = 'Heavy';
+          break;
+        default:
+          soundContainer = soundsContainer;
+          containerType = 'Common';}
 
+      _this6.setState({
+        soundsContainer: soundContainer,
+        soundsContainerType: containerType });
+
+    }, _this6.
     getSoundName = function (name) {
       _this6.setState({
         soundName: name });
@@ -187,7 +319,9 @@ DrumMachine = function (_React$Component5) {_inherits(DrumMachine, _React$Compon
             React.createElement(DrumButtonsContainer, {
               soundsContainer: this.state.soundsContainer,
               getSoundName: this.getSoundName }),
-            React.createElement(ControlPanel, { soundName: this.state.soundName }))));
+            React.createElement(ControlPanel, { soundName: this.state.soundName,
+              currentSoundContainer: this.state.soundsContainerType,
+              switchSoundContainer: this.switchSoundContainer }))));
 
 
 

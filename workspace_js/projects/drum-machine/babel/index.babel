@@ -59,6 +59,104 @@ const soundsContainer = [
   }
 ]
 
+const talkingDrumContainer = [
+  {
+    keyCharacter: 'Q',
+    buttonCode: 81,   
+    soundName: 'talking-drum-1',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/69[kb]talking-drum-1.aif.mp3'
+  },{
+    keyCharacter: 'W',
+    buttonCode: 87,   
+    soundName: 'talking-drum-2',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/21[kb]talking-drum-2.aif.mp3'
+  },{
+    keyCharacter: 'E',
+    buttonCode: 69,   
+    soundName: 'talking-drum-3',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/36[kb]talking-drum-3.aif.mp3'
+  },{
+    keyCharacter: 'A',
+    buttonCode: 65,   
+    soundName: 'talking-drum-4',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/49[kb]talking-drum-4.aif.mp3'
+  },{
+    keyCharacter: 'S',
+    buttonCode: 83,   
+    soundName: 'talking-drum-5',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/44[kb]talking-drum-5.aif.mp3'
+  },{
+    keyCharacter: 'D',
+    buttonCode: 68,   
+    soundName: 'Clap',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Prophet/48[kb]prophet-Clap.wav.mp3'
+  },{
+    keyCharacter: 'Z',
+    buttonCode: 90,   
+    soundName: 'talking-drum-7',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/28[kb]talking-drum-7.aif.mp3'
+  },{
+    keyCharacter: 'X',
+    buttonCode: 88,   
+    soundName: 'talking-drum-8',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/54[kb]talking-drum-8.aif.mp3'
+  },{
+    keyCharacter: 'C',
+    buttonCode: 67,   
+    soundName: 'talking-drum-9',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/Talking%20Drum/55[kb]talking-drum-9.aif.mp3'
+  }
+]
+
+const heavyDrumKitContainer= [
+  {
+    keyCharacter: 'Q',
+    buttonCode: 81,   
+    soundName: 'CRASH',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/102[kb]CRASH.aif.mp3'
+  },{
+    keyCharacter: 'W',
+    buttonCode: 87,   
+    soundName: 'COWBELL1',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/8[kb]COWBELL1.aif.mp3'
+  },{
+    keyCharacter: 'E',
+    buttonCode: 69,   
+    soundName: 'OCABASA',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/9[kb]OCABASA.aif.mp3'
+  },{
+    keyCharacter: 'A',
+    buttonCode: 65,   
+    soundName: 'RIDE',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/125[kb]RIDE.aif.mp3'
+  },{
+    keyCharacter: 'S',
+    buttonCode: 83,   
+    soundName: 'SPLASH1',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/121[kb]SPLASH1.aif.mp3'
+  },{
+    keyCharacter: 'D',
+    buttonCode: 68,   
+    soundName: 'TOMHI5',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/25[kb]TOMHI5.aif.mp3'
+  },{
+    keyCharacter: 'Z',
+    buttonCode: 90,   
+    soundName: 'RASSEL',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/20[kb]RASSEL.aif.mp3'
+  },{
+    keyCharacter: 'X',
+    buttonCode: 88,   
+    soundName: 'CLAPPO0',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/54[kb]CLAPPO0.aif.mp3'
+  },{
+    keyCharacter: 'C',
+    buttonCode: 67,   
+    soundName: 'BDRUM13',
+    soundUrl: 'https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/heavy-drumkit/26[kb]BDRUM13.aif.mp3'
+  }
+]
+
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -159,8 +257,21 @@ class ControlPanel extends React.Component {
     return(
       <div className="controlPanel">  
         <div className="soundName">
+          <p>{this.props.currentSoundContainer}</p>
+        </div>
+        <div className="soundName">
           <p>{this.props.soundName}</p>
         </div>
+        <div>
+          <button onClick={this.props.switchSoundContainer}
+                  value="1">
+            <i>1</i>   
+          </button>
+          <button onClick={this.props.switchSoundContainer}
+                  value="2">
+            <i>2</i>
+          </button> 
+        </div>  
       </div>  
     )
   }
@@ -170,10 +281,31 @@ class DrumMachine extends React.Component {
   
   state = {
       soundsContainer: soundsContainer,
-      soundName: ''
+      soundName: '',
+      soundsContainerType: 'Common'
   }
 
-  
+  switchSoundContainer = (e) => {
+    let soundContainer = []
+    let containerType = ''
+    switch(e.target.value) {
+      case '1' :
+        soundContainer = talkingDrumContainer
+        containerType = 'Talking'
+        break
+      case '2' :
+        soundContainer = heavyDrumKitContainer
+        containerType = 'Heavy'
+        break
+      default:
+        soundContainer = soundsContainer
+        containerType = 'Common'
+    }
+    this.setState({
+      soundsContainer: soundContainer,
+      soundsContainerType: containerType  
+    })
+  }
   getSoundName = (name) => {
     this.setState({
       soundName:name
@@ -187,7 +319,9 @@ class DrumMachine extends React.Component {
           <DrumButtonsContainer 
             soundsContainer={this.state.soundsContainer} 
             getSoundName={this.getSoundName}/>
-          <ControlPanel soundName={this.state.soundName}/>  
+          <ControlPanel soundName={this.state.soundName}
+     currentSoundContainer={this.state.soundsContainerType}
+     switchSoundContainer={this.switchSoundContainer}/>  
         </div>
       </div>
     )
