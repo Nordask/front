@@ -1,0 +1,811 @@
+D3.js, or D3, stands for Data Driven Documents. D3 is a JavaScript library to create dynamic and interactive data visualizations in the browser. 
+D3 takes input data and maps it into a visual representation of that data. It supports many different data formats. 
+
+
+select()
+selects one element from the document
+It takes an argument for the name of the element you want and returns an HTML node for the first element in the document that matches the name. 
+
+const anchor = d3.select("a"); - finds the first anchor tag on the page and saves an HTML node for it in the variable anchor
+"d3" - reference to the D3 object, which is how you access D3 methods.
+
+append() 
+method takes an argument for the element you want to add to the document. It appends an HTML node to a selected item, and returns a handle to that node.
+
+text()
+set the value, you pass a string as an argument inside the parentheses of the method.
+
+<script>
+d3.select("ul")
+  .append("li")
+  .text("Very important item");
+</script>
+
+-------------------------------
+selectAll()
+select a group of elements. It returns an array of HTML nodes for all the items in the document that match the input string.
+
+const anchors = d3.selectAll("a");
+
+d3.selectAll("li").text("list item")  
+------------------------------
+data()
+used on a selection of DOM elements to attach the data to those elements. The data set is passed as an argument to the method.
+
+enter() 
+create a new element in the document for each piece of data in the set.
+
+When enter() is combined with the data() method, it looks at the selected elements from the page and compares them to the number of data items in the set. 
+If there are fewer elements than data items, it creates the missing elements.
+
+<body>
+  <ul></ul>
+  <script>
+    const dataset = ["a", "b", "c"];
+    d3.select("ul").selectAll("li")
+      .data(dataset)
+      .enter()
+      .append("li")
+      .text("New item");
+  </script>
+</body>
+
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    // Add your code below this line
+    d3.select("body").selectAll("h2").data(dataset).enter().append("h2").text("New Title")
+    
+    // Add your code above this line
+  </script>
+</body>
+------------------------------------
+Dynamic Data
+
+text() method can take a string or a callback function as an argument
+selection.text((d) => d)
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      // Add your code below this line
+      
+      .text((item) => {return item + " USD"});
+      
+      // Add your code above this line
+  </script>
+</body>
+--------------------------------------
+style()
+takes a comma-separated key-value pair as an argument
+d3.selectAll("h2").style("font-family", "verdana")
+
+selection.style("color", (d) => {
+  /* Logic that returns the color based on a condition */
+});
+
+d3.selectAll("h2").style("color", (item) => {
+        return item < 20 ? "red" : "green"
+      })
+---------------------------------------
+selection.attr("class", "container");
+
+<style>
+  .bar {
+    width: 25px;
+    height: 100px;
+    display: inline-block;
+    background-color: blue;
+  }
+</style>
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    d3.select("body").selectAll("div")
+      .data(dataset)
+      .enter()
+      .append("div")
+      // Add your code below this line
+      .attr("class", "bar")
+      
+      
+      // Add your code above this line
+  </script>
+</body>
+------------------------------------------
+selection.style("cssProperty", (d) => d)
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    d3.select("body").selectAll("div")
+      .data(dataset)
+      .enter()
+      .append("div")
+      .attr("class", "bar")
+      // Add your code below this line
+      .style("height", (item) => {
+        return item + "px"
+      })
+      
+      
+      // Add your code above this line
+  </script>
+</body>
+-----------------------------------
+<style>
+  .bar {
+    width: 25px;
+    height: 100px;
+    /* Add your code below this line */
+    margin: 2px;
+    /* Add your code above this line */
+    display: inline-block;
+    background-color: blue;
+  }
+</style>
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    d3.select("body").selectAll("div")
+      .data(dataset)
+      .enter()
+      .append("div")
+      .attr("class", "bar")
+      // Add your code below this line
+      .style("height", (d) => (d * 10 + "px"))
+      
+      // Add your code above this line
+  </script>
+</body>
+---------------------------------------------------------------------------------------------------------
+
+				SVG stands for Scalable Vector Graphics.	
+				
+SVG shapes for a web page must go within an HTML svg tag.
+SVG is more flexible to build data visualizations. than CSS
+
+
+const w = 500;
+const h = 100;
+    
+const svg = d3.select("body")
+                  // Add your code below this line
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h)
+
+Width and height attributes do not have units. This is the building block of scaling - the element will always have a 5:1 width to height ratio, no matter what the zoom level is.
+
+----------------------------
+Display Shapes with SVG
+There are a number of supported shapes in SVG, such as rectangles and circles. 
+When you place a shape into the svg area, you can specify where it goes with x and y coordinates. 
+The origin point of (0, 0) is in the upper-left corner.
+Positive values for x push the shape to the right, and positive values for y push the shape down from the origin point.
+An SVG rect has four attributes. There are the x and y coordinates for where it is placed in the svg area.  It also has a height and width to specify the size.
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    const w = 500;
+    const h = 100;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h)
+                  // Add your code below this line
+                  .append("rect")
+                  .attr("width", 25)
+                  .attr("height", 100)
+                  .attr("x", 0)
+                  .attr("y", 0)
+                  
+                  // Add your code above this line
+  </script>
+</body>
+
+------------------------
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    const w = 500;
+    const h = 100;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("rect")
+       // Add your code below this line
+       .data(dataset)
+       .enter()
+       .append("rect")
+       // Add your code above this line
+       .attr("x", 0)
+       .attr("y", 0)
+       .attr("width", 25)
+       .attr("height", 100);
+  </script>
+</body>
+
+
+The attr() method in D3 accepts a callback function to dynamically set that attribute. 
+The callback function takes two arguments, one for the data point itself (usually d) and one for the index of the data point in the array. 
+The second argument for the index is optional. 
+
+selection.attr("property", (d, i) => {
+  /*
+  * d is the data point value
+  * i is the index of the data point in the array
+  */
+})
+
+NOT need to write a for loop or use forEach() to iterate over the items in the data set. 
+Recall that the data() method parses the data set, and any method that's chained after data() is run once for each item in the data set.
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    const w = 500;
+    const h = 100;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => {
+         // Add your code below this line
+        return i == 0 ? i : i * 25 + i*5
+         
+         
+         // Add your code above this line
+       })
+       .attr("y", 0)
+       .attr("width", 25)
+       .attr("height", 100);
+  </script>
+</body>
+
+--------------------------------
+Invert SVG Elements
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    const w = 500;
+    const h = 100;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => {
+         // Add your code below this line
+         
+        return h - 3 * d 
+         
+         // Add your code above this line
+       })
+       .attr("width", 25)
+       .attr("height", (d, i) => 3 * d);
+  </script>
+</body>
+---------------------------------
+Change the Color of an SVG Element
+
+.attr("fill", "navy")
+--------------------------------
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    const w = 500;
+    const h = 100;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - 3 * d)
+       .attr("width", 25)
+       .attr("height", (d, i) => 3 * d)
+       .attr("fill", "navy");
+    
+    svg.selectAll("text")
+       .data(dataset)
+       .enter()
+       .append("text")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - 3*d - 3)
+       .text((item) => {return item})
+       .style("font-size", "25px")
+       .attr("fill", "red")
+  </script>
+<body>
+------------------------------------
+Add a Hover Effect to a D3 Element
+
+<style>
+  .bar:hover {
+    fill: brown;
+  }
+</style>
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    const w = 500;
+    const h = 100;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - 3 * d)
+       .attr("width", 25)
+       .attr("height", (d, i) => 3 * d)
+       .attr("fill", "navy")
+       // Add your code below this line
+       .attr("class", "bar")
+       
+       
+       // Add your code above this line
+    
+    svg.selectAll("text")
+       .data(dataset)
+       .enter()
+       .append("text")
+       .text((d) => d)
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - (3 * d) - 3);
+       
+  </script>
+</body>
+-------------------------
+Add a Tooltip to a D3 Element
+
+svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - 3 * d)
+       .attr("width", 25)
+       .attr("height", (d, i) => d * 3)
+       .attr("fill", "navy")
+       .attr("class", "bar")
+       // Add your code below this line
+       .append("title")
+       .text((item) => item)
+-------------------------------------------
+Scatterplot
+circle in SVG has three main attributes
+The cx and cy attributes are the coordinates. They tell D3 where to position the center of the shape on the SVG canvas. 
+The radius (r attribute) gives the size of the circle.
+
+all methods chained after data(dataset) run once per item in dataset
+
+<body>
+  <script>
+    const dataset = [
+                  [ 34,    78 ],
+                  [ 109,   280 ],
+                  [ 310,   120 ],
+                  [ 79,    411 ],
+                  [ 420,   220 ],
+                  [ 233,   145 ],
+                  [ 333,   96 ],
+                  [ 222,   333 ],
+                  [ 78,    320 ],
+                  [ 21,    123 ]
+                ];
+    
+    
+    const w = 500;
+    const h = 500;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("circle")
+       .data(dataset)
+       .enter()
+       .append("circle")
+       // Add your code below this line
+       .attr("cx", (item) => item[0]) 
+       .attr("cy", (item) => 500 - item[1])
+       .attr("r", 5)
+       // Add your code above this line
+  	
+	svg.selectAll("text")
+       .data(dataset)
+       .enter()
+       .append("text")
+       // Add your code below this line
+       .attr("x", (item) => item[0] + 5)
+       .attr("y", (item) => 500 - item[1])
+       .text((item) => item[0] + ', ' + item[1])
+       // Add your code above this line
+  </script>
+</body>
+----------------------
+Scales
+
+functions that tell the program how to map a set of raw data points onto the pixels of the SVG canvas.
+D3 has several scale types. 
+
+const scale = d3.scaleLinear() - For a linear scale (usually used with quantitative data) By default, a scale uses the identity relationship. 
+The value of the input is the same as the value of the output. 
+
+<body>
+  <script>
+    // Add your code below this line
+    
+    const scale = d3.scaleLinear(); // Create the scale here
+    const output = scale(50); // Call the scale with an argument here
+    
+    // Add your code above this line
+    
+    d3.select("body")
+      .append("h2")
+      .text(output);
+  
+  </script>
+</body>
+
+
+Set a Domain and a Range on a Scale
+
+// Set a domain
+// The domain covers the set of input values
+scale.domain([50, 480]);
+// Set a range
+// The range covers the set of output values
+scale.range([10, 500]);
+scale(50) // Returns 10
+scale(480) // Returns 500
+scale(325) // Returns 323.37
+scale(750) // Returns 807.67
+d3.scaleLinear()
+
+scale uses the linear relationship between the domain and range values to figure out what the output should be for a given number. 
+The minimum value in the domain (50) maps to the minimum value (10) in the range.
+
+<body>
+  <script>
+    // Add your code below this line
+    const scale = d3.scaleLinear();
+    scale.domain([250, 500])
+    scale.range([10, 150])
+    
+    // Add your code above this line
+    const output = scale(50);
+    d3.select("body")
+      .append("h2")
+      .text(output);
+  </script>
+</body>
+-----------------------------------------------
+const exampleData = [34, 234, 73, 90, 6, 52];
+d3.min(exampleData) // Returns 6
+d3.max(exampleData) // Returns 234
+
+
+for nested arrays
+In that case, you need to tell D3 how to calculate the maximum and minimum.
+
+const locationData = [[1, 7],[6, 3],[8, 3]];
+// Returns the smallest number out of the first elements
+const minX = d3.min(locationData, (d) => d[0]);
+// minX compared 1, 6, and 8 and is set to 1
+
+
+<body>
+  <script>
+    const positionData = [[1, 7, -4],[6, 3, 8],[2, 8, 3]]
+    // Add your code below this line
+    
+    const output = d3.max(positionData, (item) => item[2]); // Change this line
+    
+    // Add your code above this line
+    
+    d3.select("body")
+      .append("h2")
+      .text(output)
+  </script>
+</body>
+
+
+domain()
+passes information to the scale about the raw data values for the plot. 
+range()
+gives it information about the actual space on the web page for the visualization.
+
+const dataset = [
+  [ 34, 78 ],
+  [ 109, 280 ],
+  [ 310, 120 ],
+  [ 79, 411 ],
+  [ 420, 220 ],
+  [ 233, 145 ],
+  [ 333, 96 ],
+  [ 222, 333 ],
+  [ 78, 320 ],
+  [ 21, 123 ]
+];
+const w = 500;
+const h = 500;
+
+// Padding between the SVG canvas boundary and the plot
+const padding = 30;
+const xScale = d3.scaleLinear()
+  .domain([0, d3.max(dataset, (d) => d[0])])
+  .range([padding, w - padding]);
+  
+
+<body>
+  <script>
+    const dataset = [
+                  [ 34,    78 ],
+                  [ 109,   280 ],
+                  [ 310,   120 ],
+                  [ 79,    411 ],
+                  [ 420,   220 ],
+                  [ 233,   145 ],
+                  [ 333,   96 ],
+                  [ 222,   333 ],
+                  [ 78,    320 ],
+                  [ 21,    123 ]
+                ];
+    
+    const w = 500;
+    const h = 500;
+    
+    // Padding between the SVG canvas boundary and the plot
+    const padding = 30;
+    
+    // Create an x and y scale
+    
+    const xScale = d3.scaleLinear()
+                    .domain([0, d3.max(dataset, (d) => d[0])])
+                    .range([padding, w - padding]);
+    
+    // Add your code below this line
+    
+    const yScale = d3.scaleLinear()
+                     .domain([0, d3.max(dataset, (d) => d[1])])
+                     .range([h - padding, padding]);
+                     
+                     
+    // Add your code above this line
+    
+    const output = yScale(411); // Returns 30
+    d3.select("body")
+      .append("h2")
+      .text(output)
+  </script>
+</body>
+-------------------------------
+ Pre-Defined Scale
+shape
+  .attr("x", (d) => xScale(d[0]))
+
+
+<body>
+  <script>
+    const dataset = [
+                  [ 34,     78 ],
+                  [ 109,   280 ],
+                  [ 310,   120 ],
+                  [ 79,   411 ],
+                  [ 420,   220 ],
+                  [ 233,   145 ],
+                  [ 333,   96 ],
+                  [ 222,    333 ],
+                  [ 78,    320 ],
+                  [ 21,   123 ]
+                ];
+    
+    const w = 500;
+    const h = 500;
+    const padding = 60;
+    
+    const xScale = d3.scaleLinear()
+                     .domain([0, d3.max(dataset, (d) => d[0])])
+                     .range([padding, w - padding]);
+    
+    const yScale = d3.scaleLinear()
+                     .domain([0, d3.max(dataset, (d) => d[1])])
+                     .range([h - padding, padding]);
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("circle")
+       .data(dataset)
+       .enter()
+       .append("circle")
+       // Add your code below this line
+       .attr("cx", (item) => xScale(item[0])) 
+       .attr("cy", (item) => yScale(item[1]))
+       .attr("r", 5)
+       // Add your code above this line
+       
+    svg.selectAll("text")
+       .data(dataset)
+       .enter()
+       .append("text")
+       .text((d) =>  (d[0] + ", "
+ + d[1]))
+       // Add your code below this line
+       .attr("x", (item) => xScale(item[0] + 10))
+       .attr("y", (item) => yScale(item[1]))
+       
+       // Add your code above this line
+  </script>
+</body>
+------------------------------------------
+Add Axes to a Visualization
+D3 has two methods axisLeft() and axisBottom() to render the y and x axes, respectively. 
+
+const xAxis = d3.axisBottom(xScale);
+
+g - element for render the axis on the SVG canvas. The g stands for group.
+
+const xAxis = d3.axisBottom(xScale);
+
+svg.append("g")
+   .attr("transform", "translate(0, " + (h - padding) + ")")
+   .call(xAxis);
+
+<body>
+  <script>
+    const dataset = [
+                  [ 34,     78 ],
+                  [ 109,   280 ],
+                  [ 310,   120 ],
+                  [ 79,   411 ],
+                  [ 420,   220 ],
+                  [ 233,   145 ],
+                  [ 333,   96 ],
+                  [ 222,    333 ],
+                  [ 78,    320 ],
+                  [ 21,   123 ]
+                ];
+    
+    const w = 500;
+    const h = 500;
+    const padding = 60;
+    
+    const xScale = d3.scaleLinear()
+                     .domain([0, d3.max(dataset, (d) => d[0])])
+                     .range([padding, w - padding]);
+    
+    const yScale = d3.scaleLinear()
+                     .domain([0, d3.max(dataset, (d) => d[1])])
+                     .range([h - padding, padding]);
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("circle")
+       .data(dataset)
+       .enter()
+       .append("circle")
+       .attr("cx", (d) => xScale(d[0]))
+       .attr("cy",(d) => yScale(d[1]))
+       .attr("r", (d) => 5);
+    
+    svg.selectAll("text")
+       .data(dataset)
+       .enter()
+       .append("text")
+       .text((d) =>  (d[0] + "," + d[1]))
+       .attr("x", (d) => xScale(d[0] + 10))
+       .attr("y", (d) => yScale(d[1]))
+    
+    const xAxis = d3.axisBottom(xScale);
+    // Add your code below this line
+    const yAxis = d3.axisLeft(yScale);
+    // Add your code above this line
+    
+    svg.append("g")
+       .attr("transform", "translate(0," + (h - padding) + ")")
+       .call(xAxis);
+    
+    // Add your code below this line
+    svg.append("g")
+       .attr("transform", "translate(" + (w - padding) + ",0)")
+       .call(yAxis)
+    // Add your code above this line
+  
+  </script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

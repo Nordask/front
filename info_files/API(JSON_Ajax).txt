@@ -1,0 +1,104 @@
+DOMContentLoaded - event document 
+used if you want your code to execute only once your page has finished loading.
+
+document.addEventListener('DOMContentLoaded',function() {
+//	implement event handlers ex:
+	document.getElementById('getMessage').onclick=function(){
+	
+	document.getElementsByClassName('message')[0].textContent="Here is the message";
+	
+	};
+});
+
+------------------------------------------------
+JSON
+JavaScript Object Notation
+
+JSON can be converted into JavaScript objects, but they are not JavaScript objects by default.
+The JSON.parse method parses the string and constructs the JavaScript object described by it.
+
+req=new XMLHttpRequest(); // an instance of the XMLHttpRequest object is created and saved in the req variable.
+req.open("GET",'/json/cats.json',true); // the open method initializes a request ex: "GET" request, The second argument for open is the URL of the API you are requesting data from, The third argument is a Boolean value where true makes it an asynchronous request.
+req.send(); // send method sends the request
+req.onload=function(){ // onload event handler parses the returned data and applies the JSON.stringify method to convert the JavaScript object into a string. 
+  json=JSON.parse(req.responseText);
+  document.getElementsByClassName('message')[0].innerHTML=JSON.stringify(json);
+};
+
+
+      let req=new XMLHttpRequest()
+      req.open("GET", '/json/cats.json', true)
+      req.send()
+      req.onload= function(){
+        let json JSON.parse(req.responseText)
+        document.getElementsByClassName('message')[0].innerHTML=JSON.stringify(json)
+		
+		
+
+[ ] -> Square brackets represent an array
+{ } -> Curly brackets represent an object
+" " -> Double quotes represent a string. They are also used for key names in JSON
+
+
+
+
+Convert JSON Data to HTML
+
+First, declare an html variable with var html = "";.
+
+ex:
+
+json.forEach(function(val) {
+  var keys = Object.keys(val);
+  html += "<div class = 'cat'>";
+  keys.forEach(function(key) {
+    html += "<strong>" + key + "</strong>: " + val[key] + "<br>";
+	html += "<img src= '" + val.imageLink + "'>"
+  });
+  html += "</div><br>";
+});
+------------------------------------------
+Get Geolocation Data to Find A User's GPS Coordinates
+Every browser has a built in navigator that can give you this information.
+The navigator will get the user's current longitude and latitude.
+
+
+if (navigator.geolocation){
+  navigator.geolocation.getCurrentPosition(function(position) {
+    document.getElementById('data').innerHTML="latitude: "+ position.coords.latitude + "<br>longitude: " + position.coords.longitude;
+  });
+}
+------------------------------------------
+Post Data with the JavaScript XMLHttpRequest Method
+
+req=new XMLHttpRequest();
+req.open("POST",url,true); // open method initializes the request as a "POST" to the given URL of the external resource, and uses the true Boolean to make it asynchronous.
+req.setRequestHeader('Content-Type','text/plain'); // sets the value of an HTTP request header, which contains information about the sender and the request.
+req.onreadystatechange=function(){
+  if(req.readyState==4 && req.status==200){ // event listener handles a change in the state of the request readyState=4 - means the operation is complete
+    document.getElementsByClassName('message')[0].innerHTML=req.responseText;
+  }
+};
+req.send(userName); // method sends the request with the userName value, which was given by the user in the input field.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
