@@ -47,6 +47,7 @@
 				date - date picker
 			placeholder - text is what is displayed in your input element before your user has inputted anything.
 			required-user will not be able to submit your form until he or she has filled them out
+			name - The name attribute specifies the name of an <input> element.
 	button
 		attributes:
 			type 
@@ -119,10 +120,13 @@ related <figcaption> - used together, these items wrap a visual representation (
 			It helps avoid confusion by stating a standardized version of a time, even if it's written in an informal or colloquial manner in the text.
 		ex:
 			<time datetime="2013-02-13">last Wednesday</time>
-			
+------------------------------------------------------------------------------------------------------------------------------------------			
 		
-
-
+Playing a YouTube Video in HTML
+<iframe width="420" height="315"
+src="https://www.youtube.com/embed/tgbNymZ7vqY">
+</iframe> 
+<iframe id="video" height="315" src="https://www.youtube-nocookie.com/embed/WloQRstJtXk?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 
 
 

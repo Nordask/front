@@ -1,0 +1,1435 @@
+JS Data types:
+undefined
+null
+boolean
+	Boolean values are never written with quotes. The strings "true" and "false" are not Boolean and have no special meaning in JavaScript.
+string
+symbol
+number
+object
+-------------------------------------------------------------------------------------------------------------------------------------------
+Variables
+Variables are case sensitive.
+Best Practice
+Write variable names in JavaScript in camelCase. In camelCase, multi-word variable names have the first word in lowercase 
+and the first letter of each subsequent word is capitalized.
+
+Declare variable:
+	var ourName; - creates a variable called ourName
+	When JavaScript variables are declared, they have an initial value of undefined.
+	If you do a mathematical operation on an undefined variable your result will be NaN which means "Not a Number".
+	If you concatenate a string with an undefined variable, you will get a literal string of "undefined".
+Assigment variable:
+	myVariable = 5;
+	
+Not all real numbers can accurately be represented in floating point. This can lead to rounding errors.
+Everything to the right of the equals sign is evaluated first.
+
+Escape sequences
+\'	single quote
+\"	double quote
+\\	backslash
+\n	newline
+\r	carriage return
+\t	tab
+\b	backspace
+\f	form feed
+
+Concatenate String:
+'My name is Alan,' + ' I concatenate.'
+
+lastName.lenght - string lenght
+lastName[0] - number of character 
+
+String values are immutable, which means that they cannot be altered once created.
+
+
+In JavaScript, scope refers to the visibility of variables. Variables which are defined outside of a function block have Global scope. 
+This means, they can be seen everywhere in your JavaScript code.
+
+Variables which are used without the var keyword are automatically created in the global scope. 
+This can create unintended consequences elsewhere in your code or when running a function again. You should always declare your variables with var.
+It is possible to have both local and global variables with the same name. When you do this, the local variable takes precedence over the global variable.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+Arrays
+Declaration:
+var sandwich = ["peanut butter", "jelly", "bread"]
+Multi-dimensional Array:
+[["Bulls", 23], ["White Sox", 45]]
+
+Add element to array:
+arr.push(4); - end
+.unshift() - start
+Remove last element from array:
+ourArray.pop();
+Remove first element from array:
+.shift()
+
+filter()
+The filter() method creates an array filled with all array elements that pass a test (provided as a function).
+
+map()
+The map() method creates a new array with the results of calling a function for every array element.
+------------------------------------
+Remove element with splice
+splice() - can take up to 3 parameters
+The first two parameters of splice() are integers which represent indexes, or positions, of the array that splice() is being called upon.
+first parameter represents the index on the array from which to begin removing elements, while the second parameter indicates the number of elements to delete.
+
+let array = ['today', 'was', 'not', 'so', 'great'];
+
+array.splice(2, 2);
+// remove 2 elements beginning with the 3rd element
+// array now equals ['today', 'was', 'great']
+
+splice() not only modifies the array it's being called on, but it also returns a new array containing the value of the removed elements:
+
+let array = ['I', 'am', 'feeling', 'really', 'happy'];
+
+let newArray = array.splice(3, 2);
+// newArray equals ['really', 'happy']
+
+Add item with splice
+function colorChange(arr, index, newColor) {
+  arr.splice(index, 1, newColor);
+  return arr;
+}
+
+let colorScheme = ['#878787', '#a08794', '#bb7e8c', '#c9b6be', '#d1becf'];
+
+colorScheme = colorChange(colorScheme, 2, '#332327');
+// we have removed '#bb7e8c' and added '#332327' in its place
+// colorScheme now equals ['#878787', '#a08794', '#332327', '#c9b6be', '#d1becf']
+---------------------------------
+Copy Array Items Using slice()
+modifying an array, copies, or extracts, a given number of elements to a new array, leaving the array it is called upon untouched. 
+slice() takes only 2 parameters — the first is the index at which to begin extraction, and the second is the index at which to stop extraction 
+(extraction will occur up to, but not including the element at this index). 
+
+let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear'];
+
+let todaysWeather = weatherConditions.slice(1, 3);
+// todaysWeather equals ['snow', 'sleet'];
+// weatherConditions still equals ['rain', 'snow', 'sleet', 'hail', 'clear']
+
+let thisArray = [true, true, undefined, false, null];
+let thatArray = [...thisArray];
+// thatArray equals [true, true, undefined, false, null]
+// thisArray remains unchanged, and is identical to thatArray
+------------------------------------
+Combine Arrays with the Spread Operator
+Another huge advantage of the spread operator, is the ability to combine arrays, or to insert all the elements of one array into another, at any index. 
+With more traditional syntaxes, we can concatenate arrays, but this only allows us to combine arrays at the end of one, and at the start of another.
+
+let thisArray = ['sage', 'rosemary', 'parsley', 'thyme'];
+
+let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander'];
+// thatArray now equals ['basil', 'cilantro', 'sage', 'rosemary', 'parsley', 'thyme', 'coriander']
+------------------------------------
+Check For The Presence of an Element With indexOf()
+indexOf() takes an element as a parameter, and when called, it returns the position, or index, of that element, or -1 if the element does not exist on the array.
+
+let fruits = ['apples', 'pears', 'oranges', 'peaches', 'pears'];
+
+fruits.indexOf('dates') // returns -1
+fruits.indexOf('oranges') // returns 2
+fruits.indexOf('pears') // returns 1, the first index at which the element exists
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+Functions
+
+functions
+Function declaration:
+
+function functionName() {
+  console.log("Hello World");
+}
+
+If statements are used to make decisions in code. The keyword if tells JavaScript to execute the code in the curly braces under certain conditions, 
+defined in the parentheses. These conditions are known as Boolean conditions and they may only be true or false.
+-----------------------------------------
+Equality operator
+1 == 1 // true
+1 == 2 // false
+1 == '1' // true
+"3" == 3 // returns true because JavaScript performs type conversion from string to number
+
+Strict equality (===) 
+However, unlike the equality operator, which attempts to convert both values being compared to a common type, 
+the strict equality operator does not perform a type conversion.
+3 === 3 // true
+3 === '3' // returns false because the types are different and type conversion is not performed
+
+
+
+In JavaScript, you can determine the type of a variable or a value with the typeof operator, as follows:
+typeof 3 // returns 'number'
+typeof '3' // returns 'string'
+
+
+The inequality operator (!=) is the opposite of the equality operator. It means "Not Equal" and returns false where equality would return true and vice versa. 
+Like the equality operator, the inequality operator will convert data types of values while comparing.
+1 != 2 // true
+1 != "1" // false
+1 != '1' // false
+1 != true // false
+0 != false // false
+
+The strict inequality operator (!==) is the logical opposite of the strict equality operator. 
+It means "Strictly Not Equal" and returns false where strict equality would return true and vice versa. Strict inequality will not convert data types.
+3 !== 3 // false
+3 !== '3' // true
+4 !== 3 // true
+
+
+The greater than operator (>) compares the values of two numbers. If the number to the left is greater than the number to the right, 
+it returns true. Otherwise, it returns false. Like the equality operator, greater than operator will convert data types of values while comparing.
+5 > 3 // true
+7 > '3' // true
+2 > 3 // false
+'1' > 9 // false
+
+The greater than or equal to operator (>=) compares the values of two numbers. If the number to the left is greater than or equal to the number to the right, 
+it returns true. Otherwise, it returns false. Like the equality operator, greater than or equal to operator will convert data types while comparing.
+6 >= 6 // true
+7 >= '3' // true
+2 >= 3 // false
+'7' >= 9 // false
+
+
+The less than operator (<) compares the values of two numbers. If the number to the left is less than the number to the right, 
+it returns true. Otherwise, it returns false. Like the equality operator, less than operator converts data types while comparing.
+2 < 5 // true
+'3' < 7 // true
+5 < 5 // false
+3 < 2 // false
+'8' < 4 // false
+
+
+The less than or equal to operator (<=) compares the values of two numbers. If the number to the left is less than or equal to the number to the right,
+it returns true. If the number on the left is greater than the number on the right, it returns false. Like the equality operator, 
+less than or equal to converts data types.
+4 <= 5 // true
+'7' <= 7 // true
+5 <= 5 // true
+3 <= 2 // false
+'8' <= 4 // false
+
+The logical and operator (&&) returns true if and only if the operands to the left and right of it are true.
+
+The logical or operator (||) returns true if either of the operands is true. Otherwise, it returns false.
+The logical or operator is composed of two pipe symbols (|). This can typically be found between your Backspace and Enter keys
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Objects
+Objects are similar to arrays, except that instead of using indexes to access and modify their data, you access the data in objects through what are called properties.
+Objects are useful for storing data in a structured way, and can represent real world objects, like a cat.
+If your object has any non-string properties, JavaScript will automatically typecast them as strings.
+var cat = {
+  "name": "Whiskers",
+  "legs": 4,
+  "tails": 1,
+  "enemies": ["Water", "Dogs"]
+};
+
+There are two ways to access the properties of an object: dot notation (.) and bracket notation ([]), similar to an array.
+
+Dot notation is what you use when you know the name of the property you're trying to access ahead of time.
+
+The second way to access the properties of an object is bracket notation ([]). 
+If the property of the object you are trying to access has a space in its name, you will need to use bracket notation.
+
+var dogs = {
+  Fido: "Mutt", Hunter: "Doberman", Snoopie: "Beagle"
+};
+var myDog = "Hunter";
+var myBreed = dogs[myDog];
+console.log(myBreed); // "Doberman"
+
+
+var someObj = {
+  propName: "John"
+};
+function propPrefix(str) {
+  var s = "prop";
+  return s + str;
+}
+var someProp = propPrefix("Name"); // someProp now holds the value 'propName'
+console.log(someObj[someProp]); // "John"
+
+After you've created a JavaScript object, you can update its properties at any time just like you would update any other variable. 
+You can use either dot or bracket notation to update.
+You can add new properties to existing JavaScript objects the same way you would modify them.
+We can also delete properties from objects like this:
+delete ourDog.bark;
+
+Objects can be thought of as a key/value storage, like a dictionary. If you have tabular data, you can use an object to 
+"lookup" values rather than a switch statement or an if/else chain. This is most useful when you know that your input data is limited to a certain range.
+var alpha = {
+  1:"Z",
+  2:"Y",
+  3:"X",
+  4:"W",
+  ...
+  24:"C",
+  25:"B",
+  26:"A"
+};
+alpha[2]; // "Y"
+alpha[24]; // "C"
+
+var value = 2;
+alpha[value]; // "Y"
+
+Sometimes it is useful to check if the property of a given object exists or not. We can use the .hasOwnProperty(propname) method of 
+objects to determine if that object has the given property name..hasOwnProperty() returns true or false if the property is found or not.
+var myObj = {
+  top: "hat",
+  bottom: "pants"
+};
+myObj.hasOwnProperty("top"); // true
+myObj.hasOwnProperty("middle"); // false
+
+Sometimes you may want to store data in a flexible Data Structure. A JavaScript object is one way to handle flexible data. 
+They allow for arbitrary combinations of strings, numbers, booleans, arrays, functions, and objects.
+var ourMusic = [
+  {
+    "artist": "Daft Punk",
+    "title": "Homework",
+    "release_year": 1997,
+    "formats": [
+      "CD",
+      "Cassette",
+      "LP"
+    ],
+    "gold": true
+  }
+];
+
+JavaScript Object Notation or JSON is a related data interchange format used to store data
+
+The sub-properties of objects can be accessed by chaining together the dot or bracket notation.
+var ourStorage = {
+  "desk": {
+    "drawer": "stapler"
+  },
+  "cabinet": {
+    "top drawer": {
+      "folder1": "a file",
+      "folder2": "secrets"
+    },
+    "bottom drawer": "soda"
+  }
+};
+ourStorage.cabinet["top drawer"].folder2; // "secrets"
+ourStorage.desk.drawer; // "stapler"
+
+Create empty array inside object:
+collection[id].tracks = [""];
+
+
+
+
+for(var j = 0; j < contacts.length; j++) {
+        if(contacts[name][j] == prop) {
+            return contacts[name][j];
+        }
+    }
+        return "No such property";
+
+At their most basic, objects are just collections of key-value pairs, or in other words, pieces of data mapped to unique identifiers that we call properties or keys.
+---------------------------
+Constructor
+Constructors are functions that create new objects. They define properties and behaviors that will belong to the new object. 
+
+Constructors are functions that create new objects. They define properties and behaviors that will belong to the new object.
+
+function Bird() {
+  this.name = "Albert";
+  this.color = "blue";
+  this.numLegs = 2;
+}
+
+Constructors follow a few conventions:
+
+Constructors are defined with a capitalized name to distinguish them from other functions that are not constructors.
+Constructors use the keyword this to set properties of the object they will create. Inside the constructor, this refers to the new object it will create.
+Constructors define properties and behaviors instead of returning a value as other functions might.
+
+let blueBird = new Bird();
+new operator is used when calling a constructor. This tells JavaScript to create a new instance of Bird called blueBird. 
+Without the new operator, this inside the constructor would not point to the newly created object, giving unexpected results.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Change the Prototype to a New Object
+Bird.prototype = {
+  numLegs: 2,
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+
+There is one crucial side effect of manually setting the prototype to a new object. It erased the constructor property!
+
+console.log(duck.constructor)
+// prints ‘undefined’ - Oops!
+To fix this, whenever a prototype is manually set to a new object
+
+Bird.prototype = {
+  constructor: Bird, // define the constructor property
+  numLegs: 2,
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+
+----------------
+Just like people inherit genes from their parents, an object inherits its prototype directly from the constructor function that created it.
+function Bird(name) {
+  this.name = name;
+}
+
+let duck = new Bird("Donald");
+Bird.prototype.isPrototypeOf(duck);
+--------------
+Prototype Chain
+All objects in JavaScript (with a few exceptions) have a prototype. Also, an object’s prototype itself is an object.
+
+    function Bird(name) {
+      this.name = name;
+    }
+
+    typeof Bird.prototype; // => object
+
+Because a prototype is an object, a prototype can have its own prototype! In this case, the prototype of Bird.prototype is Object.prototype
+Object.prototype.isPrototypeOf(Bird.prototype);
+// returns true
+
+let duck = new Bird("Donald");
+duck.hasOwnProperty("name"); // => true
+ 
+The hasOwnProperty method is defined in Object.prototype, which can be accessed by Bird.prototype, which can then be accessed by duck.
+In this prototype chain, Bird is the supertype for duck, while duck is the subtype. Object is a supertype for both Bird and duck.
+Object is a supertype for all objects in JavaScript. Therefore, any object can use the hasOwnProperty method.
+---------------
+inheritance
+Don't Repeat Yourself (DRY)
+Bird.prototype = {
+  constructor: Bird,
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+
+Dog.prototype = {
+  constructor: Dog,
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+}
+
+function Animal() { };
+
+Animal.prototype = {
+  constructor: Animal,
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+
+Bird.prototype = {
+  constructor: Bird
+};
+
+Dog.prototype = {
+  constructor: Dog
+};
+
+let animal = Object.create(Animal.prototype); //better then let animal = new Animal(); for inheritance
+Object.create(obj) creates a new object, and sets obj as the new object's prototype. Recall that the prototype is like the "recipe" for creating an object. 
+By setting the prototype of animal to be Animal's prototype, you are effectively giving the animal instance the same "recipe" as any other instance of Animal.
+
+animal.eat(); // prints "nom nom nom"
+animal instanceof Animal; // => true
+
+Set the Child's Prototype to an Instance of the Parent
+Bird.prototype = Object.create(Animal.prototype);
+
+the recipe for Bird now includes all the key "ingredients" from Animal. duck inherits all of Animal's properties, including the eat method.
+let duck = new Bird("Donald");
+duck.eat(); // prints "nom nom nom"
+
+Reset an Inherited Constructor Property
+function Bird() { }
+Bird.prototype = Object.create(Animal.prototype);
+let duck = new Bird();
+duck.constructor // function Animal(){...}
+Bird.prototype.constructor = Bird;
+duck.constructor // function Bird(){...}
+
+A constructor function that inherits its prototype object from a supertype constructor function can still have its own methods in addition to inherited methods.
+Bird.prototype.fly = function() {
+  console.log("I'm flying!");
+};
+----
+Override Inherited Methods
+function Animal() { }
+Animal.prototype.eat = function() {
+  return "nom nom nom";
+};
+function Bird() { }
+
+// Inherit all methods from Animal
+Bird.prototype = Object.create(Animal.prototype);
+
+// Bird.eat() overrides Animal.eat()
+Bird.prototype.eat = function() {
+  return "peck peck peck";
+};
+
+If you have an instance let duck = new Bird(); and you call duck.eat(), this is how JavaScript looks for the method on duck’s prototype chain:
+
+1. duck => Is eat() defined here? No.
+
+2. Bird => Is eat() defined here? => Yes. Execute it and stop searching.
+
+3. Animal => eat() is also defined, but JavaScript stopped searching before reaching this level.
+
+4. Object => JavaScript stopped searching before reaching this level.
+----------
+Mixin
+For unrelated objects, it's better to use mixins. A mixin allows other objects to use a collection of functions.
+let flyMixin = function(obj) {
+  obj.fly = function() {
+    console.log("Flying, wooosh!");
+  }
+};
+The flyMixin takes any object and gives it the fly method.
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+
+let plane = {
+  model: "777",
+  numPassengers: 524
+};
+
+flyMixin(bird);
+flyMixin(plane);
+bird.fly(); // prints "Flying, wooosh!"
+plane.fly(); // prints "Flying, wooosh!"
+-----------
+Closure
+to Protect Properties Within an Object from Being Modified Externally
+
+The simplest way to make properties private is by creating a variable within the constructor function. 
+This changes the scope of that variable to be within the constructor function versus available globally. 
+This way, the property can only be accessed and changed by methods also within the constructor function.
+
+function Bird() {
+  let hatchedEgg = 10; // private property
+
+  this.getHatchedEggCount = function() { // publicly available method that a bird object can use
+    return hatchedEgg;
+  };
+}
+let ducky = new Bird();
+ducky.getHatchedEggCount(); // returns 10
+
+Here getHachedEggCount is a privileged method, because it has access to the private variable hatchedEgg. 
+This is possible because hatchedEgg is declared in the same context as getHachedEggCount. 
+In JavaScript, a function always has access to the context in which it was created. This is called closure.
+-------
+Immediately Invoked Function Expression (IIFE)
+A common pattern in JavaScript is to execute a function as soon as it is declared:
+(function () {
+  console.log("Chirp, chirp!");
+})(); // this is an anonymous function expression that executes right away
+// Outputs "Chirp, chirp!" immediately
+
+function has no name and is not stored in a variable. The two parentheses () at the end of the function expression cause it to be immediately executed or invoked. 
+
+Use an IIFE to Create a Module
+An immediately invoked function expression (IIFE) is often used to group related functionality into a single object or module
+
+let motionModule = (function () {
+  return {
+    glideMixin: function (obj) {
+      obj.glide = function() {
+        console.log("Gliding on the water");
+      };
+    },
+    flyMixin: function(obj) {
+      obj.fly = function() {
+        console.log("Flying, wooosh!");
+      };
+    }
+  }
+}) (); // The two parentheses cause the function to be immediately invoked
+
+you have an immediately invoked function expression (IIFE) that returns an object motionModule. This returned object contains all of the mixin behaviors as properties of the object.
+The advantage of the module pattern is that all of the motion behaviors can be packaged into a single object that can then be used by other parts of your code. 
+motionModule.glideMixin(duck);
+duck.glide();
+
+let funModule = ( function() {
+  return {
+      isCuteMixin: function(obj) {
+      obj.isCute = function() {
+        return true;
+      };
+    },
+    singMixin: function(obj) {
+      obj.sing = function() {
+        console.log("Singing to an awesome tune");
+      };
+    }
+  }
+}) ();
+
+instanceof
+allows you to compare an object to a constructor, returning true or false based on whether or not that object was created with the constructor.
+
+let Bird = function(name, color) {
+  this.name = name;
+  this.color = color;
+  this.numLegs = 2;
+}
+
+let crow = new Bird("Alexis", "black");
+
+crow instanceof Bird; // => true
+----------------
+function Bird(name) {
+  this.name = name;
+  this.numLegs = 2;
+}
+
+let duck = new Bird("Donald");
+let canary = new Bird("Tweety");
+
+name and numLegs are called own properties, because they are defined directly on the instance object. 
+That means that duck and canary each has its own separate copy of these properties.
+
+let ownProps = [];
+
+for (let property in duck) {
+  if(duck.hasOwnProperty(property)) {
+    ownProps.push(property);
+  }
+}
+
+console.log(ownProps); // prints [ "name", "numLegs" ]
+------------
+The prototype is an object that is shared among ALL instances of Bird.
+Bird.prototype.numLegs = 2;
+Since all instances automatically have the properties on the prototype, think of a prototype as a "recipe" for creating objects.
+Nearly every object in JavaScript has a prototype property which is part of the constructor function that created it.
+-----------
+Own properties are defined directly on the object instance itself. And prototype properties are defined on the prototype
+
+function Bird(name) {
+  this.name = name; //own property
+}
+
+Bird.prototype.numLegs = 2; // prototype property
+
+let duck = new Bird("Donald");
+----------
+Constructor Property
+constructor property is a reference to the constructor function that created the instance.
+ 
+let duck = new Bird();
+let beagle = new Dog();
+
+console.log(duck.constructor === Bird); //prints true
+console.log(beagle.constructor === Dog); //prints true
+
+Since the constructor property can be overwritten it’s generally better to use the instanceof method to check the type of an object.
+
+------------------------------------------------------------------------------------------------------------------
+rand
+    Use Math.random() to generate a random decimal.
+    Multiply that random decimal by 20.
+    Use another function, Math.floor() to round the number down to its nearest whole number.
+
+Remember that Math.random() can never quite return a 1 and, because we're rounding down, it's impossible to actually get 20. 
+This technique will give us a whole number between 0 and 19.
+
+Instead of generating a random number between zero and a given number like we did before, we can generate a random number that falls within a range of two specific numbers.
+Math.floor(Math.random() * (max - min + 1)) + min
+----------------------------------------------------------------
+parsers
+var a = parseInt("007");  If the first character in the string can't be converted into a number, then it returns NaN.
+
+The parseInt() function parses a string and returns an integer. It takes a second argument for the radix, which specifies the base of the number in the string. The radix can be an integer between 2 and 36.
+
+The function call looks like:
+
+parseInt(string, radix);
+
+And here's an example:
+
+var a = parseInt("11", 2);
+
+The radix variable says that "11" is in the binary system, or base 2. This example converts the string "11" to an integer 3.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ES6
+let
+override declaration
+	var camper = 'James';
+	var camper = 'David';
+	console.log(camper);
+	// logs 'David'
+don't override declaration
+	let camper = 'James';
+	let camper = 'David'; // throws an error
+	
+"use strict". 
+	This enables Strict Mode, which catches common coding mistakes and "unsafe" actions.	
+	
+	
+When you declare a variable with the var keyword, it is declared globally, or locally if declared inside a function.
+The let keyword behaves similarly, but with some extra features. When you declare a variable with the let keyword inside a block, statement, 
+or expression, its scope is limited to that block, statement, or expression.
+
+'use strict';
+let printNumTwo;
+for (let i = 0; i < 3; i++) {
+  if (i === 2) {
+    printNumTwo = function() {
+      return i;
+    };
+  }
+}
+console.log(printNumTwo());
+// returns 2
+console.log(i);
+// returns "i is not defined"
+------------------------------------------------------------------------------------------------------
+
+const
+as all the features that let has
+variables declared using const are read-only
+They are a constant value, which means that once a variable is assigned with const, it cannot be reassigned.
+A common practice when naming constants is to use all uppercase letters, with words separated by an underscore.
+
+assigned to a variable using const are still mutable. Using the const declaration only prevents reassignment of the variable identifier.
+
+"use strict";
+const s = [5, 6, 7];
+s = [1, 2, 3]; // throws error, trying to assign a const
+s[2] = 45; // works just as it would with an array declared with var or let
+console.log(s); // returns [5, 6, 45]
+----------------------------------------------------------------------------------------------------------
+To ensure your data doesn't change, JavaScript provides a function Object.freeze to prevent data mutation.
+Once the object is frozen, you can no longer add, update, or delete properties from it. Any attempt at changing the object will be rejected without an error.
+
+let obj = {
+  name:"FreeCodeCamp",
+  review:"Awesome"
+};
+Object.freeze(obj);
+obj.review = "bad"; //will be ignored. Mutation not allowed
+obj.newProp = "Test"; // will be ignored. Mutation not allowed
+console.log(obj);
+// { name: "FreeCodeCamp", review:"Awesome"}
+----------------------------------------------------------------------------------------------------------
+Arrow Functions
+In JavaScript, we often don't need to name our functions, especially when passing a function as an argument to another function. Instead, we create inline functions. 
+We don't need to name these functions because we do not reuse them anywhere else.
+
+const myFunc = function() {
+  const myVar = "value";
+  return myVar;
+}
+
+ES6 provides us with the syntactic sugar to not have to write anonymous functions this way. Instead, you can use arrow function syntax:
+
+const myFunc = () => {
+  const myVar = "value";
+  return myVar;
+}
+When there is no function body, and only a return value, arrow function syntax allows you to omit the keyword return as well as the brackets surrounding the code. 
+This helps simplify smaller functions into one-line statements:
+
+const myFunc = () => "value"
+This code will still return value by default.
+
+// doubles input value and returns it
+const doubler = (item) => item * 2;
+
+Arrow functions work really well with higher order functions, such as map(), filter(), and reduce(), that take other functions as arguments for processing collections of data.
+
+FBPosts.filter((post) => post.thumbnail !== null && post.shares > 100 && post.likes > 500)
+
+
+const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2];
+const squareList = (arr) => {
+  "use strict";
+  // change code below this line
+  const squaredIntegers = arr.filter(element => element > 0 && (element % parseInt(element) === 0)).map(element => Math.pow(element,2));
+  // change code above this line
+  return squaredIntegers;
+};
+// test your code
+const squaredIntegers = squareList(realNumberArray);
+console.log(squaredIntegers);
+-------------------------------------------------------------------------------------------------
+default parameters for functions
+The default parameter kicks in when the argument is not specified (it is undefined)
+
+function greeting(name = "Anonymous") {
+  return "Hello " + name;
+}
+console.log(greeting("John")); // Hello John
+console.log(greeting()); // Hello Anonymous
+---------------------
+
+rest operator for function parameters
+With the rest operator, you can create functions that take a variable number of arguments. 
+These arguments are stored in an array that can be accessed later from inside the function.
+The rest operator eliminates the need to check the args array and allows us to apply map(), filter() and reduce() on the parameters array.
+
+function howMany(...args) {
+  return "You have passed " + args.length + " arguments.";
+}
+console.log(howMany(0, 1, 2)); // You have passed 3 arguments
+console.log(howMany("string", null, [1, 2, 3], { })); // You have passed 4 arguments.
+---------------
+spread operator
+allows us to expand arrays and other expressions in places where multiple parameters or elements are expected.
+
+var arr = [6, 89, 3, 45];
+var maximus = Math.max.apply(null, arr); // returns 89
+
+const arr = [6, 89, 3, 45];
+const maximus = Math.max(...arr);
+
+...arr returns an unpacked array. In other words, it spreads the array.
+However, the spread operator only works in-place, like in an argument to a function or in an array literal.
+
+Copy array:
+	arr2 = [...arr1];
+------------------------------------------------------------
+
+Destructuring Assignment to Assign Variables from Arrays
+One key difference between the spread operator and array destructuring is that the spread operator unpacks all contents of an array into a comma-separated list. 
+Consequently, you cannot pick or choose which elements you want to assign to variables.
+
+const [a, b] = [1, 2, 3, 4, 5, 6];
+console.log(a, b); // 1, 2
+
+const [a, b,,, c] = [1, 2, 3, 4, 5, 6];
+console.log(a, b, c); // 1, 2, 5 
+
+[a,b] = [b, a]
+
+const [a, b, ...arr] = [1, 2, 3, 4, 5, 7];
+console.log(a, b); // 1, 2
+console.log(arr); // [3, 4, 5, 7]   		similar Array.prototype.slice()
+
+----------------------------------------------------------
+Destructuring Assignment to Pass an Object as a Function's Parameters
+
+const profileUpdate = (profileData) => {
+  const { name, age, nationality, location } = profileData;
+  // do something with these variables
+}
+
+const profileUpdate = ({ name, age, nationality, location }) => {
+  /* do something with these fields */
+}
+
+
+const stats = {
+  max: 56.78,
+  standard_deviation: 4.34,
+  median: 34.54,
+  mode: 23.87,
+  min: -0.75,
+  average: 35.85
+};
+const half = (function() {
+  "use strict"; // do not change this line
+
+  // change code below this line
+  return function half({max, min}) {
+    // use function argument destructuring
+    return (max + min) / 2.0;
+  };
+  // change code above this line
+
+})();
+---------------------------------------------------------
+Template Literals
+Template literals allow you to create multi-line strings and to use string interpolation features to create strings.
+const person = {
+  name: "Zodiac Hasbro",
+  age: 56
+};
+
+// Template literal with multi-line and string interpolation
+const greeting = `Hello, my name is ${person.name}!
+I am ${person.age} years old.`;
+
+console.log(greeting); // prints
+// Hello, my name is Zodiac Hasbro!
+// I am 56 years old.
+Firstly, the example uses backticks (`), not quotes (' or "), to wrap the string.
+Secondly, notice that the string is multi-line, both in the code and the output. This saves inserting \n within strings.
+The ${variable} syntax used above is a placeholder. Basically, you won't have to use concatenation with the + operator anymore. 
+To add variables to strings, you just drop the variable in a template string and wrap it with ${ and }. Similarly, you can include other expressions in your string 
+literal, for example ${a + b}.
+
+[`<li class="text-warning">${arr[0]}</li>`, `<li class="text-warning">${arr[1]}</li>` ,`<li class="text-warning">${arr[2]}</li>`];
+--------------------------------------------------------
+Simple Fields
+
+const getMousePosition = (x, y) => ({
+  x: x,
+  y: y
+});
+
+rewritten to use this new syntax:
+const getMousePosition = (x, y) => ({ x, y });
+--------------------------------------------------------
+Class
+
+class syntax is just a syntax, and not a full-fledged class based implementation of object oriented paradigm, unlike in languages like Java, or Python, or Ruby etc.
+
+var SpaceShuttle = function(targetPlanet){
+  this.targetPlanet = targetPlanet;
+}
+var zeus = new SpaceShuttle('Jupiter');
+
+class SpaceShuttle {
+  constructor(targetPlanet){
+    this.targetPlanet = targetPlanet;
+  }
+}
+const zeus = new SpaceShuttle('Jupiter');
+
+class keyword declares a new function, and a constructor was added, which would be invoked when new is called - to create a new object.
+
+function makeClass() {
+  "use strict";
+  /* Alter code below this line */
+  class Vegetable{
+    constructor(name){
+      this.name = name;
+    }
+  }
+  /* Alter code above this line */
+  return Vegetable;
+}
+const Vegetable = makeClass();
+const carrot = new Vegetable('carrot');
+console.log(carrot.name); // => should be 'carrot'
+
+
+
+getters and setters
+Getter functions are meant to simply return (get) the value of an object's private variable to the user without the user directly accessing the private variable.
+
+Setter functions are meant to modify (set) the value of an object's private variable based on the value passed into the setter function. 
+This change could involve calculations, or even overwriting the previous value completely.
+
+class Book {
+  constructor(author) {
+    this._author = author;
+  }
+  // getter
+  get writer(){
+    return this._author;
+  }
+  // setter
+  set writer(updatedAuthor){
+    this._author = updatedAuthor;
+  }
+}
+const lol = new Book('anonymous');
+console.log(lol.writer);  // anonymous
+lol.writer = 'wut';
+console.log(lol.writer);  // wut
+-----------------------------------------------------------------------------------
+import and require
+
+import { countItems } from "math_array_functions"
+
+import { function } from "file_path_goes_here"
+// We can also import variables the same way!
+
+The whitespace surrounding the function inside the curly braces is a best practice - it makes it easier to read the import statement.
+In most cases, the file path requires a ./ before it; otherwise, node will look in the node_modules directory first trying to load it as a dependency.
+
+---------
+export
+
+const capitalizeString = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+export { capitalizeString } //How to export functions.
+export const foo = "bar"; //How to export variables.
+
+if you would like to compact all your export statements into one line, you can take this approach:
+const capitalizeString = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+const foo = "bar";
+export { capitalizeString, foo }
+-------------------
+export default
+
+export default function add(x,y) {
+  return x + y;
+}
+
+Since export default is used to declare a fallback value for a module or file, you can only have one value be a default export in each module or file. 
+Additionally, you cannot use export default with var, let, or const
+-----------------------
+
+Import Everything from a File
+import * as myMathModule from "math_functions";
+
+import * as object_with_name_of_your_choice from "file_path_goes_here"
+object_with_name_of_your_choice.imported_function
+
+You may use any name following the import * as portion of the statement. In order to utilize this method, it requires an object that receives the imported values.
+From here, you will use the dot notation to call your imported values.
+-------------------------------------------
+import a default export
+
+import add from "math_functions";
+add(5,4); //Will return 9
+
+The syntax differs in one key place - the imported value, add, is not surrounded by curly braces, {}. Unlike exported values, the primary method of importing a default 
+export is to simply write the value's name after import.
+------------------------------------------------------------------------------------------------------------------
+for (let user in users) {
+  console.log(user);
+};
+
+// logs:
+Alan
+Jeff
+Sarah
+Ryan
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Functional programming is an approach to software development based around the evaluation of functions. 
+Functional programming follows a few core principles:
+    Functions are independent from the state of the program or global variables. They only depend on the arguments passed into them to make a calculation
+
+    Functions try to limit any changes to the state of the program and avoid changes to the global objects holding data
+
+    Functions have minimal side effects in the program
+	
+INPUT -> PROCESS -> OUTPUT
+
+1) Isolated functions - there is no dependence on the state of the program, which includes global variables that are subject to change
+
+2) Pure functions - the same input always gives the same output
+
+3) Functions with limited side effects - any changes, or mutations, to the state of the program outside the function are carefully controlled
+
+
+Callbacks are the functions that are slipped or passed into another function to decide the invocation of that function. 
+You may have seen them passed to other methods, for example in filter, the callback function tells JavaScript the criteria for how to filter an array.
+
+Functions that can be assigned to a variable, passed into another function, or returned from another function just like any other normal value, 
+are called first class functions. In JavaScript, all functions are first class functions.
+
+The functions that take a function as an argument, or return a function as a return value are called higher order functions.
+
+When the functions are passed in to another function or returned from another function, then those functions which gets passed in or returned can be called a lambda.
+
+Recall that in functional programming, changing or altering things is called mutation, and the outcome is called a side effect. 
+A function, ideally, should be a pure function, meaning that it does not cause any side effects.
+
+// the global Array
+var s = [23, 65, 98, 5];
+
+Array.prototype.myMap = function(callback){
+  var newArray = [];
+  // Add your code below this line
+  this.forEach(a => newArray.push(callback(a)))
+  // Add your code above this line
+  return newArray;
+
+};
+
+var new_s = s.myMap(function(item){
+  return item * 2;
+});
+
+console.log(s)
+console.log(new_s)
+
+Array.prototype.filter()
+The filter method returns a new array which is at most as long as the original array, but usually has fewer items.
+
+// Add your code below this line
+
+var filteredList = watchList.map((item) => ({
+  "title":item["Title"], "rating":item["imdbRating"]
+})).filter(item => item.rating >= 8.0);
+var ff = filteredList.filter(item => item.rating >= 8.0)
+// Add your code above this line
+
+console.log(filteredList); 
+filteredList.forEach(a => console.log(a.title + ":" + a.rating))
+ff.forEach(a => console.log(a.title + ":" + a.rating))
+
+//implement filter
+// the global Array
+var s = [23, 65, 98, 5];
+
+Array.prototype.myFilter = function(callback){
+  var newArray = [];
+  // Add your code below this line
+  this.forEach(item => 
+    callback(item) === true?
+      newArray.push(item):false)
+  // Add your code above this line
+  return newArray;
+
+};
+
+var new_s = s.myFilter(function(item){
+  return item % 2 === 1;
+});
+console.log(new_s)
+
+
+The slice method returns a copy of certain elements of an array. It can take two arguments, the first gives the index of where to begin the slice, 
+the second is the index for where to end the slice (and it's non-inclusive). If the arguments are not provided, the default is to start at the beginning 
+of the array through the end, which is an easy way to make a copy of the entire array. The slice method does not mutate the original array, but returns a new one.
+
+---------------
+Concatenation means to join items end to end. JavaScript offers the concat method for both strings and arrays that work in the same way. 
+For arrays, the method is called on one, then another array is provided as the argument to concat, which is added to the end of the first array. 
+It returns a new array and does not mutate either of the original arrays.
+
+[1, 2, 3].concat([4, 5, 6]);
+// Returns a new array [1, 2, 3, 4, 5, 6]
+----------------
+Array.prototype.reduce()
+
+var ff = watchList.filter(x => x["Director"]==="Christopher Nolan").map(x => Number(x.imdbRating))
+var l = watchList.filter(x => x["Director"]==="Christopher Nolan").length
+var averageRating = ff.reduce((x1,x2) => x1 + x2) /l;
+// Add your code above this line
+
+console.log(averageRating); 
+console.log(ff); 
+console.log(l)
+-------------
+always declare your dependencies explicitly. 
+This means if a function depends on a variable or object being present, then pass that variable or object directly into the function as an argument.
+There are several good consequences from this principle. The function is easier to test, you know exactly what input it takes, 
+and it won't depend on anything else in your program.
+This can give you more confidence when you alter, remove, or add new code. You would know what you can or cannot change 
+and you can see where the potential traps are.
+Finally, the function would always produce the same output for the same set of inputs, no matter what part of the code executes it.
+
+*****************************************************************************************************************************************************
+
+Refactor (rewrite) the code so the global array bookList is not changed inside either function. The add function should add the 
+given bookName to the end of an array. The remove function should remove the given bookName from an array. Both functions should return an array, 
+and any new parameters should be added before the bookName one.
+
+
+
+
+// the global variable
+var bookList = ["The Hound of the Baskervilles", "On The Electrodynamics of Moving Bodies", "Philosophiæ Naturalis Principia Mathematica", "Disquisitiones Arithmeticae"];
+
+/* This function should add a book to the list and return the list */
+// New parameters should come before the bookName one
+
+// Add your code below this line
+function add (arr, bookName) {
+  let resultList  = arr.slice()
+  resultList.push(bookName);
+  console.log(resultList)
+  return resultList;
+  // Add your code above this line
+}
+
+/* This function should remove a book from the list and return the list */
+// New parameters should come before the bookName one
+
+// Add your code below this line
+function remove (arr, bookName) {
+  if (arr.indexOf(bookName) >= 0) {
+    let resultArr = arr.slice() 
+    //console.log(resultArr)
+   // console.log(bookName)
+    //console.log(resultArr.indexOf(bookName))
+    resultArr.splice(resultArr.indexOf(bookName), 1);
+    return resultArr;
+    
+    // Add your code above this line
+    }
+}
+
+var newBookList = add(bookList, 'A Brief History of Time');
+var newerBookList = remove(bookList, 'On The Electrodynamics of Moving Bodies');
+var newestBookList = remove(add(bookList, 'A Brief History of Time'), 'On The Electrodynamics of Moving Bodies');
+
+//console.log(bookList);
+//console.log(newBookList);
+//console.log(newerBookList);
+console.log(newestBookList);
+******************************************************************************************
+
+
+It would make sense to be able to pass them as arguments to other functions, and return a function from another function. 
+Functions are considered First Class Objects in JavaScript, which means they can be used like any other object. 
+They can be saved in variables, stored in an object, or passed as function arguments.
+*************************************************
+var rating = [];
+
+  rating = watchList.map((item) => (
+    {"title": item["Title"],
+    "rating": item["imdbRating"]}
+  ))
+**************************************************
+------------------------------------------------------
+The sort method sorts the elements of an array according to the callback function.
+function ascendingOrder(arr) {
+  return arr.sort(function(a, b) {
+    return a - b;
+  });
+}
+ascendingOrder([1, 5, 2, 3, 4]);
+// Returns [1, 2, 3, 4, 5]
+
+function reverseAlpha(arr) {
+  return arr.sort(function(a, b) {
+    return a < b;
+  });
+}
+reverseAlpha(['l', 'h', 'z', 'b', 's']);
+// Returns ['z', 's', 'l', 'h', 'b']
+
+-----------------------------------------------------
+The split method splits a string into an array of strings. It takes an argument for the delimiter, which can be a character 
+to use to break up the string or a regular expression.
+
+var str = "Hello World";
+var bySpace = str.split(" ");
+// Sets bySpace to ["Hello", "World"]
+
+var otherString = "How9are7you2today";
+var byDigits = otherString.split(/\d
+----------------------------------------------------
+The join method is used to join the elements of an array together to create a string. 
+It takes an argument for the delimiter that is used to separate the array elements in the string.
+
+var arr = ["Hello", "World"];
+var str = arr.join(" ");
+// Sets str to "Hello World"
+----------------------------------------------------
+The every method works with arrays to check if every element passes a particular test. It returns a Boolean value - true if all values meet the criteria, false if not.
+
+var numbers = [1, 5, 8, 0, 10, 11];
+numbers.every(function(currentValue) {
+  return currentValue < 10;
+});
+// Returns false
+---------------------------------------------------
+The some method works with arrays to check if any element passes a particular test. It returns a Boolean value - true if any of the values meet the criteria, false if not.
+
+var numbers = [10, 50, 8, 220, 110, 11];
+numbers.some(function(currentValue) {
+  return currentValue < 10;
+});
+// Returns true
+-------------------------------------------------
+Currying and Partial Application
+The arity of a function is the number of arguments it requires. Currying a function means to convert a function of N arity into N functions of arity 1.
+In other words, it restructures a function so it takes one argument, then returns another function that takes the next argument, and so on.
+
+//Un-curried function
+function unCurried(x, y) {
+  return x + y;
+}
+
+//Curried function
+function curried(x) {
+  return function(y) {
+    return x + y;
+  }
+}
+curried(1)(2) // Returns 3
+This is useful in your program if you can't supply all the arguments to a function at one time. You can save each function call into a variable,
+which will hold the returned function reference that takes the next argument when it's available. 
+
+// Call a curried function in parts:
+var funcForY = curried(1);
+console.log(funcForY(2)); // Prints 3
+
+partial application can be described as applying a few arguments to a function at a time and returning another function that is applied to more arguments.
+
+//Impartial function
+function impartial(x, y, z) {
+  return x + y + z;
+}
+var partialFn = impartial.bind(this, 1, 2);
+partialFn(10); // Returns 13
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,242 @@
+text-align: justify; causes all lines of text except the last line to meet the left and right edges of the line box.
+
+text-align: center; centers the text
+
+text-align: right; right-aligns the text
+
+text-align: left; (the default) left-aligns the text.
+
+
+width: 220px\auto; - specify width of element
+height: 20px\auto; - specify height of element
+font-weight: bold;\wrap text to <strong> - make text bold
+text-decoration: underline;\wrap <u> - underline text
+font-style: italic;\wrap <em> - to emphasize text 
+text-decoration: line-through;' wrap <s> - to strikethrough text
+display: block; - changes the image from an inline element (its default), to a block element on its own line.
+% -relative to src
+viewports - relative to display
+	vw: 10vw would be 10% of the viewport's width.
+    vh: 3vh would be 3% of the viewport's height.
+    vmin: 70vmin would be 70% of the viewport's smaller dimension (height vs. width).
+    vmax: 100vmax would be 100% of the viewport's bigger dimension (height vs. width).
+	
+
+
+<hr/> - horizontal-line, self-closing tag
+
+background-color: rgba(45, 45, 45, 0.1)  
+rgba - allows you to adjust the opacity.
+
+font-size - symbols size
+font-weight: 200;
+line-height:25px; - changes the amount of vertical space that each line of text gets.
+
+box-shadow - applies one or more shadows to an element.
+	takes values:
+				offset-x - how far to push the shadow horizontally from the element
+				offset-y - how far to push the shadow vertically from the element
+				blur-radius 
+				spread-radius
+	ex:
+		box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+-----------------------------------------------------------------------------------------------------------		
+opacity
+	A value of 1 is opaque, which isn't transparent at all.
+	A value of 0.5 is half see-through.
+	A value of 0 is completely transparent.
+---------------------------------------------------------------------------------
+text-transform - used to change the appearance of text
+	example values with "transform me":	
+		lowercase	"transform me"
+		uppercase	"TRANSFORM ME"
+		capitalize	"Transform Me"
+		initial	Use the default value
+		inherit	Use the text-transform value from the parent element
+		none	Default: Use the original text
+------------------------------------------------------------------------------------
+pseudo class
+A pseudo-class is a keyword that can be added to selectors, in order to select a specific state of the element.
+	a:hover {
+  		color: red;
+	}
+	
+	:before - add something before a selected element
+	:after - add something after a selected element
+	:focus - works with tabindex="0" attribute
+-------------------------------------------------------------------------------------
+Change element relative position
+position
+	values:
+	relative
+	
+		CSS treats each HTML element as its own box, which is usually referred to as the CSS Box Model. 
+		Block-level items automatically start on a new line (think headings, paragraphs, and divs) while inline items sit within surrounding content (like images or spans). 
+		The default layout of elements in this way is called the normal flow of a document, but CSS offers the position property to override it.
+		When the position of an element is set to relative, it allows you to specify how CSS should move it relative to its current position in the normal flow of the page. 
+		It pairs with the CSS offset properties of left or right, and top or bottom. 
+		These say how many pixels, percentages, or ems to move the item away from where it is normally positioned. 
+		ex:
+			p {
+  				position: relative;
+  				bottom: 10px;
+			}
+			
+	absolute
+		locks the element in place relative to its parent container.
+		removes the element from the normal flow of the document, so surrounding items ignore it. 
+		One nuance with absolute positioning is that it will be locked relative to its closest positioned ancestor. 
+		If you forget to add a position rule to the parent item, (this is typically done using position: relative;), 
+		the browser will keep looking up the chain and ultimately default to the body tag.
+		
+	fixed
+		similar to absolute positioning, it's used with the CSS offset properties and also removes the element from the normal flow of the document.
+		One key difference from the absolute position is that the element won't move when the user scrolls.
+
+float
+	values:
+		left\right
+			Floating elements are removed from the normal flow of a document and pushed to either the left or right of their containing parent element. 
+			It's commonly used with the width property to specify how much horizontal space the floated element requires.
+		
+	aside, section ????	
+
+z-index
+	specify the order of how elements are stacked on top of one another. It must be an integer, 
+	and higher values for the z-index property of an element move it higher in the stack than those with lower values.
+	ex:
+		z-index: 2;
+
+rotate(-45deg) - rotate element
+		
+------------------------------------------------------------------------------------------
+colors
+The color wheel is a useful tool to visualize how colors relate to each other - it's a circle where similar hues are neighbors and different hues are farther apart. 
+When two colors are opposite each other on the wheel, they are called complementary colors. 
+They have the characteristic that if they are combined, they "cancel" each other out and create a gray color. 
+However, when placed side-by-side, these colors appear more vibrant and produce a strong visual contrast.
+	ex:
+		red (#FF0000) and cyan (#00FFFF)
+		green (#00FF00) and magenta (#FF00FF)	
+		blue (#0000FF) and yellow (#FFFF00)
+		
+		hsl(0-360, 100%, 50%) - (hue, saturation, lightness)
+		
+linear-gradient(gradient_direction, color 1, color 2, color 3, ...);
+		The first argument specifies the direction from which color transition starts - it can be stated as a degree, 
+		where 90deg makes a vertical gradient and 45deg is angled like a backslash. The following arguments specify the order of colors used in the gradient.
+		ex:
+			background: linear-gradient(90deg, red, yellow, rgb(204, 204, 255));
+										corner of changes
+repeating-linear-gradient() 
+	0px [yellow -- blend -- blue] 40px [green -- blend -- red] 80px
+	ex:
+		background: repeating-linear-gradient(
+      											90deg,
+      											yellow 0px,
+      											blue 40px,
+      											green 40px,
+      											red 80px
+    											);
+												
+-----------------------------------------------------------------------------------------
+add texture for background
+	ex:
+		background: url(https://i.imgur.com/MJAkxbh.png);
+-----------------------------------------------------------------------------------------
+transform
+	scale() - change size
+	ex:
+		transform:scale(1.5);
+		
+	skewX()/skewY() - skews the selected element along its X/Y (horizontal/vertical) axis by a given degree.
+	ex:
+		transform: skewX(25deg);
+--------------------------------------------------------------------------------------------------
+border-radius - property that controls the roundness of the element's corners.
+--------------------------------------------------------------------------------------------------
+
+content: ""; ???
+--------------------------------------------------------------------------------------------------
+
+animation
+
+@keyframes - srule controls what happens during that animation
+
+properties:
+	animation-name - sets the name of the animation, which is later used by @keyframes to tell CSS which rules go with which animations.
+	animation-duration - sets the length of time for the animation.
+	animation-iteration-count: 3\infinite; - number of iterations for animation loop 
+	animation-fill-mode 
+		Values:
+			forwards - specifies the style applied to an element when the animation has finished
+	animation-timing-function - controls how quickly an animated element changes over the duration of the animation.
+		Values:
+			 ease - starts slow, speeds up in the middle, and then slows down again in the end
+			 ease-out - quick in the beginning then slows down
+			 ease-in - slow in the beginning, then speeds up at the end
+			 linear - constant animation speed throughout
+			 cubic-bezier(x1, y1, x2, y2) - a custom cubic Bezier curve function.
+			 	cubic Bezier curve is mapped on an 1 by 1 coordinate system, and it can only accept x values from 0 to 1, the y value can be set to numbers larger than one. 
+			 	ex:
+					cubic-bezier(0.25, 0.25, 0.75, 0.75)
+	ex:
+		#anim {
+  				animation-name: colorful;
+  				animation-duration: 3s;
+			}
+		@keyframes colorful {
+  		0% {
+    			background-color: blue;
+  		}
+  		100% {
+    			background-color: yellow;
+  			}
+		}
+You aren't limited to only beginning-end transitions, you can set properties for the element for any percentage between 0% and 100%.
+
+change position wit animation ex:
+	@keyframes rainbow {
+  		0% {
+    		background-color: blue;
+    		top: 0px;
+  		}
+  		50% {
+    		background-color: green;
+    		top: 50px;
+  		}
+  		100% {
+    		background-color: yellow;
+    		top: 0px;
+  		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
