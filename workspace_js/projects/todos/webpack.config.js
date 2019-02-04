@@ -11,5 +11,8 @@ module.exports = {
                 test: /\.ts$/
             }
         ]
+    },
+    resolve: { 
+        extensions: ['.ts', '.js', '.json']
     }
 }

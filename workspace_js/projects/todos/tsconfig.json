@@ -3,6 +3,9 @@
         "module": "commonjs"
     },
     "files": [
-        "src/app.ts"
+        "src/app.ts",
+        "src/lib/TodoInterface.ts",
+        "src/lib/Todos.ts",
+        "src/lib/TodosClassInterface.ts"
     ]
 }
