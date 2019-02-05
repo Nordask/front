@@ -14,12 +14,37 @@ function loadTodos() {
             <p>${todo.text}</p>
           </div>
           <div class="col-lg-3 col-md-3">
-            <button class="btn btn-danger">Delete</button>
+            <button id="${todo.id}" class="deleteTodo btn btn-danger">Delete</button>
           </div>
   
           `)        
         }
     });
 }
+
+// Add Todo
+$('#todoForm').submit((e) => {
+    e.preventDefault();
+    let todoText:string = $('#todoText').val() as string;
+
+    let newTodo = {
+        id: todos.generateId(),
+        text: todoText
+    }
+
+    todos.addTodo(newTodo).then((todo) => {
+        $('#todos').html('');
+        loadTodos();
+    });
+});
+
+//Delete Todo
+$(document).on('click', '.deleteTodo', (e) => {
+    todos.deleteTodo(e.target.id).then((todo) => {
+        $('#todos').html('');
+        loadTodos();
+    });
+});
+
 
 loadTodos();
