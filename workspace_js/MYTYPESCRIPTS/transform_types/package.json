@@ -1,0 +1,11 @@
+{
+    "name": "transform_types",
+    "version": "0.0.0",
+    "devDependencies": {
+        "typescript": "2.8.1"
+    },
+    "dependencies": {
+        "@types/lodash": "^4.14.121",
+        "lodash": "^4.17.11"
+    }
+}
