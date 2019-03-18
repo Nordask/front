@@ -5,11 +5,20 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  email: string = "test@gmail.com";
+  password: string;
+  message: string;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() { 
+    console.log("constructor login");  
   }
 
+  onLoginClick() {
+    if(this.email == "admin@gmail.com" && this.password == "manager") {
+      this.message = "Successfully Login";
+    } else {
+      this.message = "Invalid Login";
+    }
+  }
 }

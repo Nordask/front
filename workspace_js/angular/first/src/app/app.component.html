@@ -1,14 +1,15 @@
 <div>
-  <h1>{{title}}</h1>
-  <input type="button" value="Login" (click)="login()">
-  <img [src]="path">
-  <br/>
-  <input type="text" [(ngModel)]="username">
-  <hr>
-  <app-home></app-home>
-  <app-login></app-login>
-  <app-register></app-register>
-  <app-questions-index></app-questions-index>
-  <app-questions-view></app-questions-view>
-  <app-questions-new></app-questions-new>
+  <div id="header">
+    <h3>Stackoverflow</h3>
+    <a routerLink="home">Home</a>
+    <a routerLink="login">Login</a>
+    <a routerLink="register">Register</a>
+    <a routerLink="questions/index">Questions</a>
+    <a routerLink="newquestion">New Question</a>
+    <a routerLink="viewquestion">View Question</a>
+  </div>
+  <div id="pagecontent">
+    <router-outlet></router-outlet>
+  </div>
+  <div id="footer">footer</div>
 </div>
