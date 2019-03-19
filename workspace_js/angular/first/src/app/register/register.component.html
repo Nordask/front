@@ -1,3 +1,49 @@
-<p>
-  register works!
-</p>
+<div id="registerDiv">
+  <form>  
+    <label for="txtEmail">Email:</label>
+    <input type="text" id="txtEmail" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"><br>
+    
+    <label for="txtPersonName">Person name:</label>
+    <input type="text" id="txtPersonName" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"><br>
+    
+    <label for="txtPassword">Password:</label>
+    <input type="password" id="txtPassword" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"><br>
+    
+    <label for="txtMobile">Mobile:</label>
+    <input type="text" id="txtMobile" [(ngModel)]="mobile" [ngModelOptions]="{standalone: true}"><br>
+    
+    <label for="txtAmount">Amount:</label>
+    <input type="text" id="txtAmount" [(ngModel)]="amount" [ngModelOptions]="{standalone: true}"><br>
+
+    <label for="txtDate">Date of birth:</label>
+    <input type="text" id="txtDate" [(ngModel)]="dateOfBirth" size="2" [ngModelOptions]="{standalone: true}">
+    <input type="text" id="txtMonth" [(ngModel)]="monthOfBirth" size="2" [ngModelOptions]="{standalone: true}">
+    <input type="text" id="txtYear" [(ngModel)]="yearOfBirth" size="2" [ngModelOptions]="{standalone: true}">
+    <br>
+  
+    <input type="checkbox" id="chkNewsLetters" [(ngModel)]="receiveNewsLetters" [ngModelOptions]="{standalone: true}">
+    <label for="chkNewsLetters">Receive News Letters</label><br>
+
+    <label>Gender:</label>
+    <input type="radio" [(ngModel)]="gender" value="Male" name="gender" id="rbMale">
+    <label for="rbMale">Male</label>
+    <input type="radio" [(ngModel)]="gender" value="Female" name="gender" id="rbFemale">
+    <label for="rbFemale">Female</label>
+    <input type="radio" [(ngModel)]="gender" value="Other" name="gender" id="rbOther">
+    <label for="rbOther">0ther</label><br>
+  
+    <label>Country:</label>
+    <select [(ngModel)]="country" [ngModelOptions]="{standalone: true}">
+      <option>Please Select</option>
+      <option>India</option>
+      <option>Unated States of America</option>
+      <option>United Kingdom</option>
+      <option>China</option>
+      <option>Japan</option>
+    </select>
+    <br>
+
+    <input type="submit" value="Register" (click)="onRegisterClick()">
+    {{message}}
+  </form>
+  </div>

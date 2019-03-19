@@ -15,10 +15,22 @@ export class LoginComponent {
   }
 
   onLoginClick() {
-    if(this.email == "admin@gmail.com" && this.password == "manager") {
+    if(this.checkUserNameAndPassword(this.email, this.password)) {
       this.message = "Successfully Login";
     } else {
       this.message = "Invalid Login";
     }
+  }
+
+  private checkUserNameAndPassword(email: string, password: string) {
+    var u = JSON.parse(localStorage.users);
+
+    for(var i = 0; i < u.length; i++) {
+      if(u[i].email == email && u[i].password == password) {
+        return true;
+      }  
+    }
+
+    return false;
   }
 }
