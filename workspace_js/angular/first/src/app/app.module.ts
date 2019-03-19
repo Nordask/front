@@ -12,12 +12,14 @@ import { RegisterComponent } from './register/register.component';
 import { QuestionsIndexComponent } from './questions-index/questions-index.component';
 import { QuestionsNewComponent } from './questions-new/questions-new.component';
 import { QuestionsViewComponent } from './questions-view/questions-view.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 
 var myRoutes: Routes = [
   {path: "home", component: HomeComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
+  {path: "home/categories", component: CategoriesComponent},
   {path: "questions/index", component: QuestionsIndexComponent},
   {path: "newquestion", component: QuestionsNewComponent},
   {path: "viewquestion", component: QuestionsViewComponent},

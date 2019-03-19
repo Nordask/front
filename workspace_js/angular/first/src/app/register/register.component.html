@@ -18,6 +18,21 @@
     <label for="txtDate">Date of birth:</label>
     <input type="text" id="txtDate" [(ngModel)]="dateOfBirth" size="2" [ngModelOptions]="{standalone: true}">
     <input type="text" id="txtMonth" [(ngModel)]="monthOfBirth" size="2" [ngModelOptions]="{standalone: true}">
+    <span [ngSwitch]="monthOfBirth">
+      <span *ngSwitchCase="'1'">Jan</span>
+      <span *ngSwitchCase="'2'">Feb</span>
+      <span *ngSwitchCase="'3'">Mar</span>
+      <span *ngSwitchCase="'4'">Apr</span>
+      <span *ngSwitchCase="'5'">May</span>
+      <span *ngSwitchCase="'6'">Jun</span>
+      <span *ngSwitchCase="'7'">Jul</span>
+      <span *ngSwitchCase="'8'">Aug</span>
+      <span *ngSwitchCase="'9'">Sep</span>
+      <span *ngSwitchCase="'10'">Oct</span>
+      <span *ngSwitchCase="'11'">Nov</span>
+      <span *ngSwitchCase="'12'">Dec</span>
+      <span *ngSwitchDefault>Unknown</span>
+    </span>
     <input type="text" id="txtYear" [(ngModel)]="yearOfBirth" size="2" [ngModelOptions]="{standalone: true}">
     <br>
   
@@ -44,6 +59,19 @@
     <br>
 
     <input type="submit" value="Register" (click)="onRegisterClick()">
-    {{message}}
+    <input type="reset">
+    <br>
+
+    <div *ngIf="shouldDisplayMessage">
+      <div *ngIf="isSuccessfullyRegistered; then template1; else template2"></div>
+    </div>
+
+    <ng-template #template1>
+      <p>Successfully registered</p>
+    </ng-template>
+
+    <ng-template #template2>
+      <p>Registration failed</p>
+    </ng-template>
   </form>
   </div>

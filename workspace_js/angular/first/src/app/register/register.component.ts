@@ -17,31 +17,37 @@ export class RegisterComponent {
   gender: string;
   country: string;
   amount: number;
-  message: string;
+  isSuccessfullyRegistered: boolean = false;
+  shouldDisplayMessage: boolean = false;
 
   onRegisterClick() {
-    console.log(this.name)
-    var s = "Email:" + this.email + ", Rerson name:" + this.name +
-    ", Password:" + this.password + ", Mobile:" + this.mobile +
-    ", Date of birth:" + this.dateOfBirth + ", Month of birth:" +
-    this.monthOfBirth +  ", Year of birth:" + this.yearOfBirth +
-    ", Gender:" + this.gender + ", Country:" +
-    this.country + ", Amount:" + this.amount;
-    console.log(s);
+    try {
+      var s = "Email:" + this.email + ", Rerson name:" + this.name +
+      ", Password:" + this.password + ", Mobile:" + this.mobile +
+      ", Date of birth:" + this.dateOfBirth + ", Month of birth:" +
+      this.monthOfBirth +  ", Year of birth:" + this.yearOfBirth +
+      ", Gender:" + this.gender + ", Country:" +
+      this.country + ", Amount:" + this.amount;
+      console.log(s);
 
-    if(localStorage.users == null || localStorage.users == undefined) {
-      localStorage.users = JSON.stringify([]);
+      if(localStorage.users == null || localStorage.users == undefined) {
+        localStorage.users = JSON.stringify([]);
+      }
+
+      var u = JSON.parse(localStorage.users);
+      u.push({email: this.email, personName: this.name, mobile: this.mobile,
+      dateOfBirth: this.dateOfBirth, monthOfBirth: this.monthOfBirth,
+      yearOfBirth: this.yearOfBirth, receiveNewsLetters: this.receiveNewsLetters,
+      gender: this.gender, country: this.country, amount: this.amount,
+      password: this.password});
+
+      localStorage.users = JSON.stringify(u);
+
+      this.isSuccessfullyRegistered = true;
+      this.shouldDisplayMessage = true;
+    } catch(e) {
+      this.isSuccessfullyRegistered = false;
+      this.shouldDisplayMessage = true;
     }
-
-    var u = JSON.parse(localStorage.users);
-    u.push({email: this.email, personName: this.name, mobile: this.mobile,
-    dateOfBirth: this.dateOfBirth, monthOfBirth: this.monthOfBirth,
-    yearOfBirth: this.yearOfBirth, receiveNewsLetters: this.receiveNewsLetters,
-    gender: this.gender, country: this.country, amount: this.amount,
-    password: this.password});
-
-    localStorage.users = JSON.stringify(u);
-
-    this.message = "Successfully registration";
   }
 }

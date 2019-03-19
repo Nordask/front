@@ -1,0 +1,14 @@
+<div>
+  <table border="1">
+    <tr>
+      <th>Category ID</th>
+      <th>Category Name</th>
+      <th>Added By</th>
+    </tr>
+    <tr *ngFor="let category of categoriesList">
+      <td>{{category.categoryId}}</td>
+      <td>{{category.categoryName}}</td>
+      <td>{{category.addedBy}}</td>
+    </tr>
+  </table>
+</div>

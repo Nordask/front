@@ -1,22 +1,27 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
-import {HomeComponent} from "../home/home.component";
-import {RegisterComponent} from "../register/register.component";
-import {LoginComponent} from "../login/login.component";
+import { CommonModule } from "@angular/common";
+import { HomeComponent } from "../home/home.component";
+import { RegisterComponent } from "../register/register.component";
+import { LoginComponent } from "../login/login.component";
+import { CategoriesComponent } from "../categories/categories.component";
 
 @NgModule({
   declarations: [
     HomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    CategoriesComponent
   ],
   exports: [
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CategoriesComponent
   ],
   imports: [
-    FormsModule
+    FormsModule,
+    CommonModule
   ]
 })
 export class AccountModule { 
