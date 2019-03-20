@@ -14,11 +14,14 @@ export class LoginComponent {
     console.log("constructor login");  
   }
 
-  onLoginClick() {
-    if(this.checkUserNameAndPassword(this.email, this.password)) {
-      this.message = "Successfully Login";
-    } else {
-      this.message = "Invalid Login";
+  onLoginClick(myForm) {
+    console.log(myForm)
+    if(myForm.valid == true) {
+      if(this.checkUserNameAndPassword(this.email, this.password)) {
+        this.message = "Successfully Login";
+      } else {
+        this.message = "Invalid Login";
+      }
     }
   }
 
