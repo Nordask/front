@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { HomeComponent } from "../home/home.component";
 import { RegisterComponent } from "../register/register.component";
@@ -21,7 +21,8 @@ import { CategoriesComponent } from "../categories/categories.component";
   ],
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ]
 })
 export class AccountModule { 
