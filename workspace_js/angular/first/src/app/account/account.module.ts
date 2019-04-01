@@ -5,19 +5,24 @@ import { HomeComponent } from "../home/home.component";
 import { RegisterComponent } from "../register/register.component";
 import { LoginComponent } from "../login/login.component";
 import { CategoriesComponent } from "../categories/categories.component";
+import { ContactComponent } from '../contact/contact.component';
+import { DurationPipe } from '../duration.pipe';
 
 @NgModule({
   declarations: [
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    ContactComponent,
+    DurationPipe 
   ],
   exports: [
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    ContactComponent 
   ],
   imports: [
     FormsModule,

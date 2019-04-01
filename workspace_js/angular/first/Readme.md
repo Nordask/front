@@ -8,3 +8,6 @@ Create module
 	ng g module module_name
 Create class
 	ng g class class_name
+Create pipe
+	ng g pipe pipe_name
+

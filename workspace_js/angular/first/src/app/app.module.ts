@@ -12,6 +12,7 @@ import { QuestionsIndexComponent } from './questions-index/questions-index.compo
 import { QuestionsNewComponent } from './questions-new/questions-new.component';
 import { QuestionsViewComponent } from './questions-view/questions-view.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 var myRoutes: Routes = [
@@ -19,6 +20,7 @@ var myRoutes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
   {path: "home/categories", component: CategoriesComponent},
+  {path: "home/contact", component: ContactComponent},
   {path: "questions/index", component: QuestionsIndexComponent},
   {path: "newquestion", component: QuestionsNewComponent},
   {path: "viewquestion", component: QuestionsViewComponent},

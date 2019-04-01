@@ -1,0 +1,45 @@
+<div>
+  <h5>uppercase</h5>
+  {{city | uppercase}} <br>
+  {{city | lowercase}} <br>
+  <h5>slice</h5>
+  {{city | slice: 2:6}} <br>
+  <h5>number</h5>
+  {{salary}} <br>
+  {{salary | number}} <br>
+  {{salary | number: ".4"}} <br>
+  <h5>currency</h5>
+  {{salary | currency}} <br>
+  {{salary | currency: "USD"}} <br>
+  {{salary | currency: "INR"}} <br>
+  {{salary | currency: "GBP"}} <br>
+  {{salary | currency: "EUR"}} <br>
+  <h5>percent</h5>
+  {{tax | percent}} <br>
+  <h5>json</h5>
+  {{person | json}} <br>
+  <h5>date</h5>
+  {{dt}} <br>
+  {{dt | date:"shortDate"}} <br>
+  {{dt | date:"mediumDate"}} <br>
+  {{dt | date:"longDate"}} <br>
+  {{dt | date:"fullDate"}} <br>
+  {{dt | date:"shortTime"}} <br>
+  {{dt | date:"mediumTime"}} <br>
+  {{dt | date:"short"}} <br>
+  {{dt | date:"medium"}} <br>
+  {{dt | date:"y-M-d"}} <br>
+  {{dt | date:"d/M/y"}} <br>
+  {{dt | date:"h:m:s"}} <br>
+  {{dt | date:"hh:mm:ss"}} <br>
+  {{dt | date:"H:m"}} <br>
+  {{dt | date:"a"}} <br>
+  {{dt | date:"EEE"}} <br>
+  {{dt | date:"EEEE"}} <br>
+  {{dt | date:"EEEEE"}} <br>
+  {{dt | date:"MMM"}} <br>
+  {{dt | date:"MMMM"}} <br>
+  {{dt | date:"Z"}} <br>
+  <h5>duration</h5>
+  {{videolength | duration}}
+</div>
