@@ -6,10 +6,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent{
-  city: string = "Hyderabad";
-  salary: number = 89686009977578;
-  tax: number = 0.80;
-  person: object = {firstName: "Adam", lastName: "Smith"};
-  dt: Date = new Date();
-  videolength: number = 150;
+  city: string;
+  salary: number;
+  tax: number;
+  person: object;
+  dt: Date;
+  videolength: number;
+
+  constructor() {
+    this.city = "Hyderabad";
+    this.salary = 89686009977578;
+    this.tax = 0.80;
+    this.person = {firstName: "Adam", lastName: "Smith"};
+    this.dt = new Date();
+    this.videolength = 150;  
+  }
+
+  ngOnChanges() {
+    
+  }
 }
