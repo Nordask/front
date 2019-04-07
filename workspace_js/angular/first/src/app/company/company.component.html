@@ -1,8 +1,9 @@
-<div>
+<div id="companyDiv">
   <h5>Company</h5>
   <p>{{companyTitle}}</p>
   <p>{{companyLocation}}</p>
   <input type="text" [(ngModel)]="firstName"><br>
   <input type="text" [(ngModel)]="lastName"><br>
+  <input type="button" value="Change Data 2" (click)="onChangeData2Click()">
   <ng-content></ng-content>
 </div>

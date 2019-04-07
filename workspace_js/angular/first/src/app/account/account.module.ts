@@ -8,6 +8,7 @@ import { CategoriesComponent } from "../categories/categories.component";
 import { ContactComponent } from '../contact/contact.component';
 import { DurationPipe } from '../duration.pipe';
 import { CompanyComponent } from '../company/company.component';
+import { EmployeeComponent } from '../employee/employee.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CompanyComponent } from '../company/company.component';
     CategoriesComponent,
     ContactComponent,
     DurationPipe,
-    CompanyComponent
+    CompanyComponent,
+    EmployeeComponent
   ],
   exports: [
     HomeComponent,

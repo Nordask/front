@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { CompanyComponent } from '../company/company.component';
 
 @Component({
   selector: 'app-contact',
@@ -21,8 +22,22 @@ export class ContactComponent{
     this.dt = new Date();
     this.videolength = 150;  
   }
+  
+  //Only first one or single
+  @ViewChild(CompanyComponent) comp: CompanyComponent;
+  @ViewChildren(CompanyComponent) comp2: QueryList<CompanyComponent>;
 
-  ngOnChanges() {
-    
+  ngAfterViewInit() {
+    console.log(this.comp);
+    console.log(this.comp2); 
+    console.log(this.comp2.toArray());
+  }
+
+  onChangeDataClick() {
+    //this.comp.firstName = "modified";
+    var arr = this.comp2.toArray();
+    for (var i = 0; i < arr.length; i++) {
+      arr[i].firstName = "modified" + i;
+    }
   }
 }

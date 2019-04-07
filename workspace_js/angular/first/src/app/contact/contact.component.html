@@ -2,7 +2,14 @@
   <app-company [companyTitle]="'TT'" [companyLocation]="'New York'">
     <p>This is my current working company</p>
     <p>I have very good work experience in this company</p>
+    <app-employee></app-employee>
   </app-company>
+  <app-company [companyTitle]="'ASDF Pvt Ltd'" [companyLocation]="'New Mumbai'">
+    <p>My friend works here</p>
+    <app-employee></app-employee>
+    <app-employee></app-employee>
+  </app-company>
+  <input type="button" value="Change data" (click)="onChangeDataClick()">
   <h5>uppercase</h5>
   {{city | uppercase}} <br>
   {{city | lowercase}} <br>
