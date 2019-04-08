@@ -13,6 +13,9 @@ export class ContactComponent{
   person: object;
   dt: Date;
   videolength: number;
+  marks: number;
+  markscolor: string;
+  marksCssClass: string;
 
   constructor() {
     this.city = "Hyderabad";
@@ -20,7 +23,16 @@ export class ContactComponent{
     this.tax = 0.80;
     this.person = {firstName: "Adam", lastName: "Smith"};
     this.dt = new Date();
-    this.videolength = 150;  
+    this.videolength = 150;
+    this.marks = 70;
+
+    if(this.marks >= 35) {
+      this.markscolor = "green";
+      this.marksCssClass = "class1";
+    } else {
+      this.markscolor = "red";
+      this.marksCssClass = "class2";
+    }
   }
   
   //Only first one or single

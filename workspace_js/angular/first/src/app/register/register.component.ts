@@ -30,6 +30,7 @@ export class RegisterComponent {
 
   onRegisterClick() {
     try {
+      console.log(this.myForm.controls.monthOfBirth.value);
       if(this.myForm.valid == true) {
         var s = "Email:" + this.myForm.controls.email.value + ", Rerson name:" + this.myForm.controls.name.value +
         ", Password:" + this.myForm.controls.password.value + ", Mobile:" + this.myForm.controls.mobile.value +

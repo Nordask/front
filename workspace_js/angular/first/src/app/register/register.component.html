@@ -51,7 +51,7 @@
     && myForm.controls.monthOfBirth.errors.required">Month of birth can't be blank</span>
     <span class="error" *ngIf="myForm.controls.monthOfBirth.invalid && myForm.controls.monthOfBirth.touched 
     && myForm.controls.monthOfBirth.errors.pattern">Month of birth is invalid</span>
-    <span [ngSwitch]="monthOfBirth">
+    <span [ngSwitch]="myForm.controls.monthOfBirth.value">
       <span *ngSwitchCase="'1'">Jan</span>
       <span *ngSwitchCase="'2'">Feb</span>
       <span *ngSwitchCase="'3'">Mar</span>
