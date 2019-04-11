@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login',
@@ -10,30 +11,18 @@ export class LoginComponent {
   password: string;
   message: string;
 
-  constructor() { 
+  constructor(@Inject(LoginService) private s:LoginService) { 
     console.log("constructor login");  
   }
 
   onLoginClick(myForm) {
     console.log(myForm)
     if(myForm.valid == true) {
-      if(this.checkUserNameAndPassword(this.email, this.password)) {
+      if(this.s.checkUserNameAndPassword(this.email, this.password)) {
         this.message = "Successfully Login";
       } else {
         this.message = "Invalid Login";
       }
     }
-  }
-
-  private checkUserNameAndPassword(email: string, password: string) {
-    var u = JSON.parse(localStorage.users);
-
-    for(var i = 0; i < u.length; i++) {
-      if(u[i].email == email && u[i].password == password) {
-        return true;
-      }  
-    }
-
-    return false;
   }
 }

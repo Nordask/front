@@ -16,7 +16,7 @@ export class RegisterComponent {
     this.myForm = new FormGroup({
       email: new FormControl("", [Validators.required, Validators.pattern("^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$")]),
       name: new FormControl("", [Validators.required, Validators.pattern("^[a-zA-Z]*$"), Validators.minLength(3), Validators.maxLength(30)]),
-      password: new FormControl("", [Validators.required, Validators.pattern("((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15})")]),
+      password: new FormControl("", [Validators.required, Validators.pattern("((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,15})")]),
       mobile: new FormControl("", [Validators.required, Validators.pattern("^[1-9]{1}[0-9]{3,14}$")]),
       dateOfBirth: new FormControl("", [Validators.required, Validators.pattern("[0-9]{1,2}")]),
       monthOfBirth: new FormControl("", [Validators.required, Validators.pattern("[0-9]{1,2}")]),

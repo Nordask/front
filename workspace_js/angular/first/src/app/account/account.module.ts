@@ -9,6 +9,7 @@ import { ContactComponent } from '../contact/contact.component';
 import { DurationPipe } from '../duration.pipe';
 import { CompanyComponent } from '../company/company.component';
 import { EmployeeComponent } from '../employee/employee.component';
+import { LoginService } from "../login.service";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,9 @@ import { EmployeeComponent } from '../employee/employee.component';
     FormsModule,
     CommonModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    LoginService
   ]
 })
 export class AccountModule { 
