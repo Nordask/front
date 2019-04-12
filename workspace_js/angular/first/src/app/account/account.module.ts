@@ -10,6 +10,7 @@ import { DurationPipe } from '../duration.pipe';
 import { CompanyComponent } from '../company/company.component';
 import { EmployeeComponent } from '../employee/employee.component';
 import { LoginService } from "../login.service";
+import { SampleDirective } from '../sample.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoginService } from "../login.service";
     ContactComponent,
     DurationPipe,
     CompanyComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    SampleDirective
   ],
   exports: [
     HomeComponent,
