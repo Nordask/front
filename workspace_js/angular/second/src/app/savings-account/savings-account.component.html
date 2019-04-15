@@ -1,3 +1,10 @@
-<p>
-  savings-account works!
-</p>
+<div>
+  <h4>Savings account</h4>
+  <form>
+    Account No: <input type="text" [(ngModel)]="accountNumber" name="accountNumber" 
+    (change)="onAccountNoChanged()"><br>
+    Current Balance: <input type="text" [(ngModel)]="currentBalance" name="currentBalance" 
+    (change)="onCurrentBalanceChanged()"><br>
+    <input type="submit" value="OK">
+  </form>
+</div>
