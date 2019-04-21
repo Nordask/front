@@ -1,0 +1,23 @@
+<div>
+  <input type="button" value="Send Request" (click)="onSendRequestClicked()">
+  <table border="1">
+    <tr>
+      <th>Emp ID</th>
+      <th>Emp Name</th>
+      <th>Salary</th>
+    </tr>
+    <tr *ngFor="let emp of employees; let i=index">
+      <td>{{emp.empId}}</td>
+      <td>{{emp.empName}}</td>
+      <td>{{emp.salary}}</td>
+      <td><input type="button" value="Edit" (click)="onEditClicked()"></td>
+      <td><input type="button" value="Delete" (click)="onDeleteClicked(i)"></td>
+    </tr>
+    <tr>
+      <td><input type="text" placeholder="Emp ID" [(ngModel)]="newEmp.empId"></td>
+      <td><input type="text" placeholder="Emp Name" [(ngModel)]="newEmp.empName"></td>
+      <td><input type="text" placeholder="Salary" [(ngModel)]="newEmp.salary"></td>
+      <td><input type="button" value="Insert" (click)="onInsertClicked()"></td>
+    </tr>
+  </table>
+</div>

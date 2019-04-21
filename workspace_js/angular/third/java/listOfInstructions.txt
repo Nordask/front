@@ -1,0 +1,28 @@
+1) Tomcat installation
+	sudo apt-get install tomcat8 or install manually according to instruction
+
+2) Compile servlet file .java -> .class	and put insedi tomcat special folder. Also need servlet-api.jar
+	sudo javac -d /var/lib/tomcat8/webapps/ROOT/WEB-INF/classes SampleServlet.java -classpath ~/third/java/servlet-api.jar
+
+3) Configure web.xml file
+	sudo gedit /etc/tomcat8/web.xml
+	Insert this:
+
+	<servlet>
+        	<servlet-name>SampleServlet</servlet-name>
+        	<servlet-class>SampleServlet</servlet-class>
+    	</servlet>
+
+    	<servlet-mapping>
+        	<servlet-name>SampleServlet</servlet-name>
+        	<url-pattern>/SampleServlet</url-pattern>
+    	</servlet-mapping>
+	
+4) Run tomcat 
+	sudo service tomcat8 start
+	sudo systemctl restart tomcat8  - if servlet was update
+
+5) Build angular project and insert into tomcat special directory(/var/lib/tomcat8/webapps/ROOT) with replace
+	ng build --prod
+
+
