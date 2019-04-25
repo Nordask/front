@@ -1,0 +1,12 @@
+<div>
+  <h5>Employees</h5>
+  <table border="1">
+    <tr><th>Emp Id</th><th>Emp name</th><th>Salary</th><th>Tax</th></tr>
+    <tr *ngFor="let emp of employees">
+      <td>{{emp.empId}}</td>
+      <td>{{emp.empName}}</td>
+      <td>{{emp.salary}}</td>
+      <td>{{emp.tax}}</td>
+    </tr>
+  </table>
+</div>
