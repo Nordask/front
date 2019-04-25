@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Employee } from "../employee";
-import { Observable, Observer } from "rxjs";
 import { ObsService } from "../obs.service";
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-employees-display',
@@ -16,7 +16,11 @@ export class EmployeesDisplayComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ss.myObservable.subscribe(
+    this.ss.mySubject
+    .pipe(map((data) => {
+      data.salary = data.salary * 12;
+      return data;}))
+    .subscribe(
       (data) => {
         console.log(data);
         this.emp2.empName = data.empName;

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Employee } from "../employee";
-import { Observable } from "rxjs";
+import { Employee } from "./employee";
+import { Subject } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ObsService {
-  myObservable: Observable<Employee>;
+  mySubject: Subject<Employee> = new Subject<Employee>();
 }

@@ -10,17 +10,13 @@ import { ObsService } from "../obs.service";
 })
 export class EmployeesEntryComponent implements OnInit {
   emp1: Employee = new Employee();
-  myObserver: Observer<Employee>;
 
   constructor(@Inject(ObsService) private ss: ObsService) {
 
   }
 
   ngOnInit() {
-    this.ss.myObservable = Observable.create((observer: Observer<Employee>) => {
-      console.log("subscribed");
-      this.myObserver = observer;
-    });
+  
   }
 
   onOKClicked() {
@@ -28,11 +24,11 @@ export class EmployeesEntryComponent implements OnInit {
     temp.empName = this.emp1.empName;
     temp.salary = this.emp1.salary;
 
-    this.myObserver.next(temp);
+    this.ss.mySubject.next(temp);
   }
 
   onCompletClicked() {
-    this.myObserver.complete();
+    this.ss.mySubject.complete();
   }
 
 }
