@@ -1,4 +1,102 @@
 <div>
-  <button mat-button>OK</button>
-  <button mat-button>Cancel</button>
+  <h4>Basic buttons</h4>
+  <button mat-button>Basic</button>
+  <button mat-button color="primary">Primary</button>
+  <button mat-button color="accent">Accent</button>
+  <button mat-button color="warn">Warn</button>
+  <button mat-button disabled>Disabled</button>
+  <a href="http://www.google.com" mat-button>Link</a>
+</div>
+
+<div>
+  <h4>Raised buttons</h4>
+  <button mat-raised-button>Basic</button>
+  <button mat-raised-button color="primary">Primary</button>
+  <button mat-raised-button color="accent">Accent</button>
+  <button mat-raised-button color="warn">Warn</button>
+  <button mat-raised-button disabled>Disabled</button>
+  <a href="http://www.google.com" mat-raised-button>Link</a>
+</div>
+
+
+<div>
+    <h4>Fab buttons</h4>
+    <button mat-fab>Basic</button>
+    <button mat-fab color="primary">Primary</button>
+    <button mat-fab color="accent">Accent</button>
+    <button mat-fab color="warn">Warn</button>
+    <button mat-fab disabled>Disabled</button>
+    <a href="http://www.google.com" mat-fab>Link</a>
+</div>
+
+<div>
+    <h4>Mini Fab buttons</h4>
+    <button mat-mini-fab>Basic</button>
+    <button mat-mini-fab color="primary" id="button1">Primary</button>
+    <button mat-mini-fab color="accent">Accent</button>
+    <button mat-mini-fab color="warn">Warn</button>
+    <button mat-mini-fab disabled>Disabled</button>
+    <a href="http://www.google.com" mat-mini-fab>Link</a>
+</div>
+
+<div>
+    <h4>TextBox</h4>
+    <mat-form-field>
+        <input type="text" matInput placeholder="First name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input type="text" matInput placeholder="Last name">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <textarea type="text" matInput placeholder="Comment"></textarea>
+    </mat-form-field>
+</div>
+
+<div>
+    <h4>CheckBox</h4>
+    <mat-checkbox>
+      Receive news letters
+    </mat-checkbox>
+</div>
+
+<div>
+    <h4>RadioButton</h4>
+    <mat-radio-group>
+      <mat-radio-button value="m">Male</mat-radio-button>
+      <mat-radio-button value="f">Female</mat-radio-button>
+    </mat-radio-group>
+</div>
+
+<div>
+    <h4>DropDownList</h4>
+    <mat-form-field>
+      <mat-select placeholder="Bank">
+        <mat-option *ngFor="let bank of banks" [value]="bank.bankshortname">{{bank.bankfullname}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+
+<div>
+    <h4>AutoComplete</h4>
+    <mat-form-field>
+      <input type="text" placeholder="City" matInput [matAutocomplete]="auto1" formControlName="myControl">
+
+      <mat-autocomplete #auto1="matAutocomplete">
+        <mat-option *ngFor="let city of cities" [value]="city">
+          {{city}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+</div>
+
+<div>
+    <h4>Datepicker</h4>
+    <mat-form-field>
+      <input type="text" placeholder="Date of journey" matInput [matDatepicker]="picker1" formControlName="myControl">
+
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
 </div>
