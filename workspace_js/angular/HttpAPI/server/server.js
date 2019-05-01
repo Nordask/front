@@ -13,7 +13,6 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'POST');
   next();
-  
 });
 
 app.post('/post', (req, res) => {
@@ -38,6 +37,18 @@ app.post('/post', (req, res) => {
     } 
   });
 });
+
+app.get('/get', (req, res) => {
+  console.log('Got request for data');
+  fs.readFile('data/people.json', 'utf8', (err, data) => {
+    if(err) {
+      console.log(err);
+      throw err;
+    } else {
+      res.send(data);
+    }
+  })
+})
 
 app.listen(3000, ()=>{
   console.log('Listening on port 3000. Post a file to http://localhost:3000 to save to /JSON.json');

@@ -5,9 +5,25 @@
 </div>
 
 <button (click)="fetchPeople()">Fetch people</button>
+<button (click)="putPeople()">Put people</button>
+<input type="file" #fileUpload>
+<button (click)="uploadFile(fileUpload)">Upload file</button>
 
 <hr/>
 
 <ul>
-  <li *ngFor="let human of people$ | async">{{human.name}}</li>
+  <li *ngFor="let person of people">{{person.name}}</li>
 </ul>
+{{people}}
+
+<p *ngIf="message">
+  <strong>{{message}}</strong>
+</p>
+<p *ngIf="output">
+  {{output}}
+</p>
+
+<hr>
+<button (click)="successRequest()">Success req</button>
+<button (click)="raiseError()">Raise error</button>
+
