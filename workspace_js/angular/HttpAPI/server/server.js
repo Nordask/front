@@ -6,22 +6,37 @@ const fs = require('fs');
 
 const app = express()
 app.use(bodyParser.json());
-/*
+var urlencodedParser = bodyParser.urlencoded({extended: false});
+
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:8000');
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'POST');
   next();
   
-});*/
+});
 
 app.post('/post', (req, res) => {
-  console.log('Received request');
-  fs.writeFile('json.json', JSON.stringify(req.body), (err) => {
-    if (err) throw err;
-    console.log('File written to JSON.json');
-    res.send('File written to JSON.json')
-  })
+  console.log(req);
+  console.log(req.body);
+  console.log('Received request:');
+  fs.readFile('data/people.json', 'utf8', (err, data) => {
+    if(err) {
+      console.log(err);
+      throw err;
+    } else {
+      var obj = JSON.parse(data); // current data from file
+      obj.push(req.body); // add new data
+      fs.writeFile('data/people.json', JSON.stringify(obj), (err) => {
+        if (err) {
+          console.log(err);
+          throw err;
+        } 
+        console.log('File written to JSON.json');
+        res.send('File written to JSON.json')
+      })
+    } 
+  });
 });
 
 app.listen(3000, ()=>{
