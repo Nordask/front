@@ -1,0 +1,8 @@
+<div>
+  <h1>Angular Services</h1>
+  <pre>{{people | json}}</pre>
+  <app-contact-list></app-contact-list>
+  <app-person-editor></app-person-editor>
+  <button (click)="toggleChildVisible()">Toggle</button>
+  <app-child *ngIf="childVisible"></app-child>
+</div>

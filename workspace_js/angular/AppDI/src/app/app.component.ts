@@ -1,0 +1,21 @@
+import { Component } from '@angular/core';
+import { PeopleService } from './people.service';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  providers: [PeopleService]
+})
+export class AppComponent {
+  people;
+  childVisible = true;
+  constructor(private peopleService: PeopleService) {
+    //const peopleService = new PeopleService();
+    this.people = peopleService.getPeople(); 
+  }
+
+  toggleChildVisible() {
+    this.childVisible = !this.childVisible;
+  }
+}
