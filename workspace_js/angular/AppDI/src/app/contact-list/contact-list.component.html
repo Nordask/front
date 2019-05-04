@@ -1,3 +1,8 @@
-<p>
-  contact-list works!
-</p>
+<div>
+  <h3>List of people</h3>
+  <ul>
+    <li *ngFor="let person of people">
+      {{person.name}}
+    </li>
+  </ul>
+</div>

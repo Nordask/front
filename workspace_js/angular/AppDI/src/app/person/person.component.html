@@ -1,0 +1,6 @@
+<div style="border:1px;">
+  Loggin component:
+  <p *ngIf="logger===null">I don't have logger</p>
+  <button (click)="doLog()">Log to console</button>
+  <pre>{{ person | json }}</pre>
+</div>

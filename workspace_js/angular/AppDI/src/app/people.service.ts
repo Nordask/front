@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 
+export abstract class PeopleService { // interface doesn't work for services
+    abstract getPeople();   
+}
+
 @Injectable()
-export class PeopleService {
-    constructor() {}
+export class AwesomePeopleService extends PeopleService {
 
     getPeople() {
         return [

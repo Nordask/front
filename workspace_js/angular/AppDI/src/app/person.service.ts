@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class PersonService {
   name = 'Juri';
 
-  getPerson() {
+  getPerson(): any {
     return {
       name: this.name,
       age: 31

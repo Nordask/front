@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
-import { PeopleService } from './people.service';
+import { PeopleService, AwesomePeopleService } from './people.service';
+import { ConsoleWriterService } from './console-writer.service';
+import { LoggerService, loggerFactory } from './logger.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [PeopleService]
+  providers: [{provide: PeopleService, useClass: AwesomePeopleService, useValue: AwesomePeopleService},
+              {provide: LoggerService, 
+               useFactory: loggerFactory(new ConsoleWriterService(), 'AppComponent'),
+               deps: [ConsoleWriterService]
+              },]
 })
 export class AppComponent {
   people;
